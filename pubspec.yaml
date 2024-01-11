@@ -60,4 +60,8 @@ flutter:
           weight: 600
         - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
+    - family: Metrophobic
+      fonts:
+        - asset: assets/fonts/Metrophobic-Regular.ttf
+          weight: 700
 

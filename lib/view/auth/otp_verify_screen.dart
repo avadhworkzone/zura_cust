@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,21 +11,24 @@ import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/create_profile_screen.dart';
 
-class OtpVerificationScreen extends StatefulWidget {
+
+class OtpVerificationScreen extends StatefulWidget{
+
   const OtpVerificationScreen({Key? key}) : super(key: key);
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+
   final otpEditController = TextEditingController();
   final interval = const Duration(seconds: 1);
   int currentSeconds = 60, countDownTime = 150, timerMaxSeconds = 150;
   String? timerText = "150";
   Timer? _timer;
 
-  void _startTimer() {
-    _timer = Timer.periodic(interval, (timer) {
+  void _startTimer(){
+    _timer = Timer.periodic(interval, (timer){
       setState(() {});
     });
   }

@@ -16,14 +16,15 @@ import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/otp_verify_screen.dart';
 import 'package:wilatone_restaurant/view/general/wilestone_web_view.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget{
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen>{
+
   final phoneController = TextEditingController();
   String phoneNumber = '', dialCode = "";
 
@@ -33,16 +34,20 @@ class _LoginScreenState extends State<LoginScreen> {
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+
           WileToneTextWidget(
             title: VariablesUtils.byContinuing,
             color: ColorUtils.grey5B,
             fontWeight: FontWeight.w500,
             fontSize: 10.sp,
           ),
+
           SizedBox(height: 3.h),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               InkWell(
                 onTap: () {
                   Get.to(WileStoneWebview(
@@ -195,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: WileToneCustomButton(
                 onPressed: () {
-                  Get.to(OtpVerificationScreen());
+                  Get.to(const OtpVerificationScreen());
                 },
                 buttonHeight: 52,
                 buttonColor: ColorUtils.greenColor,
@@ -233,18 +238,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
+
             SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
                 const WileToneImageWidget(
                   image: AppIconAssets.googleIcon,
                   imageType: ImageType.png,
                   scale: 5,
                 ),
+
                 SizedBox(
                   width: 10.w,
                 ),
+
                 const WileToneImageWidget(
                   image: AppIconAssets.appleIcon,
                   imageType: ImageType.png,

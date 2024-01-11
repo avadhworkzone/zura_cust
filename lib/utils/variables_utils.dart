@@ -1,4 +1,5 @@
 class VariablesUtils {
+
   static const appName = 'WileTone';
 
   /// ==================== DASH BOARD ==================== ///
@@ -37,8 +38,7 @@ class VariablesUtils {
   static const privacyPolicy = 'Privacy Policy';
   static const contentPolicies = 'Content Policies';
   static const oTPVerification = 'OTP Verification';
-  static const weHaveSentVerificationCodeTo =
-      'We have sent a verification code to';
+  static const weHaveSentVerificationCodeTo = 'We have sent a verification code to';
   static const didntGetOtp = 'Didn’t get the OTP? ';
   static const resendSMSIn = 'Resend SMS in';
   static const goBackToLoginMethods = 'Go back to login methods';
@@ -63,4 +63,28 @@ class VariablesUtils {
   static const discount = "Discount";
   static const timing = "Timing";
   static const transactionID = "Transaction ID";
+
+  ///  Location Screen
+  static const location = "What's your location?";
+  static const store = "We need your location to show available\nstores and products.";
+  static const devicelocation = "Enable Device Location";
+  static const manually = "Enter Manually";
+
+  /// Search Area screen
+  static const enterarea = 'Enter your area name';
+  static const areaname = 'Area Name';
+  static const currentlocation = 'Use current location';
+  static const title = 'Bibwewadi';
+  static const subtitle = 'Pune';
+
+  /// Home Screen
+
+  static const searchstores = 'Search Stores';
+  static const reward = 'Rewards';
+  static const saved = 'Saved till date';
+  static const ruppes = '₹1100';
+  static const shop = 'Shop by Store';
+
+
+
 }

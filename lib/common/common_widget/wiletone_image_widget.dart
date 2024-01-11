@@ -6,15 +6,14 @@ import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 
 class WileToneImageWidget extends StatelessWidget {
-  const WileToneImageWidget(
-      {Key? key,
+  const WileToneImageWidget({Key? key,
       required this.image,
       this.fit,
       this.height,
       this.width,
       this.color,
       this.scale,
-      required this.imageType})
+      required this.imageType, })
       : super(key: key);
 
   final String? image;
@@ -31,6 +30,7 @@ class WileToneImageWidget extends StatelessWidget {
         ? Image.asset(
             image!,
             fit: fit,
+
             height: height,
             width: width,
             color: color,

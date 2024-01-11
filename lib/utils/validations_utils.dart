@@ -52,23 +52,26 @@ class ValidationMethod {
   }
 
   /// EMAIL VALIDATION METHOD
-  static String? validateUserName(value) {
-    bool regex =
-        RegExp(RegularExpression.emailValidationPattern).hasMatch(value);
-    if (value == null) {
+  static String? validateUserName(value){
+
+    bool regex = RegExp(RegularExpression.emailValidationPattern).hasMatch(value);
+
+    if(value == null){
       return ValidationMsg.isRequired.tr;
-    } else if (regex == false) {
+    }
+    else if (regex == false) {
       return ValidationMsg.pleaseEnterValidEmail.tr;
     }
     return null;
   }
 
   /// PASSWORD VALIDATION METHOD
-  static String? validatePassword(value) {
+  static String? validatePassword(value){
     // RegExp regex = RegExp(RegularExpression.passwordValidPattern);
-    if (value == null) {
+    if (value == null){
       return ValidationMsg.isRequired.tr;
-    } else if (value.length < ConstUtils.kPasswordLength) {
+    }
+    else if (value.length < ConstUtils.kPasswordLength) {
       return ValidationMsg.passwordLength;
     }
     return null;

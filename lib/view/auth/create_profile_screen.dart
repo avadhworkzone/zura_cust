@@ -8,7 +8,6 @@ import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.da
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/validations_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
-import 'package:wilatone_restaurant/view/dashboard/dashboard.dart';
 
 class CreateProfileScreen extends StatefulWidget {
   const CreateProfileScreen({Key? key}) : super(key: key);
@@ -40,6 +39,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               height: 20.h,
             ),
             WileToneTextFormField(
+              borderSide: BorderSide(color: ColorUtils.lightGreyD3),
               hintText: VariablesUtils.ownerName,
               regularExpression: RegularExpression.alphabetSpacePattern,
             ),
@@ -47,6 +47,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               height: 20.h,
             ),
             WileToneTextFormField(
+              borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
               hintText: VariablesUtils.ownerMobile,
               regularExpression: RegularExpression.digitsPattern,
               textInputType: TextInputType.phone,
@@ -56,7 +57,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
             ),
             WileToneCustomButton(
               onPressed: () {
-                Get.to(() => DashBoard());
+                // Get.to(() => DashBoard());
               },
               buttonHeight: 52,
               buttonColor: ColorUtils.greenColor,

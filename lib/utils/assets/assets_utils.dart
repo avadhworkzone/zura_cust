@@ -1,5 +1,7 @@
 class AssetsUtils {
+
   static const String poppins = "Poppins";
+  static const String metrophobic = "Metrophobic";
   static const String imagePath = 'assets/images/';
   static const String iconPath = 'assets/icons/';
 
@@ -7,7 +9,6 @@ class AssetsUtils {
   static const allOrders = "${iconPath}allOrders.png";
   static const discountOrders = "${iconPath}discount.png";
   static const menu = "${iconPath}menu.png";
-
 
 
 }

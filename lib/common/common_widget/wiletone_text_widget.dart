@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 
-class WileToneTextWidget extends StatelessWidget {
+class WileToneTextWidget extends StatelessWidget{
   final String title;
   final Color? color;
   final FontWeight? fontWeight;
@@ -31,8 +31,9 @@ class WileToneTextWidget extends StatelessWidget {
     this.decoration = TextDecoration.none,
     this.letterSpacing,
   }) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Text(
       title,
       textAlign: textAlign,
