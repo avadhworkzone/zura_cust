@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_app_bar.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_image_widget.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_text_form_field.dart';
@@ -20,6 +21,8 @@ class SearchArea extends StatefulWidget{
 }
 
 class _SearchAreaState extends State<SearchArea>{
+
+  Rx<TextEditingController> searchareacontroller = TextEditingController().obs;
 
   @override
   Widget build(BuildContext context){
@@ -55,6 +58,7 @@ class _SearchAreaState extends State<SearchArea>{
               ),
 
               WileToneTextFormField(
+                 controller: searchareacontroller.value,
                 filled: true,
                 height: 52.h,
                 borderSide: BorderSide.none,

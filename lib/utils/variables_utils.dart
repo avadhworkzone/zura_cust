@@ -84,7 +84,91 @@ class VariablesUtils {
   static const saved = 'Saved till date';
   static const ruppes = '₹1100';
   static const shop = 'Shop by Store';
+  static const check = 'Check out your rewards';
+  static const sorttext = 'Sort';
+  static const near = 'Nearest';
+  static const greatoffer = 'Great Offers';
+  static const Timing = 'Timing';
+
+  static const List name = [
+    'All Brands',
+    'Restaurant',
+    'Cafe',
+    'Sweet Shop',
+    'Salon',
+    'Restaurant',
+    'Cafe',
+    'Sweet Shop',
+    'Salon',
+     'Restaurant',
+    'Cafe',
+    'Sweet Shop',
+
+  ];
+
+  static const List hotelname = [
+    'Zomato Dining',
+    'Zomato Dining',
+    'Zomato Dining',
+    'Zomato Dining',
+
+    'Zomato Dining',
+    'Zomato Dining',
+    'Zomato Dining',
+    'Zomato Dining',
 
 
+  ];
+
+  static const List foodname = [
+    'Food',
+    'Food',
+    'Food',
+    'Food',
+
+    'Food',
+    'Food',
+    'Food',
+    'Food',
+
+
+
+
+  ];
+
+  static const List discountpercentage = [
+    '20% OFF',
+    '20% OFF',
+    '20% OFF',
+    '20% OFF',
+
+    '20% OFF',
+    '20% OFF',
+    '20% OFF',
+    '20% OFF',
+ ];
+
+  /// Reward Screen
+
+  static const rewardtext= 'My Rewards';
+  static const sheetalhotel = [
+    'Sheetal Hotel',
+    'Sheetal Hotel',
+    'Sheetal Hotel',
+  ];
+
+  static const datetime = [
+    '10 jun 2023  07:00 PM',
+    '10 jun 2023  07:00 PM',
+    '10 jun 2023  07:00 PM',
+  ];
+
+  static const ruppestext = [
+    '₹100',
+    '₹100',
+    '₹100',
+  ];
+
+  static const savedtext = 'Total Saved';
 
 }

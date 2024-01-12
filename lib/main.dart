@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,11 +6,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/search_area.dart';
-
-import 'package:wilatone_restaurant/view/dashboard/Bottombar_screen.dart';
-import 'package:wilatone_restaurant/view/dashboard/home_screen.dart';
+import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
+import 'package:wilatone_restaurant/view/dashboard/reward_screen.dart';
+import 'view/dashboard/Bottombar_screen.dart';
 import 'viewModel/connectivity_view_model.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget{
           fontFamily: AssetsUtils.poppins,
         ),
         debugShowCheckedModeBanner: false,
-        home :   const HomeScreen(),
+        home :   const RewardScreen(),
       ),
     );
   }

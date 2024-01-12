@@ -17,6 +17,10 @@ class CreateProfileScreen extends StatefulWidget {
 }
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
+
+  Rx<TextEditingController> ownercontroller = TextEditingController().obs;
+  Rx<TextEditingController> mobilecontroller = TextEditingController().obs;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -26,7 +30,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            WileToneAppBar(title: ""),
+            const WileToneAppBar(title: ""),
             SizedBox(
               height: 20.h,
             ),
@@ -39,7 +43,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               height: 20.h,
             ),
             WileToneTextFormField(
-              borderSide: BorderSide(color: ColorUtils.lightGreyD3),
+               controller: ownercontroller.value,
+              borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
               hintText: VariablesUtils.ownerName,
               regularExpression: RegularExpression.alphabetSpacePattern,
             ),
@@ -47,6 +52,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               height: 20.h,
             ),
             WileToneTextFormField(
+              controller: mobilecontroller.value,
               borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
               hintText: VariablesUtils.ownerMobile,
               regularExpression: RegularExpression.digitsPattern,

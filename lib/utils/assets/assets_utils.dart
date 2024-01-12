@@ -1,7 +1,8 @@
 class AssetsUtils {
 
   static const String poppins = "Poppins";
-  static const String metrophobic = "Metrophobic";
+  static const String metrophobic = "Metropolis";
+  static const String inter = "Inter";
   static const String imagePath = 'assets/images/';
   static const String iconPath = 'assets/icons/';
 

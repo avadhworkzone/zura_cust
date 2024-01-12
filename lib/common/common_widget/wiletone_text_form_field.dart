@@ -7,9 +7,9 @@ import 'package:wilatone_restaurant/utils/font_style_utils.dart';
 import 'package:wilatone_restaurant/utils/validations_utils.dart';
 import '../../utils/typedef_utils.dart';
 
-class WileToneTextFormField extends StatelessWidget{
-   const WileToneTextFormField({Key? key,
-
+class WileToneTextFormField extends StatelessWidget {
+  const WileToneTextFormField(
+      {Key? key,
       this.onChange,
       this.titleText,
       this.isValidate,
@@ -26,7 +26,6 @@ class WileToneTextFormField extends StatelessWidget{
       this.sIcon,
       this.borderRadius,
       this.containerBgColor,
-      this.initialValue = '',
       this.obscureValue = false,
       this.pIcon,
       this.textCapitalization,
@@ -35,14 +34,20 @@ class WileToneTextFormField extends StatelessWidget{
       this.isAddress,
       this.useRegularExpression,
       this.validationtype,
-      this.textInputAction, this.fillcolor,  this.enabled, required this.borderSide, this.height, this.filled})
+      this.textInputAction,
+      this.fillcolor,
+      this.enabled,
+      required this.borderSide,
+      this.height,
+      this.filled,
+      required this.controller})
       : super(key: key);
 
   final String? titleText;
   final double? height;
-  final  BorderSide borderSide;
-  final String? initialValue;
+  final BorderSide borderSide;
   final bool? isValidate;
+  final TextEditingController controller;
   final bool? readOnly;
   final TextInputType? textInputType;
   final TextCapitalization? textCapitalization;
@@ -75,7 +80,7 @@ class WileToneTextFormField extends StatelessWidget{
     return SizedBox(
       height: height,
       child: TextFormField(
-
+        controller: controller,
         focusNode: focusNode,
         onChanged: onChange,
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -84,14 +89,11 @@ class WileToneTextFormField extends StatelessWidget{
           fontSize: 12.sp,
           fontWeight: FontWeightClass.medium,
         ),
-
-        onTap: (){
-          if (isAddress == true){
+        onTap: () {
+          if (isAddress == true) {
             onTap!();
           }
         },
-
-        initialValue: initialValue,
         cursorColor: Colors.grey,
         obscureText: obscureValue!,
         maxLines: maxLine ?? 1,
@@ -109,7 +111,6 @@ class WileToneTextFormField extends StatelessWidget{
                 FilteringTextInputFormatter.allow(RegExp(regularExpression ??
                     RegularExpression.alphabetDigitsDashPattern))
               ],
-
         keyboardType: textInputType,
         maxLength: inputLength,
         validator: (value) {
@@ -125,27 +126,27 @@ class WileToneTextFormField extends StatelessWidget{
                               ? ValidationMethod.validateAmount(value)
                               : null;
         },
-
-        decoration : InputDecoration(
-          border : InputBorder.none,
-          filled : filled,
-          fillColor : fillcolor,
-          prefixIcon : pIcon,
-          suffixIcon : sIcon,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          filled: filled,
+          fillColor: fillcolor,
+          prefixIcon: pIcon,
+          suffixIcon: sIcon,
           // enabled : false,
-          enabledBorder : OutlineInputBorder(
-              borderSide :  borderSide ,
-              borderRadius : BorderRadius.circular(borderRadius ?? 8)),
-          focusedBorder : OutlineInputBorder(
-              borderSide : const BorderSide(color: ColorUtils.lightGreyD3),
-              borderRadius : BorderRadius.circular(borderRadius ?? 8)),
-          errorBorder : OutlineInputBorder(
-              borderSide : const BorderSide(color: ColorUtils.lightGreyD3),
-              borderRadius : BorderRadius.circular(borderRadius ?? 8)),
-          focusedErrorBorder : OutlineInputBorder(
-              borderSide : const BorderSide(color: ColorUtils.red),
-              borderRadius : BorderRadius.circular(borderRadius ?? 8)),
-          hintStyle: hintStyle ??  TextStyle(fontSize: 10.sp, color: ColorUtils.lightGreyA6),
+          enabledBorder: OutlineInputBorder(
+              borderSide: borderSide,
+              borderRadius: BorderRadius.circular(borderRadius ?? 8)),
+          focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
+              borderRadius: BorderRadius.circular(borderRadius ?? 8)),
+          errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
+              borderRadius: BorderRadius.circular(borderRadius ?? 8)),
+          focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: ColorUtils.red),
+              borderRadius: BorderRadius.circular(borderRadius ?? 8)),
+          hintStyle: hintStyle ??
+              TextStyle(fontSize: 10.sp, color: ColorUtils.lightGreyA6),
           hintText: hintText,
           contentPadding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 15.w),
         ),
