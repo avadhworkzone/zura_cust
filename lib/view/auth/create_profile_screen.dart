@@ -8,6 +8,7 @@ import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.da
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/validations_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/auth/enable_location_screen.dart';
 
 class CreateProfileScreen extends StatefulWidget {
   const CreateProfileScreen({Key? key}) : super(key: key);
@@ -18,8 +19,8 @@ class CreateProfileScreen extends StatefulWidget {
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
-  Rx<TextEditingController> ownercontroller = TextEditingController().obs;
-  Rx<TextEditingController> mobilecontroller = TextEditingController().obs;
+  Rx<TextEditingController> namecontroller = TextEditingController().obs;
+  Rx<TextEditingController> emailcontroller = TextEditingController().obs;
 
   @override
   Widget build(BuildContext context) {
@@ -39,31 +40,43 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               fontWeight: FontWeight.w600,
               fontSize: 20.sp,
             ),
+
             SizedBox(
               height: 20.h,
             ),
+
             WileToneTextFormField(
-               controller: ownercontroller.value,
+              borderRadius: 10.sp,
+
+              controller: namecontroller.value,
               borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
-              hintText: VariablesUtils.ownerName,
+              hintText: VariablesUtils.name,
               regularExpression: RegularExpression.alphabetSpacePattern,
+              hintStyle: TextStyle(color: ColorUtils.lightGreyA6,fontSize: 14.sp,fontWeight: FontWeight.w500),
             ),
+
             SizedBox(
               height: 20.h,
             ),
+
             WileToneTextFormField(
-              controller: mobilecontroller.value,
+              borderRadius: 10.sp,
+              controller: emailcontroller.value,
               borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
-              hintText: VariablesUtils.ownerMobile,
+              hintText: VariablesUtils.email,
               regularExpression: RegularExpression.digitsPattern,
-              textInputType: TextInputType.phone,
+              textInputType: TextInputType.emailAddress,
+              hintStyle: TextStyle(color: ColorUtils.lightGreyA6,fontSize: 14.sp,fontWeight: FontWeight.w500),
+
             ),
+
             SizedBox(
               height: 30.h,
             ),
+
             WileToneCustomButton(
               onPressed: () {
-                // Get.to(() => DashBoard());
+                Get.to(() => const LocationScreen());
               },
               buttonHeight: 52,
               buttonColor: ColorUtils.greenColor,

@@ -5,10 +5,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/auth/login_screen.dart';
 import 'package:wilatone_restaurant/view/auth/search_area.dart';
 import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
 import 'package:wilatone_restaurant/view/dashboard/reward_screen.dart';
-import 'view/dashboard/Bottombar_screen.dart';
+import 'view/dashboard/bottombar_screen.dart';
 import 'viewModel/connectivity_view_model.dart';
 
 void main() async {
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget{
           fontFamily: AssetsUtils.poppins,
         ),
         debugShowCheckedModeBanner: false,
-        home :   const RewardScreen(),
+        home :   const BottombarScreen(),
       ),
     );
   }

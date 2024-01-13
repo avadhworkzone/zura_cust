@@ -24,7 +24,7 @@ class ProfileDetailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-                    WileToneAppBar(title: VariablesUtils.profileDetails),
+                    const WileToneAppBar(title: VariablesUtils.profileDetails),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,12 +32,12 @@ class ProfileDetailScreen extends StatelessWidget {
                         const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            WileToneTextWidget(
-                              title: VariablesUtils.ownerName,
-                              fontSize: 12,
-                              color: ColorUtils.greyShade1,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            // WileToneTextWidget(
+                            //   title: VariablesUtils.ownerName,
+                            //   fontSize: 12,
+                            //   color: ColorUtils.greyShade1,
+                            //   fontWeight: FontWeight.w500,
+                            // ),
                             WileToneTextWidget(
                               title: "Shubham Shinde",
                               fontSize: 16,
@@ -61,12 +61,12 @@ class ProfileDetailScreen extends StatelessWidget {
                         const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            WileToneTextWidget(
-                              title: VariablesUtils.ownerMobile,
-                              fontSize: 12,
-                              color: ColorUtils.greyShade1,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            // WileToneTextWidget(
+                            //   title: VariablesUtils.ownerMobile,
+                            //   fontSize: 12,
+                            //   color: ColorUtils.greyShade1,
+                            //   fontWeight: FontWeight.w500,
+                            // ),
                             WileToneTextWidget(
                               title: "9922112234",
                               fontSize: 16,

@@ -32,7 +32,7 @@ class ColorUtils {
   static const Color green = Color(0xFF54D27F);
   static const Color lightgreen = Color(0xFF52B072);
 
-  static const Color greengrey = Color(0xFFEBF3E8);
+  static const Color greengrey = Color(0xFFF1EFE2);
   static const Color greenwhite = Color(0xFFF1EFE2);
 
 

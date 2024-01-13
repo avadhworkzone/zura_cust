@@ -10,6 +10,7 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/create_profile_screen.dart';
+import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
 
 
 class OtpVerificationScreen extends StatefulWidget{
@@ -170,35 +171,40 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               SizedBox(
                 height: 30.h,
               ),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: VariablesUtils.didntGetOtp,
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: AssetsUtils.poppins),
-                    ),
-                    TextSpan(
-                      text: VariablesUtils.resendSMSIn,
-                      style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
-                          color: ColorUtils.greyAC,
-                          fontFamily: AssetsUtils.poppins),
-                    ),
-                    currentSeconds != 0
-                        ? TextSpan(
-                            text: formatHHMMSS(currentSeconds) ?? '',
-                            style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500,
-                                color: ColorUtils.greyAC,
-                                fontFamily: AssetsUtils.poppins),
-                          )
-                        : const TextSpan(text: ""),
-                  ],
+              InkWell(
+                onTap: () {
+                  Get.to(const CreateProfileScreen());
+                },
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: VariablesUtils.didntGetOtp,
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: AssetsUtils.poppins),
+                      ),
+                      TextSpan(
+                        text: VariablesUtils.resendSMSIn,
+                        style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                            color: ColorUtils.greyAC,
+                            fontFamily: AssetsUtils.poppins),
+                      ),
+                      currentSeconds != 0
+                          ? TextSpan(
+                              text: formatHHMMSS(currentSeconds) ?? '',
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: ColorUtils.greyAC,
+                                  fontFamily: AssetsUtils.poppins),
+                            )
+                          : const TextSpan(text: ""),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -206,7 +212,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(const CreateProfileScreen());
+                  Get.to(const BottombarScreen());
                 },
                 child: WileToneTextWidget(
                   title: VariablesUtils.goBackToLoginMethods,

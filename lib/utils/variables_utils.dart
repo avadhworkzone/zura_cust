@@ -43,8 +43,8 @@ class VariablesUtils {
   static const resendSMSIn = 'Resend SMS in';
   static const goBackToLoginMethods = 'Go back to login methods';
   static const helpUsToLetYouKnow = 'Help us to let you know';
-  static const ownerName = 'Owner  Name';
-  static const ownerMobile = 'Owner  Mobile';
+  static const name = 'Name';
+  static const email = 'Email';
   static const noInternet = 'No internet';
 
   /// Profile Details Screen
@@ -90,7 +90,7 @@ class VariablesUtils {
   static const greatoffer = 'Great Offers';
   static const Timing = 'Timing';
 
-  static const List name = [
+  static const List listname = [
     'All Brands',
     'Restaurant',
     'Cafe',
@@ -137,16 +137,29 @@ class VariablesUtils {
   ];
 
   static const List discountpercentage = [
-    '20% OFF',
-    '20% OFF',
-    '20% OFF',
-    '20% OFF',
+    '20%',
+    '20%',
+    '20%',
+    '20%',
 
-    '20% OFF',
-    '20% OFF',
-    '20% OFF',
-    '20% OFF',
+    '20%',
+    '20%',
+    '20%',
+    '20%',
  ];
+
+  static const List off = [
+    'OFF',
+    'OFF',
+    'OFF',
+    'OFF',
+
+    'OFF',
+    'OFF',
+    'OFF',
+    'OFF',
+
+  ];
 
   /// Reward Screen
 
