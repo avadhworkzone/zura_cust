@@ -89,6 +89,13 @@ class VariablesUtils {
   static const near = 'Nearest';
   static const greatoffer = 'Great Offers';
   static const Timing = 'Timing';
+  static const relevance = 'Relevance';
+  static const lowToHigh = 'Offer: Low To High';
+  static const highToLow = 'Offer: High To Low';
+  static const clearAll = 'Clear all';
+  static const ApplyBtn = 'Apply';
+  static const all = 'All';
+
 
   static const List listname = [
     'All Brands',
@@ -183,5 +190,13 @@ class VariablesUtils {
   ];
 
   static const savedtext = 'Total Saved';
+
+  static const restaurantTime = [
+    '7AM - 10AM',
+    '10AM - 12PM',
+    '12PM - 3PM',
+    '3PM - 7PM',
+    '7PM - 12PM',
+  ];
 
 }
