@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wilatone_restaurant/common/common_widget/common_back_button.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
+import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 
 class WileToneAppBar extends StatelessWidget {
@@ -25,6 +26,7 @@ class WileToneAppBar extends StatelessWidget {
         WileToneTextWidget(
           title: title!,
           fontSize: 20,
+          fontFamily: AssetsUtils.poppins,
           fontWeight: FontWeight.w600,
           color: ColorUtils.lightblack,
         ),

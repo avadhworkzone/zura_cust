@@ -5,11 +5,14 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
-import 'package:wilatone_restaurant/view/auth/login_screen.dart';
-import 'package:wilatone_restaurant/view/auth/search_area.dart';
-import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
-import 'package:wilatone_restaurant/view/dashboard/reward_screen.dart';
-import 'view/dashboard/bottombar_screen.dart';
+import 'package:wilatone_restaurant/view/About%20Us/about_us.dart';
+import 'package:wilatone_restaurant/view/all_menu_screen.dart';
+import 'package:wilatone_restaurant/view/all_order_screen.dart';
+import 'package:wilatone_restaurant/view/help_and_support.dart';
+import 'package:wilatone_restaurant/view/my_order.dart';
+import 'package:wilatone_restaurant/view/profile_detail_screen.dart';
+
+import 'view/setting_screen.dart';
 import 'viewModel/connectivity_view_model.dart';
 
 void main() async {
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget{
           fontFamily: AssetsUtils.poppins,
         ),
         debugShowCheckedModeBanner: false,
-        home :   const BottombarScreen(),
+        home : const AboutUsScreen(),
       ),
     );
   }

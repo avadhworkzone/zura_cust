@@ -10,7 +10,7 @@ import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 
-class RewardScreen extends StatefulWidget {
+class RewardScreen extends StatefulWidget{
   const RewardScreen({Key? key}) : super(key: key);
 
   @override
@@ -18,18 +18,23 @@ class RewardScreen extends StatefulWidget {
 }
 
 class _RewardScreenState extends State<RewardScreen> {
+
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
         child: Material(
       child: Column(
         children: [
+
           SizedBox(
             height: 20.h,
           ),
+
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: const WileToneAppBar(title: VariablesUtils.rewardtext)),
+
           Expanded(
             child: Column(
               children: [
@@ -45,6 +50,7 @@ class _RewardScreenState extends State<RewardScreen> {
                   Column(
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+
                       WileToneTextWidget(
                         title: VariablesUtils.savedtext,
                         fontSize: 16.sp,
@@ -62,32 +68,37 @@ class _RewardScreenState extends State<RewardScreen> {
                     ],
                   )
                 ]),
+
                 SizedBox(
                   height: 20.h,
                 ),
+
                 ListView.separated(
                   padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 0.h),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: 3,
                   itemBuilder: (context, index) {
                     return Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+
                           WileToneImageWidget(
                             image: AppIconAssets.coinicon[index].toString(),
                             imageType: ImageType.png,
                           ),
+
                           SizedBox(
                             width: 15.w,
                           ),
+
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+
                               WileToneTextWidget(
-                                title:
-                                    VariablesUtils.sheetalhotel[index].toString(),
+                                title : VariablesUtils.sheetalhotel[index].toString(),
                                 fontSize: 16.sp,
                                 fontFamily: AssetsUtils.inter,
                                 fontWeight: FontWeight.w600,
@@ -114,6 +125,7 @@ class _RewardScreenState extends State<RewardScreen> {
                           ),
                         ]);
                   },
+
                   separatorBuilder: (BuildContext context, int index) =>
                       const Divider(
                     thickness: 1,

@@ -103,5 +103,39 @@ class AppIconAssets {
     '${ConstUtils.baseIconAssetsPath}coin.png',
   ];
 
+  /// Menu screen
+
+  static const personIcon = [
+    '${ConstUtils.baseIconAssetsPath}menu_person.png',
+    '${ConstUtils.baseIconAssetsPath}reward.png',
+    '${ConstUtils.baseIconAssetsPath}menu_icon.png',
+
+    '${ConstUtils.baseIconAssetsPath}tabler_square-rounded-letter-z.png',
+    '${ConstUtils.baseIconAssetsPath}menu_wheel.png',
+    '${ConstUtils.baseIconAssetsPath}menu_setting.png',
+
+  ];
+
+  static const linkedicon = '${ConstUtils.baseIconAssetsPath}linkedin.png';
+  static const instagramicon = '${ConstUtils.baseIconAssetsPath}instagram.png';
+  static const hearticon = '${ConstUtils.baseIconAssetsPath}heart.png';
+
+  /// Profile Details screen
+
+  static const pencilicon = '${ConstUtils.baseIconAssetsPath}profile_pencil.png';
+  static const coin = '${ConstUtils.baseIconAssetsPath}coin.png';
+
+  /// Help and Support screen
+  static const belowarrow = '${ConstUtils.baseIconAssetsPath}bottom_arrow.png';
+  static const uparrow = '${ConstUtils.baseIconAssetsPath}uparrow.png';
+
+  /// Setting screen
+
+static const settingnotification = '${ConstUtils.baseIconAssetsPath}notification.png';
+static const logout = '${ConstUtils.baseIconAssetsPath}logout.png';
+
+   /// About Us Screen
+
+  static const sidearrow = '${ConstUtils.baseIconAssetsPath}sidearrow.png';
 
 }

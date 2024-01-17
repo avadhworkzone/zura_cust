@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
+import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/font_style_utils.dart';
 
@@ -10,6 +11,7 @@ class WileToneCustomButton extends StatelessWidget {
   final OnTap? onPressed;
   final EdgeInsetsGeometry padding;
   final String buttonName;
+  final String? fontFamily ;
   final double? fontSize;
   final Color fontColor;
   final double? buttonRadius;
@@ -35,7 +37,7 @@ class WileToneCustomButton extends StatelessWidget {
       this.elevation,
       this.fontWeight,
       this.icon,
-      this.isBorderShape = false})
+      this.isBorderShape = false, this.fontFamily})
       : super(key: key);
 
   @override
@@ -71,6 +73,7 @@ class WileToneCustomButton extends StatelessWidget {
           children: [
             icon ?? const SizedBox(),
             WileToneTextWidget(
+              fontFamily: fontFamily,
               title: buttonName,
               fontSize: fontSize,
               color: isBorderShape ? buttonColor : fontColor,

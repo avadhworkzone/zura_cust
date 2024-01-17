@@ -4,7 +4,6 @@ import 'package:wilatone_restaurant/common/common_widget/wiletone_app_bar.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_image_widget.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
-import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 
 class AllOrderScreen extends StatelessWidget {
@@ -204,10 +203,11 @@ class AllOrderScreen extends StatelessWidget {
               border: Border.all(color: ColorUtils.grey),
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+            padding : const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child : const Row(
+              mainAxisAlignment : MainAxisAlignment.center,
+              children : [
+
                 WileToneTextWidget(
                   title: VariablesUtils.timing,
                   fontSize: 12,

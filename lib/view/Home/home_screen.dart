@@ -627,9 +627,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _showSortData(BuildContext context) {
+  void _showSortData(BuildContext context){
     showModalBottomSheet<void>(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10)),
       ),
       context: context,

@@ -199,4 +199,101 @@ class VariablesUtils {
     '7PM - 12PM',
   ];
 
+  /// All menu Screen
+
+  static const personname = 'Akash Ghadi';
+  static const number = '7055232212';
+  static const menuname = [
+    'Profile Details',
+    'My Rewards',
+    'My Orders',
+
+    'About Us',
+    'Help & Support',
+    'Settings',
+
+  ];
+  static const madeinindia = 'Made in India with';
+
+  ///  Profile Detials Screen
+  static const profiletitle = [
+    'Name',
+    'Mobile',
+    'Email',
+];
+
+  static const profilename = [
+    'Akash Ghadi',
+    '7055232212',
+    'akash.ghadi@gmail.com',
+  ];
+
+  /// My order screen
+  static const myorder  = 'My Orders';
+  static const hotelName = 'Sheetal Hotel';
+  static const hotelAddress = 'Karve Road, Kothrud, Pune -38';
+  static const amount = '₹500';
+  static const orderdiscount = 'Discount';
+
+  /// Help and Support
+  static const help = 'Help and Support';
+  static const contactUs = 'Contact Us';
+  static const whatiszura = 'What is Zura?';
+  static const content = "There are many variations of passages of Lorem\nIpsum available, but the majority have suffered\nalteration in some form, by injected humour,or\nrandomised words which don't look even slightly\nbelievable.";
+  static const helpandsupport = [
+    'What is Zura?',
+    'How does Hubble work?',
+    'How does Hubble provide instant\ndiscounts?',
+
+    'What are the benefits of using Zura?',
+    'Is Zura safe & secure?',
+    'What are the Resturents present on  Zura?',
+  ];
+
+  /// Setting screen
+
+   static const setting = 'Settings';
+   static const notification = 'Notifications';
+   static const enable = 'Enable or disable app notifications.';
+   static const settinglogout = 'Log out';
+   static const easilylogout = 'Easily log out for convenience.';
+
+  /// About Us Screen
+
+    static const aboutus = 'About Us';
+    static const aboutustitle = [
+      'About Zura',
+      'Terms of Service',
+      'Privacy Policy',
+    ];
+
+  static const aboutussubtitle = [
+    'Read more about Zura',
+    'Read our terns of service',
+    'Read our terns of service',
+  ];
+
+  static const gotit = 'Got it';
+  static const understood = 'Understood';
+  static const aboutzura = 'About Zura';
+  static const privacy = 'Privacy Policy';
+  static const terrms = 'Terms of Service';
+  static const conttentzura = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.\n"
+              "Definitions\n For the purposes of these Terms and Conditions: \n\nAffiliate means an entity that 'controls', is controlled by or is under common control with a party, where control means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority."
+  "\n\nAccount means a unique account created for You to access our Service or parts of our Service."
+  "\n\nCompany (referred to as either 'the Company', 'We', 'Us' or 'Our' in this Agreement) refers to FreePrivacyPolicy.com website."
+  "\n\nContent refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by You, regardless of the form of that content."
+  "\n\nCountry refers to: Romania"
+  "\n\nDevice means any device that can access the Service such as a computer, a cellphone or a digital tablet."
+  "\n\nFeedback means feedback, innovations or suggestions sent by You regarding the attributes, performance or features of our Service";
+
+  static const conttentterms = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.\n"
+      "Definitions\n For the purposes of these Terms and Conditions: \n\nAffiliate means an entity that 'controls', is controlled by or is under common control with a party, where control means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority."
+      "\n\nAccount means a unique account created for You to access our Service or parts of our Service."
+      "\n\nCompany (referred to as either 'the Company', 'We', 'Us' or 'Our' in this Agreement) refers to FreePrivacyPolicy.com website."
+      "\n\nContent refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by You, regardless of the form of that content."
+      "\n\nCountry refers to: Romania"
+      "\n\nDevice means any device that can access the Service such as a computer, a cellphone or a digital tablet.";
+
+
 }
