@@ -99,7 +99,7 @@ class AllOrderScreen extends StatelessWidget {
                             // ),
                             BarChartSample1(),
                             const SizedBox(width: 10),
-                            const WileToneTextWidget(
+                             WileToneTextWidget(
                               title: VariablesUtils.discount,
                               fontSize: 12,
                               color: ColorUtils.black,

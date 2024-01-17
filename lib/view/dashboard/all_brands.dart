@@ -9,6 +9,7 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/restaurant_detail_screen/restaurant_detail.dart';
 
 class AllBrandsScreen extends StatefulWidget{
   const AllBrandsScreen({Key? key}) : super(key: key);
@@ -312,94 +313,99 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                         shrinkWrap: true,
                         itemCount: 8,
                         itemBuilder: (context, index) {
-                          return Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                          return InkWell(
+                            onTap: (){
+                              Get.to(()=> RestaurantDetailScreen());
+                            },
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
 
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 10.h, horizontal: 5.w),
-                                  child: WileToneImageWidget(
-                                    image: AppIconAssets.zomatoimage[index]
-                                        .toString(),
-                                    imageType: ImageType.png,
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10.h, horizontal: 5.w),
+                                    child: WileToneImageWidget(
+                                      image: AppIconAssets.zomatoimage[index]
+                                          .toString(),
+                                      imageType: ImageType.png,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 15.w,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 25.h),
-                                  child: Column(
-                                    // mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment : CrossAxisAlignment.start,
-                                    children : [
+                                  SizedBox(
+                                    width: 15.w,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 25.h),
+                                    child: Column(
+                                      // mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment : CrossAxisAlignment.start,
+                                      children : [
 
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: WileToneTextWidget(
-                                          title: VariablesUtils.hotelname[index]
-                                              .toString(),
-                                          fontSize: 20.sp,
-                                          fontFamily: AssetsUtils.inter,
-                                          fontWeight: FontWeight.w600,
-                                          color: ColorUtils.black,
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: WileToneTextWidget(
+                                            title: VariablesUtils.hotelname[index]
+                                                .toString(),
+                                            fontSize: 20.sp,
+                                            fontFamily: AssetsUtils.inter,
+                                            fontWeight: FontWeight.w600,
+                                            color: ColorUtils.black,
+                                          ),
                                         ),
-                                      ),
 
-                                      WileToneTextWidget(
-                                        title: VariablesUtils.foodname[index]
-                                            .toString(),
-                                        fontSize: 14.sp,
-                                        fontFamily: AssetsUtils.inter,
-                                        fontWeight: FontWeight.w400,
-                                        color: ColorUtils.grey8D,
-                                      ),
+                                        WileToneTextWidget(
+                                          title: VariablesUtils.foodname[index]
+                                              .toString(),
+                                          fontSize: 14.sp,
+                                          fontFamily: AssetsUtils.inter,
+                                          fontWeight: FontWeight.w400,
+                                          color: ColorUtils.grey8D,
+                                        ),
 
-                                      Row(
-                                        children: [
-                                          WileToneTextWidget(
-                                            title: VariablesUtils
-                                                .discountpercentage[index]
-                                                .toString(),
-                                            fontSize: 24.sp,
-                                            fontFamily: AssetsUtils.metrophobic,
-                                            fontWeight: FontWeight.w700,
-                                            color: ColorUtils.lightgreen,
-                                          ),
+                                        Row(
+                                          children: [
+                                            WileToneTextWidget(
+                                              title: VariablesUtils
+                                                  .discountpercentage[index]
+                                                  .toString(),
+                                              fontSize: 24.sp,
+                                              fontFamily: AssetsUtils.metrophobic,
+                                              fontWeight: FontWeight.w700,
+                                              color: ColorUtils.lightgreen,
+                                            ),
 
-                                          SizedBox(
-                                            width: 10.sp,
-                                          ),
-                                          WileToneTextWidget(
-                                            title: VariablesUtils
-                                                .off[index]
-                                                .toString(),
-                                            fontSize: 18.sp,
-                                            fontFamily: AssetsUtils.metrophobic,
-                                            fontWeight: FontWeight.w700,
-                                            color: ColorUtils.lightgreen,
-                                          )
-                                        ],
-                                      )
-                                    ],
+                                            SizedBox(
+                                              width: 10.sp,
+                                            ),
+                                            WileToneTextWidget(
+                                              title: VariablesUtils
+                                                  .off[index]
+                                                  .toString(),
+                                              fontSize: 18.sp,
+                                              fontFamily: AssetsUtils.metrophobic,
+                                              fontWeight: FontWeight.w700,
+                                              color: ColorUtils.lightgreen,
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
 
-                                SizedBox(
-                                  width : MediaQuery.of(context).size.width / 5.5,
-                                ),
-
-                                Padding(
-                                  padding: EdgeInsets.only(top: 20.h),
-                                  child: WileToneImageWidget(
-                                    image: AppIconAssets.dotimage[index]
-                                        .toString(),
-                                    imageType: ImageType.png,
+                                  SizedBox(
+                                    width : MediaQuery.of(context).size.width / 5.5,
                                   ),
-                                ),
 
-                              ]);
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 20.h),
+                                    child: WileToneImageWidget(
+                                      image: AppIconAssets.dotimage[index]
+                                          .toString(),
+                                      imageType: ImageType.png,
+                                    ),
+                                  ),
+
+                                ]),
+                          );
                         },
                       ),
                     )

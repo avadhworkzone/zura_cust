@@ -4,7 +4,7 @@ class ColorUtils {
 
   static const Color white = Colors.white;
   static const Color transparent = Colors.transparent;
-  static const Color red = Colors.red;
+  static const Color red = Color(0xffFF2020);
   static const Color black = Colors.black;
   static const Color lightblack = Color(0xff121212);
   static const Color skyBlue = Color(0xFF2A6CE7);
