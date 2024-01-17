@@ -9,6 +9,7 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/restaurant_detail_screen/restaurant_detail.dart';
 
 class AllBrandsScreen extends StatefulWidget {
   const AllBrandsScreen({Key? key}) : super(key: key);
@@ -23,7 +24,9 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         backgroundColor: ColorUtils.greengrey,
+
         body: SafeArea(
           child: ListView(
             children: [
@@ -35,13 +38,15 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
                   child: Column(
                     children: [
+
                       SizedBox(
                         height: 20.h,
                       ),
+
                       WileToneTextFormField(
                         controller: searchstores1.value,
                         pIcon: InkWell(
-                          onTap: () {
+                          onTap: (){
                             Get.back();
                           },
                           child: WileToneImageWidget(
@@ -70,9 +75,11 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                             color: ColorUtils.lightGreyA6,
                             fontWeight: FontWeight.w500),
                       ),
+
                       SizedBox(
                         height: 20.h,
                       ),
+
                       SizedBox(
                         height: 78.h,
                         child: ListView.builder(
@@ -99,8 +106,8 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                   Align(
                                     alignment: Alignment.center,
                                     child: WileToneTextWidget(
-                                      title: VariablesUtils.listname[index]
-                                          .toString(),
+                                      title:
+                                          VariablesUtils.listname[index].toString(),
                                       fontSize: 12.sp,
                                       fontFamily: AssetsUtils.inter,
                                       fontWeight: FontWeight.w500,
@@ -115,9 +122,11 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                   ),
                 ),
               ),
+
               SizedBox(
                 height: 20.h,
               ),
+
               Container(
                 height: MediaQuery.of(context).size.height / 1.3931,
                 decoration: BoxDecoration(
@@ -126,17 +135,22 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                       topLeft: Radius.circular(20.sp),
                       topRight: Radius.circular(20.sp),
                     )),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+
+                child : Column(
+                  mainAxisAlignment : MainAxisAlignment.start,
+                  children : [
+
                     SizedBox(
-                      height: 10.h,
+                      height : 10.h,
                     ),
+
                     Row(
-                      children: [
+                      children : [
+
                         SizedBox(
                           width: 22.w,
                         ),
+
                         Container(
                           height: 30.h,
                           width: 69.w,
@@ -149,7 +163,7 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                             ),
                             // color: ColorUtils.red
                           ),
-                          child: Row(
+                          child:  Row(
                             children: [
                               SizedBox(
                                 width: 5.w,
@@ -181,6 +195,7 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                         SizedBox(
                           width: 10.w,
                         ),
+
                         Container(
                           height: 30.h,
                           width: 60.w,
@@ -193,11 +208,13 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                             ),
                             // color: ColorUtils.red
                           ),
-                          child: Row(
+                          child:  Row(
                             children: [
                               SizedBox(
                                 width: 5.w,
                               ),
+
+
                               WileToneTextWidget(
                                 title: VariablesUtils.near,
                                 fontSize: 12.sp,
@@ -205,12 +222,14 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                 fontWeight: FontWeight.w500,
                                 color: ColorUtils.black,
                               ),
+
                             ],
                           ),
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
+
                         Container(
                           height: 30.h,
                           width: 86.w,
@@ -223,11 +242,13 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                             ),
                             // color: ColorUtils.red
                           ),
-                          child: Row(
+                          child:  Row(
                             children: [
                               SizedBox(
                                 width: 5.w,
                               ),
+
+
                               WileToneTextWidget(
                                 title: VariablesUtils.greatoffer,
                                 fontSize: 12.sp,
@@ -235,12 +256,14 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                 fontWeight: FontWeight.w500,
                                 color: ColorUtils.black,
                               ),
+
                             ],
                           ),
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
+
                         Container(
                           height: 30.h,
                           width: 69.w,
@@ -253,11 +276,13 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                             ),
                             // color: ColorUtils.red
                           ),
-                          child: Row(
+                          child:  Row(
                             children: [
                               SizedBox(
                                 width: 5.w,
                               ),
+
+
                               WileToneTextWidget(
                                 title: VariablesUtils.Timing,
                                 fontSize: 12.sp,
@@ -272,15 +297,16 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                 image: AppIconAssets.arrow,
                                 imageType: ImageType.png,
                               ),
+
                             ],
                           ),
                         )
                       ],
                     ),
+
                     Expanded(
                       child: ListView.builder(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 15.w, vertical: 0.h),
+                        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 0.h),
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: 8,
@@ -288,6 +314,7 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                           return Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+
                                 Padding(
                                   padding: EdgeInsets.symmetric(
                                       vertical: 10.h, horizontal: 5.w),
@@ -304,9 +331,9 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                   padding: EdgeInsets.only(top: 25.h),
                                   child: Column(
                                     // mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
+                                    crossAxisAlignment : CrossAxisAlignment.start,
+                                    children : [
+
                                       Align(
                                         alignment: Alignment.center,
                                         child: WileToneTextWidget(
@@ -318,6 +345,7 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                           color: ColorUtils.black,
                                         ),
                                       ),
+
                                       WileToneTextWidget(
                                         title: VariablesUtils.foodname[index]
                                             .toString(),
@@ -326,6 +354,7 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                         fontWeight: FontWeight.w400,
                                         color: ColorUtils.grey8D,
                                       ),
+
                                       Row(
                                         children: [
                                           WileToneTextWidget(
@@ -337,11 +366,13 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                             fontWeight: FontWeight.w700,
                                             color: ColorUtils.lightgreen,
                                           ),
+
                                           SizedBox(
                                             width: 10.sp,
                                           ),
                                           WileToneTextWidget(
-                                            title: VariablesUtils.off[index]
+                                            title: VariablesUtils
+                                                .off[index]
                                                 .toString(),
                                             fontSize: 18.sp,
                                             fontFamily: AssetsUtils.metrophobic,
@@ -353,10 +384,11 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                     ],
                                   ),
                                 ),
+
                                 SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width / 5.5,
+                                  width : MediaQuery.of(context).size.width / 5.5,
                                 ),
+
                                 Padding(
                                   padding: EdgeInsets.only(top: 20.h),
                                   child: WileToneImageWidget(
@@ -365,6 +397,7 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                     imageType: ImageType.png,
                                   ),
                                 ),
+
                               ]);
                         },
                       ),

@@ -38,13 +38,14 @@ class WileToneTextFormField extends StatelessWidget {
       this.fillcolor,
       this.enabled,
       required this.borderSide,
-      this.height,
+      this.height, this.width,
       this.filled,
       required this.controller})
       : super(key: key);
 
   final String? titleText;
   final double? height;
+  final double? width;
   final BorderSide borderSide;
   final bool? isValidate;
   final TextEditingController controller;
@@ -79,6 +80,7 @@ class WileToneTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
+      width: width,
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,

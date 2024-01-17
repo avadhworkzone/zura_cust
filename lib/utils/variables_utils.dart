@@ -296,4 +296,28 @@ class VariablesUtils {
       "\n\nDevice means any device that can access the Service such as a computer, a cellphone or a digital tablet.";
 
 
+  ///Restaurant Detail screen
+ static const gallery = 'Gallery';
+ static const paybill = 'Pay Bill';
+ static const offers = 'Offers';
+ static const about = 'About';
+ static const billAmount = 'Bill Amount';
+ static const enterAmount = 'Enter amount';
+ static const magicCoupon = 'Magic Coupon';
+ static const extra = 'Extra';
+ static const off2 = 'off';
+ static const pay = 'Pay';
+ static const summary = 'summary';
+ static const payOnly = 'You pay only';
+
+ ///Payment Success Screen
+ static const youSaved = "You've Saved";
+ static const done = "Done";
+
+ ///Restaurant Images
+ static const ambience = "Ambience";
+ static const offering = "offering";
+
+
+
 }

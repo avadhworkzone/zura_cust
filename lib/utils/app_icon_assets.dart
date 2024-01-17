@@ -137,5 +137,15 @@ static const logout = '${ConstUtils.baseIconAssetsPath}logout.png';
    /// About Us Screen
 
   static const sidearrow = '${ConstUtils.baseIconAssetsPath}sidearrow.png';
+  ///Restaurant Detail
+  static const frame1 = "${ConstUtils.baseIconAssetsPath}Frame1.png";
+  static const frame2 = "${ConstUtils.baseIconAssetsPath}frame2.png";
+  static const frame3 = "${ConstUtils.baseIconAssetsPath}frame3.png";
+  static const frame4 = "${ConstUtils.baseIconAssetsPath}frame4.png";
+  static const shareIcon = "${ConstUtils.baseIconAssetsPath}shareicon.png";
+  static const discountIcons = "${ConstUtils.baseIconAssetsPath}discount.svg";
+  static const paymentSuccessIcon = "${ConstUtils.baseIconAssetsPath}paymentDone.svg";
+  static const moneyIcon = "${ConstUtils.baseIconAssetsPath}moneyIcon.svg";
+  static const payment = "${ConstUtils.baseIconAssetsPath}Paymentpattern.png";
 
 }
