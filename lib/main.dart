@@ -3,12 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:wilatone_restaurant/common/common_widget/wiletone_custom_button.dart';
+import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
+import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/About%20Us/about_us.dart';
 import 'package:wilatone_restaurant/view/all_menu_screen.dart';
 import 'package:wilatone_restaurant/view/all_order_screen.dart';
+import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
+import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
 import 'package:wilatone_restaurant/view/help_and_support.dart';
+import 'package:wilatone_restaurant/view/home/home_screen.dart';
 import 'package:wilatone_restaurant/view/my_order.dart';
 import 'package:wilatone_restaurant/view/profile_detail_screen.dart';
 
@@ -43,7 +49,7 @@ class MyApp extends StatelessWidget{
           fontFamily: AssetsUtils.poppins,
         ),
         debugShowCheckedModeBanner: false,
-        home : const AboutUsScreen(),
+        home : const BottombarScreen(),
       ),
     );
   }

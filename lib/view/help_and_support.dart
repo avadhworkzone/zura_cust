@@ -122,7 +122,9 @@ class _HelpandSupportState extends State<HelpandSupport> {
               WileToneCustomButton(
                 buttonRadius: 16.r,
                 buttonColor: ColorUtils.black12,
-                onPressed: () {},
+                onPressed: () {
+                  Contactusdata(context);
+                },
                 buttonName: VariablesUtils.contactUs,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w600,
@@ -137,4 +139,70 @@ class _HelpandSupportState extends State<HelpandSupport> {
       ),
     );
   }
+
+  // ignore: non_constant_identifier_names
+  void  Contactusdata(BuildContext context){
+
+    showModalBottomSheet<void>(
+      // shape: const RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10)),
+      // ),
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Container(
+            height: MediaQuery.of(context).size.height / 3.7,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10)),
+            color: Colors.white,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+
+                SizedBox(height: 20.h,),
+                WileToneTextWidget(
+                  title: VariablesUtils.emailsheet,
+                  fontSize: 14.sp,
+                  fontFamily: AssetsUtils.poppins,
+                  fontWeight: FontWeight.w600,
+                  color: ColorUtils.black,
+                ),
+                SizedBox(height: 31.h,),
+                WileToneTextWidget(
+                  title: VariablesUtils.emailid,
+                  fontSize: 12.sp,
+                  fontFamily: AssetsUtils.poppins,
+                  fontWeight: FontWeight.w500,
+                  color: ColorUtils.grey5B,
+                ),
+                SizedBox(height: 36.h,),
+                WileToneTextWidget(
+                  title: VariablesUtils.emailid,
+                  fontSize: 14.sp,
+                  fontFamily: AssetsUtils.poppins,
+                  fontWeight: FontWeight.w600,
+                  color: ColorUtils.black,
+                ),
+                SizedBox(height: 31.h,),
+                WileToneTextWidget(
+                  title: VariablesUtils.mobilenumber,
+                  fontSize: 12.sp,
+                  fontFamily: AssetsUtils.poppins,
+                  fontWeight: FontWeight.w500,
+                  color: ColorUtils.grey5B,
+                ),
+                SizedBox(height: 31.h,),
+
+
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
 }

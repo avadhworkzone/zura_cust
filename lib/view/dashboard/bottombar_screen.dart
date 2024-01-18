@@ -47,16 +47,17 @@ class _BottombarScreenState extends State<BottombarScreen>{
   ];
   static int currentIndex = 0;
 
-  Color _getIconColor(int index) {
+  Color _getIconColor(int index){
     return index == _selectedIndex ? ColorUtils.black : ColorUtils.lightGreyA6;
   }
 
   static final List<Widget> _widgetOptions = <Widget>[
 
     /// Home Screen
-  HomeScreen(),
+  const HomeScreen(),
 
     /// Reward screen
+    // ignore: prefer_const_constructors
     RewardScreen(),
 
     const Text(

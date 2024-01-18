@@ -30,7 +30,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen>{
 
               SizedBox(height: 20.h),
               const WileToneAppBar(title: ''),
-              SizedBox(height: 10.h),
+              SizedBox(height: 20.h),
 
               Align(
                 alignment: Alignment.centerLeft,
@@ -45,13 +45,13 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen>{
               SizedBox(height: 20.h),
 
               WileToneTextWidget(
-                title: "•${VariablesUtils.conttentzura}",
+                title: "•${VariablesUtils.privacypolicy}",
                 fontSize: 12.sp,
                 fontFamily: AssetsUtils.poppins,
                 fontWeight: FontWeight.w400,
                 color: ColorUtils.grey5B,
               ),
-              SizedBox(height: 20.h),
+
 
               WileToneCustomButton(
                 buttonRadius: 12.r,

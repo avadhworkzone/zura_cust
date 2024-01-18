@@ -98,7 +98,6 @@ class VariablesUtils {
 
 
   static const List listname = [
-    'All Brands',
     'Restaurant',
     'Cafe',
     'Sweet Shop',
@@ -278,25 +277,49 @@ class VariablesUtils {
   static const aboutzura = 'About Zura';
   static const privacy = 'Privacy Policy';
   static const terrms = 'Terms of Service';
-  static const conttentzura = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.\n"
-              "Definitions\n For the purposes of these Terms and Conditions: \n\nAffiliate means an entity that 'controls', is controlled by or is under common control with a party, where control means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority."
-  "\n\nAccount means a unique account created for You to access our Service or parts of our Service."
-  "\n\nCompany (referred to as either 'the Company', 'We', 'Us' or 'Our' in this Agreement) refers to FreePrivacyPolicy.com website."
-  "\n\nContent refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by You, regardless of the form of that content."
-  "\n\nCountry refers to: Romania"
-  "\n\nDevice means any device that can access the Service such as a computer, a cellphone or a digital tablet."
-  "\n\nFeedback means feedback, innovations or suggestions sent by You regarding the attributes, performance or features of our Service";
 
-  static const conttentterms = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.\n"
-      "Definitions\n For the purposes of these Terms and Conditions: \n\nAffiliate means an entity that 'controls', is controlled by or is under common control with a party, where control means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority."
-      "\n\nAccount means a unique account created for You to access our Service or parts of our Service."
-      "\n\nCompany (referred to as either 'the Company', 'We', 'Us' or 'Our' in this Agreement) refers to FreePrivacyPolicy.com website."
-      "\n\nContent refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by You, regardless of the form of that content."
-      "\n\nCountry refers to: Romania"
-      "\n\nDevice means any device that can access the Service such as a computer, a cellphone or a digital tablet.";
+  static const conttentzura = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
+  "\nDefinitions"
+  "\nFor the purposes of these Terms and Conditions: "
+  "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
+  "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
+  "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
+  "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
+  "\n• Country refers to: Romania"
+  "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
+  "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service";
+
+  static const conttentterms = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
+  "\nDefinitions"
+  "\nFor the purposes of these Terms and Conditions: "
+  "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
+  "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
+  "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
+  "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
+  "\n• Country refers to: Romania"
+  "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
+  "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service"
+  "\n• Products refer to the products or items offered for sale\n\t\t on the Service."
+  "\n• Orders mean a request by You to purchase Products\n\t\t from Us.";
 
 
-  ///Restaurant Detail screen
+  static const privacypolicy = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
+  "\nDefinitions"
+  "\nFor the purposes of these Terms and Conditions: "
+  "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
+  "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
+  "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
+  "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
+  "\n• Country refers to: Romania"
+  "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
+  "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service"
+  "\n• Products refer to the products or items offered for sale\n\t\t on the Service."
+  "\n• Orders mean a request by You to purchase Products\n\t\t from Us.";
+
+
+
+
+ /// Restaurant Detail screen
  static const gallery = 'Gallery';
  static const paybill = 'Pay Bill';
  static const offers = 'Offers';
@@ -318,6 +341,10 @@ class VariablesUtils {
  static const ambience = "Ambience";
  static const offering = "offering";
 
-
+ /// Email-No bottom sheet
+ static const emailsheet = 'Email';
+ static const mobilesheet = 'Mobile No';
+ static const emailid = 'Help@zura.com';
+ static const mobilenumber = '+91 9067757747';
 
 }

@@ -41,14 +41,13 @@ class WileToneCustomButton extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Padding(
       padding: padding,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          minimumSize:
-              MaterialStateProperty.all(Size(buttonWidth, buttonHeight ?? 52)),
+          minimumSize:  MaterialStateProperty.all(Size(buttonWidth, buttonHeight ?? 52)),
           shape: isBorderShape
               ? MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
@@ -66,12 +65,13 @@ class WileToneCustomButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(
               isBorderShape ? ColorUtils.white : buttonColor),
         ),
+
         child: Row(
           mainAxisSize: icon != null ? MainAxisSize.max : MainAxisSize.min,
-          mainAxisAlignment:
-              icon != null ? MainAxisAlignment.start : MainAxisAlignment.center,
+          mainAxisAlignment: icon != null ? MainAxisAlignment.start : MainAxisAlignment.center,
           children: [
             icon ?? const SizedBox(),
+
             WileToneTextWidget(
               fontFamily: fontFamily,
               title: buttonName,

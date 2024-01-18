@@ -8,7 +8,7 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 
-class AboutZuraScreen extends StatefulWidget {
+class AboutZuraScreen extends StatefulWidget{
   const AboutZuraScreen({Key? key}) : super(key: key);
 
   @override
@@ -23,35 +23,36 @@ class _AboutZuraScreenState extends State<AboutZuraScreen>{
 
       body: SafeArea(
 
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: Column(
-            children: [
+        child : Padding(
+          padding : EdgeInsets.symmetric(horizontal: 15.w),
+          child : Column(
+            children : [
 
               SizedBox(height: 20.h),
               const WileToneAppBar(title: ''),
-              SizedBox(height: 10.h),
-
-              Align(
-                 alignment: Alignment.centerLeft,
-                child: WileToneTextWidget(
-                  title: VariablesUtils.aboutzura,
-                  fontSize: 20.sp,
-                  fontFamily: AssetsUtils.poppins,
-                  fontWeight: FontWeight.w600,
-                  color: ColorUtils.black12,
-                ),
-              ),
               SizedBox(height: 20.h),
 
+              Align(
+                 alignment : Alignment.centerLeft,
+                child : WileToneTextWidget(
+                  title : VariablesUtils.aboutzura,
+                  fontSize : 20.sp,
+                  fontFamily : AssetsUtils.poppins,
+                  fontWeight : FontWeight.w600,
+                  color : ColorUtils.black12,
+                ),
+              ),
+              SizedBox(height : 10.h),
+
               WileToneTextWidget(
-                title: "•${VariablesUtils.conttentzura}",
+                title: VariablesUtils.conttentzura,
                 fontSize: 12.sp,
                 fontFamily: AssetsUtils.poppins,
                 fontWeight: FontWeight.w400,
                 color: ColorUtils.grey5B,
               ),
-              SizedBox(height: 20.h),
+
+              SizedBox(height: MediaQuery.of(context).size.height/10.5),
 
               WileToneCustomButton(
                 buttonRadius: 12.r,

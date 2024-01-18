@@ -50,7 +50,7 @@ class _TermsofServicesState extends State<TermsofServices>{
                 fontWeight: FontWeight.w400,
                 color: ColorUtils.grey5B,
               ),
-              SizedBox(height: 20.h),
+              // SizedBox(height: MediaQuery.of(context).size.height/10),
 
               WileToneCustomButton(
                 buttonRadius: 12.r,
