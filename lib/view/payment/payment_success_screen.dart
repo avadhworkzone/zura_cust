@@ -34,12 +34,13 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 15,),
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)
                   ),
                   child: Container(
-                    height: Get.height/3,
+                    height: Get.height/3.8,
                     width: Get.width/1.8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
