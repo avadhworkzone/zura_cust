@@ -9,6 +9,7 @@ import 'package:wilatone_restaurant/utils/app_icon_assets.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/restaurant_detail_screen/restaurant_gallery_screen.dart';
 
 import '../../common/common_widget/wiletone_image_widget.dart';
 import '../../utils/enum_utils.dart';
@@ -67,24 +68,29 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                           ),
                           Spacer(),
                           ///Gallery
-                          Padding(
-                            padding: EdgeInsets.only(right: 10.h,bottom: 15.h),
-                            child: Align(
-                              alignment: Alignment.bottomRight,
-                              child: Container(
-                                height: Get.height*0.04,
-                                width: Get.width/4.6,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.5),
-                                  borderRadius: BorderRadius.circular(5)
+                          InkWell(
+                            onTap: (){
+                              Get.to(()=> RestaurantGalleryScreen());
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 10.h,bottom: 15.h),
+                              child: Align(
+                                alignment: Alignment.bottomRight,
+                                child: Container(
+                                  height: Get.height*0.04,
+                                  width: Get.width/4.6,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.5),
+                                    borderRadius: BorderRadius.circular(5)
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                    Icon(Icons.photo,size: 25.h,),
+                                    SizedBox(width: 4.h,),
+                                    WileToneTextWidget(title: VariablesUtils.gallery,fontSize: 15.h,)
+                                  ],),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                  Icon(Icons.photo,size: 25.h,),
-                                  SizedBox(width: 4.h,),
-                                  WileToneTextWidget(title: VariablesUtils.gallery,fontSize: 15.h,)
-                                ],),
                               ),
                             ),
                           ),
@@ -146,8 +152,9 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
         
                     Container(
                       // color: Colors.blue,
-                      height: Get.height/1.6,
+                      height: Get.height/2,
                         child: TabBarView(children: [
+                        ///PayBill View
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.h),
                         child: Column(children: [
@@ -267,7 +274,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                             ),
                           ),
                           ),
-                         Spacer(),
+                         SizedBox(height: Get.height/8,),
                           ///Pay Button
                           WileToneCustomButton(
                               buttonHeight: Get.height/14,
@@ -279,7 +286,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                               },
                               buttonName: VariablesUtils.pay,fontSize: 16,),
 
-                          SizedBox(height: 18,),
+                          SizedBox(height: 10,),
                         ],),
                       ),
                       Center(child: Text("View 2")),
