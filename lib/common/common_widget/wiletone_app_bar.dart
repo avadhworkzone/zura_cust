@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wilatone_restaurant/common/common_widget/common_back_button.dart';
@@ -18,8 +20,9 @@ class WileToneAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CommonBackButton(
-          onPressed: onPressed ??
+          onPressed:
               () {
+            log("============CLICK==================");
                 Get.back();
               },
         ),

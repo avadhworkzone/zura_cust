@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,8 @@ import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 
-class AllBrandsScreen extends StatefulWidget {
+
+class AllBrandsScreen extends StatefulWidget{
   const AllBrandsScreen({Key? key}) : super(key: key);
 
   @override
@@ -20,15 +20,37 @@ class AllBrandsScreen extends StatefulWidget {
 }
 
 class _AllBrandsScreenState extends State<AllBrandsScreen> {
+
   Rx<TextEditingController> searchstores1 = TextEditingController().obs;
+  RxBool isvisible = false.obs;
+
+  final ScrollController _scrollController = ScrollController();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels < 250){
+        isvisible.value = true;
+      }
+      else {
+        isvisible.value = false;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context){
+
+    log("Total Height :- ${Get.height}");
+
     return Scaffold(
         backgroundColor: ColorUtils.greengrey,
         body: SafeArea(
           child: ListView(
             children: [
+
               Container(
                 height: 180.h,
                 color: ColorUtils.white,
@@ -42,12 +64,14 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
 
                       /// Search Store Textfield
                       WileToneTextFormField(
+
                         controller: searchstores1.value,
                         pIcon: InkWell(
                           onTap: () {
                             Get.back();
                           },
                           child: WileToneImageWidget(
+
                             color: ColorUtils.lightGreyA6,
                             image: AppIconAssets.picon,
                             imageType: ImageType.png,
@@ -78,37 +102,75 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                         height: 20.h,
                       ),
 
-                      SizedBox(
-                        // color: Colors.yellow,
-                        height: 78.h,
-                        child: ListView.builder(
-                          padding: EdgeInsets.symmetric(horizontal: 10.w),
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemCount : 12,
-                          itemBuilder : (context, index){
 
-                            if(index == 0){
-                              log("Index0 :- $index");
+                  /// All Brands data
+                      Visibility(
+                        visible: isvisible.value,
+                        child: SizedBox(
+                          // color: Colors.yellow,
+                          height: 78.h,
+                          child: ListView.builder(
+                            padding: EdgeInsets.symmetric(horizontal: 10.w),
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount : 12,
+                            itemBuilder : (context, index){
 
-                              return  Padding(
-                                padding : EdgeInsets.only(right: 5.w),
-                                child : Column(
-                                    mainAxisSize: MainAxisSize.min,
+                              if(index == 0){
+                                log("Index0 :- $index");
+
+                                return  Padding(
+                                  padding : EdgeInsets.only(right: 5.w),
+                                  child : Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+
+                                        Container(
+                                          height: 45.h,
+                                          width: 45.h,
+                                          decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      AppIconAssets.menu1))),
+                                        ),
+
+                                        Expanded(
+                                          child: WileToneTextWidget(
+                                            title: 'All Brands',
+                                            fontSize: 12.sp,
+                                            fontFamily: AssetsUtils.inter,
+                                            fontWeight: FontWeight.w500,
+                                            color: ColorUtils.black,
+                                          ),
+                                        ),
+                                      ]),
+                                );
+                              }
+
+                              log("Index1 :- $index");
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 9.w),
+                                child: Column(
+                                    // mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
 
                                       Container(
                                         height: 45.h,
                                         width: 45.h,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                             image: DecorationImage(
                                                 image: AssetImage(
-                                                    AppIconAssets.menu1))),
+
+                                          AppIconAssets.breadimages[index - 1]
+                                              .toString(),
+                                        ))),
                                       ),
 
                                       Expanded(
                                         child: WileToneTextWidget(
-                                          title: 'All Brands',
+                                          title: VariablesUtils
+                                              .listname[index - 1]
+                                              .toString(),
                                           fontSize: 12.sp,
                                           fontFamily: AssetsUtils.inter,
                                           fontWeight: FontWeight.w500,
@@ -117,49 +179,20 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                       ),
                                     ]),
                               );
-                            }
-
-                            log("Index1 :- $index");
-                            return Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 9.w),
-                              child: Column(
-                                  // mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 45.h,
-                                      width: 45.h,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(
-
-                                        AppIconAssets.breadimages[index - 1]
-                                            .toString(),
-                                      ))),
-                                    ),
-
-                                    Expanded(
-                                      child: WileToneTextWidget(
-                                        title: VariablesUtils
-                                            .listname[index - 1]
-                                            .toString(),
-                                        fontSize: 12.sp,
-                                        fontFamily: AssetsUtils.inter,
-                                        fontWeight: FontWeight.w500,
-                                        color: ColorUtils.black,
-                                      ),
-                                    ),
-                                  ]),
-                            );
-                          },
+                            },
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+
               SizedBox(
                 height: 20.h,
               ),
+
+              /// Hotel data
               Container(
                 height: MediaQuery.of(context).size.height / 1.3931,
                 decoration: BoxDecoration(
@@ -172,8 +205,10 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 10.h,
+                      height: 20.h,
                     ),
+
+                    /// Filter data
                     Row(
                       children: [
                         SizedBox(
@@ -319,6 +354,12 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                         )
                       ],
                     ),
+
+                    SizedBox(
+                      height: 10.h,
+                    ),
+
+                    /// Hotel data
                     Expanded(
                       child: ListView.builder(
                         padding: EdgeInsets.symmetric(

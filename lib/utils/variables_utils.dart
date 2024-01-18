@@ -102,10 +102,12 @@ class VariablesUtils {
     'Cafe',
     'Sweet Shop',
     'Salon',
+
     'Restaurant',
     'Cafe',
     'Sweet Shop',
     'Salon',
+
      'Restaurant',
     'Cafe',
     'Sweet Shop',

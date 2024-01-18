@@ -11,6 +11,7 @@ import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/About%20Us/about_us.dart';
 import 'package:wilatone_restaurant/view/all_menu_screen.dart';
 import 'package:wilatone_restaurant/view/all_order_screen.dart';
+import 'package:wilatone_restaurant/view/auth/login_screen.dart';
 import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
 import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
 import 'package:wilatone_restaurant/view/help_and_support.dart';

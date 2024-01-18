@@ -82,77 +82,77 @@ class WileToneTextFormField extends StatelessWidget {
       height: height,
       width: width,
       child: TextFormField(
-        controller: controller,
-        focusNode: focusNode,
-        onChanged: onChange,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        style: TextStyle(
-          color: ColorUtils.black,
-          fontSize: 12.sp,
-          fontWeight: FontWeightClass.medium,
-        ),
-        onTap: () {
-          if (isAddress == true) {
-            onTap!();
-          }
-        },
-        cursorColor: Colors.grey,
-        obscureText: obscureValue!,
-        maxLines: maxLine ?? 1,
-        textInputAction: textInputAction ?? TextInputAction.done,
-        textCapitalization: textCapitalization ?? TextCapitalization.none,
-        inputFormatters: regularExpression!.isEmpty
-            ? [
-                LengthLimitingTextInputFormatter(inputLength),
-                // FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                NoLeadingSpaceFormatter(),
-              ]
-            : [
-                LengthLimitingTextInputFormatter(inputLength),
-                NoLeadingSpaceFormatter(),
-                FilteringTextInputFormatter.allow(RegExp(regularExpression ??
-                    RegularExpression.alphabetDigitsDashPattern))
-              ],
-        keyboardType: textInputType,
-        maxLength: inputLength,
-        validator: (value) {
-          return isValidate == false
-              ? null
-              : value!.isEmpty
-                  ? validationMessage
-                  : validationtype == ValidationType.email
-                      ? ValidationMethod.validateUserName(value)
-                      : validationtype == ValidationType.pNumber
-                          ? ValidationMethod.validatePhoneNo(value)
-                          : validationtype == ValidationType.amount
-                              ? ValidationMethod.validateAmount(value)
-                              : null;
-        },
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          filled: filled,
-          fillColor: fillcolor,
-          prefixIcon: pIcon,
-          suffixIcon: sIcon,
-          // enabled : false,
-          enabledBorder: OutlineInputBorder(
-              borderSide: borderSide,
-              borderRadius: BorderRadius.circular(borderRadius ?? 8)),
-          focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
-              borderRadius: BorderRadius.circular(borderRadius ?? 8)),
-          errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
-              borderRadius: BorderRadius.circular(borderRadius ?? 8)),
-          focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorUtils.red),
-              borderRadius: BorderRadius.circular(borderRadius ?? 8)),
-          hintStyle: hintStyle ??
-              TextStyle(fontSize: 10.sp, color: ColorUtils.lightGreyA6),
-          hintText: hintText,
-          contentPadding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 15.w),
-        ),
-      ),
+       controller: controller,
+       focusNode: focusNode,
+       onChanged: onChange,
+       autovalidateMode: AutovalidateMode.onUserInteraction,
+       style: TextStyle(
+         color: ColorUtils.black,
+         fontSize: 12.sp,
+         fontWeight: FontWeightClass.medium,
+       ),
+       onTap: () {
+         if (isAddress == true) {
+           onTap!();
+         }
+       },
+       cursorColor: Colors.grey,
+       obscureText: obscureValue!,
+       maxLines: maxLine ?? 1,
+       textInputAction: textInputAction ?? TextInputAction.done,
+       textCapitalization: textCapitalization ?? TextCapitalization.none,
+       inputFormatters: regularExpression!.isEmpty
+           ? [
+               LengthLimitingTextInputFormatter(inputLength),
+               // FilteringTextInputFormatter.deny(RegExp(r'\s')),
+               NoLeadingSpaceFormatter(),
+             ]
+           : [
+               LengthLimitingTextInputFormatter(inputLength),
+               NoLeadingSpaceFormatter(),
+               FilteringTextInputFormatter.allow(RegExp(regularExpression ??
+                   RegularExpression.alphabetDigitsDashPattern))
+             ],
+       keyboardType: textInputType,
+       maxLength: inputLength,
+       validator: (value) {
+         return isValidate == false
+             ? null
+             : value!.isEmpty
+                 ? validationMessage
+                 : validationtype == ValidationType.email
+                     ? ValidationMethod.validateUserName(value)
+                     : validationtype == ValidationType.pNumber
+                         ? ValidationMethod.validatePhoneNo(value)
+                         : validationtype == ValidationType.amount
+                             ? ValidationMethod.validateAmount(value)
+                             : null;
+       },
+       decoration: InputDecoration(
+         border: InputBorder.none,
+         filled: filled,
+         fillColor: fillcolor,
+         prefixIcon: pIcon,
+         suffixIcon: sIcon,
+         // enabled : false,
+         enabledBorder: OutlineInputBorder(
+             borderSide: borderSide,
+             borderRadius: BorderRadius.circular(borderRadius ?? 8)),
+         focusedBorder: OutlineInputBorder(
+             borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
+             borderRadius: BorderRadius.circular(borderRadius ?? 8)),
+         errorBorder: OutlineInputBorder(
+             borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
+             borderRadius: BorderRadius.circular(borderRadius ?? 8)),
+         focusedErrorBorder: OutlineInputBorder(
+             borderSide: const BorderSide(color: ColorUtils.red),
+             borderRadius: BorderRadius.circular(borderRadius ?? 8)),
+         hintStyle: hintStyle ??
+             TextStyle(fontSize: 10.sp, color: ColorUtils.lightGreyA6),
+         hintText: hintText,
+         contentPadding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 15.w),
+       ),
+              ),
     );
   }
 }
@@ -177,5 +177,6 @@ class NoLeadingSpaceFormatter extends TextInputFormatter {
     }
 
     return newValue;
+
   }
 }

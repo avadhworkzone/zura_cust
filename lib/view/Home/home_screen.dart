@@ -52,8 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+
     return Scaffold(
+
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 15.w,
@@ -183,6 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: AbsorbPointer(
                         absorbing: true,
                         child: WileToneTextFormField(
+
                           controller: searchstores.value,
                           pIcon: WileToneImageWidget(
                             color: ColorUtils.lightGreyA6,
@@ -191,13 +194,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 52.h,
                             // width: 24.w,
                           ),
+
                           filled: false,
                           height: 52.h,
-                          borderSide:
-                              const BorderSide(color: ColorUtils.lightGreyD7),
+                          borderSide : const BorderSide(color: ColorUtils.lightGreyD7),
                           borderRadius: 57.sp,
-                          hintText: VariablesUtils.searchstores,
-                          hintStyle: TextStyle(
+                          hintText : VariablesUtils.searchstores,
+                          hintStyle : TextStyle(
                               fontSize: 14.sp,
                               color: ColorUtils.lightGreyA6,
                               fontWeight: FontWeight.w500),

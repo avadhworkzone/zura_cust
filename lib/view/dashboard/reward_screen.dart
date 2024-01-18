@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_app_bar.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_custom_button.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_image_widget.dart';
@@ -33,7 +34,8 @@ class _RewardScreenState extends State<RewardScreen> {
 
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: const WileToneAppBar(title: VariablesUtils.rewardtext)),
+              child:  const WileToneAppBar(title: VariablesUtils.rewardtext
+                ,)),
 
           Expanded(
             child: Column(
@@ -42,7 +44,10 @@ class _RewardScreenState extends State<RewardScreen> {
                 SizedBox(
                   height: 20.h,
                 ),
+
+
                 Stack(alignment: Alignment.center, children: [
+
                   const WileToneImageWidget(
                     image: AppIconAssets.ruppeicon,
                     imageType: ImageType.png,

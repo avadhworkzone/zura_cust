@@ -52,6 +52,7 @@ class AppIconAssets {
     '${ConstUtils.baseIconAssetsPath}snadvich.png',
     '${ConstUtils.baseIconAssetsPath}snadvich.png',
     '${ConstUtils.baseIconAssetsPath}snadvich.png',
+    '${ConstUtils.baseIconAssetsPath}snadvich.png',
 
 
     '${ConstUtils.baseIconAssetsPath}snadvich.png',
