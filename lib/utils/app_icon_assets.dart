@@ -16,6 +16,8 @@ class AppIconAssets {
   static const String homeicon = '${ConstUtils.baseIconAssetsPath}Subtract.png';
   static const String rewardicon = '${ConstUtils.baseIconAssetsPath}Group.png';
   static const String exploreicon = '${ConstUtils.baseIconAssetsPath}clock.png';
+  static const String direction = '${ConstUtils.baseIconAssetsPath}direction.png';
+  static const String location = '${ConstUtils.baseIconAssetsPath}material-symbols_distance-outline.png';
 
   static const String searchoicon =
       '${ConstUtils.baseIconAssetsPath}search.png';
@@ -73,9 +75,9 @@ class AppIconAssets {
     '${ConstUtils.baseIconAssetsPath}image.png',
     '${ConstUtils.baseIconAssetsPath}image.png',
     '${ConstUtils.baseIconAssetsPath}image.png',
-    '${ConstUtils.baseIconAssetsPath}image.png',
-    '${ConstUtils.baseIconAssetsPath}image.png',
-    '${ConstUtils.baseIconAssetsPath}image.png',
+    // '${ConstUtils.baseIconAssetsPath}image.png',
+    // '${ConstUtils.baseIconAssetsPath}image.png',
+    // '${ConstUtils.baseIconAssetsPath}image.png',
   ];
 
   static const dotimage = [
@@ -84,9 +86,9 @@ class AppIconAssets {
     '${ConstUtils.baseIconAssetsPath}3dot.png',
     '${ConstUtils.baseIconAssetsPath}3dot.png',
     '${ConstUtils.baseIconAssetsPath}3dot.png',
-    '${ConstUtils.baseIconAssetsPath}3dot.png',
-    '${ConstUtils.baseIconAssetsPath}3dot.png',
-    '${ConstUtils.baseIconAssetsPath}3dot.png',
+    // '${ConstUtils.baseIconAssetsPath}3dot.png',
+    // '${ConstUtils.baseIconAssetsPath}3dot.png',
+    // '${ConstUtils.baseIconAssetsPath}3dot.png',
   ];
 
   /// Reward Screen
@@ -138,10 +140,12 @@ class AppIconAssets {
   static const frame2 = "${ConstUtils.baseIconAssetsPath}frame2.png";
   static const frame3 = "${ConstUtils.baseIconAssetsPath}frame3.png";
   static const frame4 = "${ConstUtils.baseIconAssetsPath}frame4.png";
+  static const gallery = "${ConstUtils.baseIconAssetsPath}gallery.png";
   static const shareIcon = "${ConstUtils.baseIconAssetsPath}shareicon.png";
   static const discountIcons = "${ConstUtils.baseIconAssetsPath}discount.svg";
   static const paymentSuccessIcon =
       "${ConstUtils.baseIconAssetsPath}paymentDone.svg";
   static const moneyIcon = "${ConstUtils.baseIconAssetsPath}moneyIcon.svg";
   static const payment = "${ConstUtils.baseIconAssetsPath}Paymentpattern.png";
+
 }

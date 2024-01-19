@@ -1,17 +1,15 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_image_widget.dart';
-import 'package:wilatone_restaurant/common/common_widget/wiletone_text_form_field.dart';
-import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
 import 'package:wilatone_restaurant/utils/app_icon_assets.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/view/Home/home_screen.dart';
 import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
 import 'package:wilatone_restaurant/view/dashboard/reward_screen.dart';
+
 
 class BottombarScreen extends StatefulWidget{
   const BottombarScreen({Key? key}) : super(key: key);
@@ -81,6 +79,7 @@ class _BottombarScreenState extends State<BottombarScreen> {
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar : BottomNavigationBar(
           items: [
+
             BottomNavigationBarItem(
               icon: WileToneImageWidget(
                 color: _getIconColor(0),
@@ -91,6 +90,7 @@ class _BottombarScreenState extends State<BottombarScreen> {
               ),
               label: 'Home',
             ),
+
             BottomNavigationBarItem(
               icon: WileToneImageWidget(
                 color: _getIconColor(1),
@@ -101,6 +101,7 @@ class _BottombarScreenState extends State<BottombarScreen> {
               ),
               label: 'Rewards',
             ),
+
             BottomNavigationBarItem(
               icon: WileToneImageWidget(
                 color: _getIconColor(2),

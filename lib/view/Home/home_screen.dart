@@ -3,7 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../common/common_widget/wiletone_custom_button.dart';
+import 'package:wilatone_restaurant/view/All_menu_screen/all_menu_screen.dart';
+import 'package:wilatone_restaurant/view/Bottom_sheet/sort_bottomsheet.dart';
+import 'package:wilatone_restaurant/view/Bottom_sheet/timing_bottomsheet.dart';
+import 'package:wilatone_restaurant/view/Pop_up/pop_up.dart';
+import 'package:wilatone_restaurant/view/restaurant_detail_screen/restaurant_detail.dart';
 import '../../common/common_widget/wiletone_image_widget.dart';
 import '../../common/common_widget/wiletone_text_form_field.dart';
 import '../../common/common_widget/wiletone_text_widget.dart';
@@ -15,17 +19,24 @@ import '../../utils/variables_utils.dart';
 import '../dashboard/all_brands.dart';
 import '../dashboard/reward_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget{
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>{
+
+
+
   RxInt current = 0.obs;
   static Rx<TextEditingController> searchstores = TextEditingController().obs;
   final _controller = CarouselController().obs;
+  Sortbottomsheet sortsheet =  Sortbottomsheet();
+  TimingBottomSheet timesheet = TimingBottomSheet();
+  PopupMenu popup = PopupMenu();
+
 
   static List imagename = [
     'Restaurant',
@@ -65,8 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 190.h,
               width: Get.width.w,
-              child: Column(
-                children: [
+              child : Column(
+                children : [
+
                   /// Top App bar
                   Container(
                     width: double.infinity.w,
@@ -80,27 +92,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          // stops: [0.0, 1.0],
                         ),
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.sp),
                             bottomRight: Radius.circular(30.sp))),
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 15.h),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                    child : Padding(
+                      padding : EdgeInsets.only(bottom: 15.h),
+                      child : Row(
+                        crossAxisAlignment : CrossAxisAlignment.end,
+                        children : [
+
                           SizedBox(
                             width: 15.w,
                           ),
 
                           /// person icon
-                          WileToneImageWidget(
-                            // color: ColorUtils.lightGreyA6,
-                            image: AppIconAssets.personicon,
-                            imageType: ImageType.png,
-                            height: 38.h,
-                            width: 38.w,
+                          InkWell(
+                            onTap: () {
+                                 Get.to(const AllMenuScreen());
+                            },
+                            child: WileToneImageWidget(
+                              // color: ColorUtils.lightGreyA6,
+                              image: AppIconAssets.personicon,
+                              imageType: ImageType.png,
+                              height: 38.h,
+                              width: 38.w,
+                            ),
                           ),
 
                           SizedBox(
@@ -300,6 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 10.h,
                   ),
+                 /// Slider
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: AppIconAssets.listviewimages
@@ -325,44 +343,50 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
 
                   ///checkout rewards
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: Container(
-                      height: 52.h,
-                      width: Get.width.w,
-                      decoration: BoxDecoration(
-                          color: ColorUtils.black,
-                          borderRadius: BorderRadius.circular(10.sp)),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          const WileToneImageWidget(
-                            image: AppIconAssets.reward,
-                            imageType: ImageType.png,
-                          ),
-                          SizedBox(
-                            width: 15.w,
-                          ),
-                          WileToneTextWidget(
-                            title: VariablesUtils.check,
-                            fontSize: 12.sp,
-                            fontFamily: AssetsUtils.poppins,
-                            fontWeight: FontWeight.w500,
-                            color: ColorUtils.white,
-                          ),
-                          SizedBox(
-                            width: 90.w,
-                          ),
-                          const WileToneImageWidget(
-                            image: AppIconAssets.frontarrow,
-                            imageType: ImageType.png,
-                          ),
-                        ],
+                  InkWell(
+                    onTap: (){
+                       Get.to(const RewardScreen());
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: Container(
+                        height: 52.h,
+                        width: Get.width.w,
+                        decoration: BoxDecoration(
+                            color: ColorUtils.black,
+                            borderRadius: BorderRadius.circular(10.sp)),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            const WileToneImageWidget(
+                              image: AppIconAssets.reward,
+                              imageType: ImageType.png,
+                            ),
+                            SizedBox(
+                              width: 15.w,
+                            ),
+                            WileToneTextWidget(
+                              title: VariablesUtils.check,
+                              fontSize: 12.sp,
+                              fontFamily: AssetsUtils.poppins,
+                              fontWeight: FontWeight.w500,
+                              color: ColorUtils.white,
+                            ),
+                            SizedBox(
+                              width: 90.w,
+                            ),
+                            const WileToneImageWidget(
+                              image: AppIconAssets.frontarrow,
+                              imageType: ImageType.png,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
+
 
                   SizedBox(
                     height: 35.h,
@@ -370,15 +394,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   ///Filter data
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 22.w,
+                        width: 8.w,
                       ),
 
                       ///short data
                       InkWell(
                         onTap: () {
-                          _showSortData(context);
+                          sortsheet.showSortData(context);
                         },
                         child: Container(
                           height: 30.h,
@@ -411,17 +436,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.w500,
                                 color: ColorUtils.black,
                               ),
+
                               SizedBox(
                                 width: 4.w,
                               ),
+
                               const WileToneImageWidget(
                                 image: AppIconAssets.arrow,
                                 imageType: ImageType.png,
                               ),
+
                             ],
                           ),
                         ),
                       ),
+
                       SizedBox(
                         width: 10.w,
                       ),
@@ -441,9 +470,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Row(
                           children: [
+
                             SizedBox(
                               width: 5.w,
                             ),
+
                             WileToneTextWidget(
                               title: VariablesUtils.near,
                               fontSize: 12.sp,
@@ -454,6 +485,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
+
                       SizedBox(
                         width: 10.w,
                       ),
@@ -493,7 +525,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ///Timing Data
                       InkWell(
                         onTap: () {
-                          _showTimingData(context);
+                          timesheet.showTimingData(context);
                         },
                         child: Container(
                           height: 30.h,
@@ -544,87 +576,109 @@ class _HomeScreenState extends State<HomeScreen> {
                     //     horizontal: 0.w, vertical: 0.h),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                    itemCount: 8,
+                    itemCount: 5,
                     itemBuilder: (context, index) {
-                      return Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5.w, vertical: 10.h),
-                              child: WileToneImageWidget(
-                                image:
-                                    AppIconAssets.zomatoimage[index].toString(),
-                                imageType: ImageType.png,
+                      return InkWell(
+                        // onTap: (){
+                        //   // Get.to(const RestaurantDetailScreen());
+                        // },
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 5.w, vertical: 10.h),
+                                child: WileToneImageWidget(
+                                  image:
+                                      AppIconAssets.zomatoimage[index].toString(),
+                                  imageType: ImageType.png,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 15.w,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 25.h),
-                              child: Column(
-                                // mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: WileToneTextWidget(
-                                      title: VariablesUtils.hotelname[index]
-                                          .toString(),
-                                      fontSize: 20.sp,
-                                      fontFamily: AssetsUtils.inter,
-                                      fontWeight: FontWeight.w600,
-                                      color: ColorUtils.black,
-                                    ),
-                                  ),
-                                  WileToneTextWidget(
-                                    title: VariablesUtils.foodname[index]
-                                        .toString(),
-                                    fontSize: 14.sp,
-                                    fontFamily: AssetsUtils.inter,
-                                    fontWeight: FontWeight.w400,
-                                    color: ColorUtils.grey8D,
-                                  ),
-                                  Row(
-                                    children: [
-                                      WileToneTextWidget(
-                                        title: VariablesUtils
-                                            .discountpercentage[index]
+                              SizedBox(
+                                width: 15.w,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 25.h),
+                                child: Column(
+                                  // mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: WileToneTextWidget(
+                                        title: VariablesUtils.hotelname[index]
                                             .toString(),
-                                        fontSize: 24.sp,
-                                        fontFamily: AssetsUtils.metrophobic,
-                                        fontWeight: FontWeight.w700,
-                                        color: ColorUtils.lightgreen,
+                                        fontSize: 20.sp,
+                                        fontFamily: AssetsUtils.inter,
+                                        fontWeight: FontWeight.w600,
+                                        color: ColorUtils.black,
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 5.h, top: 10.h),
-                                        child: WileToneTextWidget(
-                                          title: VariablesUtils.off[index]
+                                    ),
+                                    WileToneTextWidget(
+                                      title: VariablesUtils.foodname[index]
+                                          .toString(),
+                                      fontSize: 14.sp,
+                                      fontFamily: AssetsUtils.inter,
+                                      fontWeight: FontWeight.w400,
+                                      color: ColorUtils.grey8D,
+                                    ),
+                                    Row(
+                                      children: [
+                                        WileToneTextWidget(
+                                          title: VariablesUtils
+                                              .discountpercentage[index]
                                               .toString(),
-                                          fontSize: 15.sp,
-                                          fontFamily: AssetsUtils.metrophobic,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 24.sp,
+                                          fontFamily: AssetsUtils.inter,
+                                          fontWeight: FontWeight.w700,
                                           color: ColorUtils.lightgreen,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 5.h, top: 10.h),
+                                          child: WileToneTextWidget(
+                                            title: VariablesUtils.off[index]
+                                                .toString(),
+                                            fontSize: 15.sp,
+                                            fontFamily: AssetsUtils.metrophobic,
+                                            fontWeight: FontWeight.w700,
+                                            color: ColorUtils.lightgreen,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width / 5.5,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 20.h),
-                              child: WileToneImageWidget(
-                                image: AppIconAssets.dotimage[index].toString(),
-                                imageType: ImageType.png,
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 10.5,
                               ),
-                            ),
-                          ]);
+
+
+                              popup.popup(context)
+
+                              // IconButton(onPressed: (){
+                              //   log("================Click");
+                              //        Get.to(const PopupMenu());
+                              // }, icon: const Icon(Icons.more_vert,size: 20,color: ColorUtils.grey,)),
+
+
+                              // InkWell(
+                              //   onTap: () {
+                              //     log("================Click");
+                              //     const PopupMenu();
+                              //   },
+                              //   child: Padding(
+                              //     padding: EdgeInsets.only(top: 20.h),
+                              //     child: WileToneImageWidget(
+                              //       image: AppIconAssets.dotimage[index].toString(),
+                              //       imageType: ImageType.png,
+                              //       scale: 1,
+                              //     ),
+                              //   ),
+                              // ),
+                            ]),
+                      );
                     },
                   )
                 ],
@@ -636,242 +690,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// sort data bottom sheet
-  void _showSortData(BuildContext context) {
-    showModalBottomSheet<void>(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-      ),
-      context: context,
-      builder: (BuildContext context) {
-        return SafeArea(
-          child: Wrap(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    WileToneTextWidget(
-                      title: VariablesUtils.sorttext,
-                      fontSize: 18.sp,
-                      fontFamily: AssetsUtils.poppins,
-                      fontWeight: FontWeight.w600,
-                      color: ColorUtils.black,
-                    ),
-                    SizedBox(
-                      height: 14.h,
-                    ),
-                    Row(
-                      children: [
-                        WileToneTextWidget(
-                          title: VariablesUtils.relevance,
-                          fontSize: 14.sp,
-                          fontFamily: AssetsUtils.poppins,
-                          fontWeight: FontWeight.w500,
-                          // color: ColorUtils.black,
-                        ),
-                        const Spacer(),
-                        Icon(
-                          Icons.radio_button_checked,
-                          color: ColorUtils.green,
-                          size: 25.h,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Row(
-                      children: [
-                        WileToneTextWidget(
-                          title: VariablesUtils.lowToHigh,
-                          fontSize: 14.sp,
-                          fontFamily: AssetsUtils.poppins,
-                          fontWeight: FontWeight.w500,
-                          // color: ColorUtils.black,
-                        ),
-                        const Spacer(),
-                        Icon(
-                          Icons.radio_button_checked,
-                          color: ColorUtils.green,
-                          size: 25.h,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Row(
-                      children: [
-                        WileToneTextWidget(
-                          title: VariablesUtils.highToLow,
-                          fontSize: 14.sp,
-                          fontFamily: AssetsUtils.poppins,
-                          fontWeight: FontWeight.w500,
-                          // color: ColorUtils.black,
-                        ),
-                        const Spacer(),
-                        Icon(
-                          Icons.radio_button_checked,
-                          color: ColorUtils.green,
-                          size: 25.h,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Row(
-                      children: [
-                        WileToneCustomButton(
-                          buttonHeight: MediaQuery.of(context).size.height / 14,
-                          buttonWidth: Get.width / 2.2,
-                          buttonColor: ColorUtils.white,
-                          onPressed: () {},
-                          buttonName: VariablesUtils.clearAll,
-                          fontColor: ColorUtils.green,
-                        ),
-                        WileToneCustomButton(
-                          buttonHeight: Get.height * 0.07,
-                          buttonWidth: Get.width / 2.2,
-                          buttonColor: ColorUtils.green,
-                          onPressed: () {},
-                          buttonName: VariablesUtils.ApplyBtn,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
 
-  /// Timing data bottom sheet
-  void _showTimingData(BuildContext context) {
-    showModalBottomSheet<void>(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-      ),
-      context: context,
-      builder: (BuildContext context) {
-        return SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              child: Wrap(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 16.h,
-                        ),
-                        WileToneTextWidget(
-                          title: VariablesUtils.timing,
-                          fontSize: 18.sp,
-                          fontFamily: AssetsUtils.poppins,
-                          fontWeight: FontWeight.w600,
-                          color: ColorUtils.black,
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        Row(
-                          children: [
-                            WileToneTextWidget(
-                              title: VariablesUtils.all,
-                              fontSize: 18.sp,
-                              fontFamily: AssetsUtils.poppins,
-                              fontWeight: FontWeight.w600,
-                              color: ColorUtils.black,
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding: EdgeInsets.only(right: 16.h),
-                              child: Icon(
-                                Icons.radio_button_checked,
-                                color: ColorUtils.green,
-                                size: 30.h,
-                              ),
-                            ),
-                          ],
-                        ),
+  // void getdirectionpopup(){
+  //      Container();
+  // }
 
-                        ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.only(bottom: 15.h),
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemCount: VariablesUtils.restaurantTime.length,
-                            itemBuilder: (context, index) {
-                              return Row(
-                                children: [
-                                  WileToneTextWidget(
-                                      title:
-                                          VariablesUtils.restaurantTime[index]),
-                                  const Spacer(),
-                                  Radio(
-                                      activeColor: ColorUtils.green,
-                                      toggleable: true,
-                                      value:
-                                          VariablesUtils.restaurantTime.length,
-                                      groupValue: RestaurantTime,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          RestaurantTime = value.toString();
-                                        });
-                                      })
-                                ],
-                              );
-                            }),
-                        // SizedBox(height: 10.h,),
 
-                        ///Buttons
-                        Row(
-                          children: [
-                            WileToneCustomButton(
-                              buttonHeight: Get.height * 0.06,
-                              buttonWidth: Get.width / 2.2,
-                              buttonColor: ColorUtils.white,
-                              onPressed: () {},
-                              buttonName: VariablesUtils.clearAll,
-                              fontColor: ColorUtils.green,
-                            ),
-                            WileToneCustomButton(
-                              buttonHeight: Get.height * 0.06,
-                              buttonWidth: Get.width / 2.2,
-                              buttonColor: ColorUtils.green,
-                              onPressed: () {},
-                              buttonName: VariablesUtils.ApplyBtn,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
+
 }

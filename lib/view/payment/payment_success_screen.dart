@@ -4,22 +4,23 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
-
-import '../../common/common_widget/wiletone_custom_button.dart';
+import 'package:wilatone_restaurant/view/restaurant_detail_screen/restaurant_detail.dart';
 import '../../common/common_widget/wiletone_text_widget.dart';
 import '../../utils/app_icon_assets.dart';
 import '../../utils/assets/assets_utils.dart';
 
-class PaymentSuccessScreen extends StatefulWidget {
+class PaymentSuccessScreen extends StatefulWidget{
   const PaymentSuccessScreen({super.key});
 
   @override
   State<PaymentSuccessScreen> createState() => _PaymentSuccessScreenState();
 }
 
-class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
+class _PaymentSuccessScreenState extends State<PaymentSuccessScreen>{
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -27,14 +28,14 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
         Container(
           height: Get.height,
           width: Get.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(image: AssetImage(AppIconAssets.payment))
           ),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 15,),
+                SizedBox(height: 15.h,),
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)
@@ -47,15 +48,15 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                       color: ColorUtils.white
                     ),
                     child: Column(children: [
-                      SizedBox(height: 15,),
+                      SizedBox(height: 15.h,),
                       Card(
-                        shape: CircleBorder(side: BorderSide(color: ColorUtils.greyAC)),
+                        shape: const CircleBorder(side: BorderSide(color: ColorUtils.greyAC)),
                         child: CircleAvatar(
                           backgroundColor: ColorUtils.white,
-                          radius: 30,
+                          radius: 30.r,
                           child: Center(child: SvgPicture.asset(AppIconAssets.moneyIcon,height: 22),),),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(height: 10.h,),
                       WileToneTextWidget(
                         title: VariablesUtils.youSaved,
                         fontSize: 20.sp,
@@ -63,7 +64,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                         fontWeight: FontWeight.w500,
                         color: ColorUtils.black,
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(height: 10.h,),
                       WileToneTextWidget(
                         title: "\₹50",
                         fontSize: 23.sp,
@@ -71,7 +72,7 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                         fontWeight: FontWeight.w500,
                         color: ColorUtils.black,
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(height: 20.h,),
                       WileToneTextWidget(
                         title: "20%${VariablesUtils.off2}",
                         fontSize: 12.sp,
@@ -82,10 +83,12 @@ class _PaymentSuccessScreenState extends State<PaymentSuccessScreen> {
                     ],),
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 20.h,),
                 ///Done Button
                 InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Get.to(const RestaurantDetailScreen());
+                  },
                   child: Container(
                     alignment: Alignment.center,
                     height: Get.height*0.06,

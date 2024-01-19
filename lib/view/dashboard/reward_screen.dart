@@ -10,6 +10,7 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
 
 class RewardScreen extends StatefulWidget{
   const RewardScreen({Key? key}) : super(key: key);
@@ -34,8 +35,7 @@ class _RewardScreenState extends State<RewardScreen> {
 
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child:  const WileToneAppBar(title: VariablesUtils.rewardtext
-                ,)),
+              child:  const WileToneAppBar(title: VariablesUtils.rewardtext,)),
 
           Expanded(
             child: Column(
@@ -46,7 +46,9 @@ class _RewardScreenState extends State<RewardScreen> {
                 ),
 
 
-                Stack(alignment: Alignment.center, children: [
+                Stack(
+                    alignment: Alignment.center,
+                    children: [
 
                   const WileToneImageWidget(
                     image: AppIconAssets.ruppeicon,
@@ -149,11 +151,14 @@ class _RewardScreenState extends State<RewardScreen> {
               ],
             ),
           ),
+
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
-            child: WileToneCustomButton(
-              onPressed: () {},
-              buttonName: 'Save More',
+            padding : EdgeInsets.symmetric(horizontal: 15.w),
+            child : WileToneCustomButton(
+              onPressed : (){
+                Get.to(const AllBrandsScreen());
+              },
+              buttonName : 'Save More',
             ),
           ),
           SizedBox(height: 20.h,)

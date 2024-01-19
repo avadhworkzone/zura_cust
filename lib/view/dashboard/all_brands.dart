@@ -10,35 +10,49 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/Bottom_sheet/sort_bottomsheet.dart';
+import 'package:wilatone_restaurant/view/Bottom_sheet/timing_bottomsheet.dart';
+import 'package:wilatone_restaurant/view/Pop_up/pop_up.dart';
 
 
-class AllBrandsScreen extends StatefulWidget{
+class AllBrandsScreen  extends  StatefulWidget {
   const AllBrandsScreen({Key? key}) : super(key: key);
 
   @override
   State<AllBrandsScreen> createState() => _AllBrandsScreenState();
 }
 
-class _AllBrandsScreenState extends State<AllBrandsScreen> {
+
+class _AllBrandsScreenState extends State<AllBrandsScreen>{
 
   Rx<TextEditingController> searchstores1 = TextEditingController().obs;
+  Sortbottomsheet sortsheet =  Sortbottomsheet();
+  TimingBottomSheet timesheet = TimingBottomSheet();
   RxBool isvisible = false.obs;
+  PopupMenu popup = PopupMenu();
+
 
   final ScrollController _scrollController = ScrollController();
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
 
+    if (_scrollController.initialScrollOffset < 250) {
+      isvisible.value = true;
+    } else {
+      isvisible.value = false;
+    }
+
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels < 250){
+      if (_scrollController.position.pixels < 250) {
         isvisible.value = true;
-      }
-      else {
+      } else {
         isvisible.value = false;
       }
     });
   }
+
 
   @override
   Widget build(BuildContext context){
@@ -51,6 +65,7 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
           child: ListView(
             children: [
 
+              /// 1st container of all brand data
               Container(
                 height: 180.h,
                 color: ColorUtils.white,
@@ -107,7 +122,6 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                       Visibility(
                         visible: isvisible.value,
                         child: SizedBox(
-                          // color: Colors.yellow,
                           height: 78.h,
                           child: ListView.builder(
                             padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -122,12 +136,12 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                 return  Padding(
                                   padding : EdgeInsets.only(right: 5.w),
                                   child : Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
+                                      mainAxisSize : MainAxisSize.min,
+                                      children : [
 
                                         Container(
-                                          height: 45.h,
-                                          width: 45.h,
+                                          height : 45.h,
+                                          width : 45.h,
                                           decoration: const BoxDecoration(
                                               image: DecorationImage(
                                                   image: AssetImage(
@@ -148,10 +162,11 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                               }
 
                               log("Index1 :- $index");
+
                               return Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 9.w),
                                 child: Column(
-                                    // mainAxisAlignment: MainAxisAlignment.start,
+
                                     children: [
 
                                       Container(
@@ -192,7 +207,9 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                 height: 20.h,
               ),
 
-              /// Hotel data
+              /// Below container of hotel data
+              // if(_scrollController.position.pixels < 250)
+
               Container(
                 height: MediaQuery.of(context).size.height / 1.3931,
                 decoration: BoxDecoration(
@@ -201,9 +218,11 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                       topLeft: Radius.circular(20.sp),
                       topRight: Radius.circular(20.sp),
                     )),
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                  children : [
+
                     SizedBox(
                       height: 20.h,
                     ),
@@ -211,56 +230,70 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                     /// Filter data
                     Row(
                       children: [
+
                         SizedBox(
                           width: 22.w,
                         ),
-                        Container(
-                          height: 30.h,
-                          width: 69.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            border: Border.all(
-                              color: ColorUtils.grey,
-                              // Set the desired border color
-                              width: 1.0, // Set the desired border width
+
+                        InkWell(
+                          onTap: (){
+                            sortsheet.showSortData(context);
+                          },
+                          child: Container(
+                            height: 30.h,
+                            width: 69.w,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.sp),
+                              border: Border.all(
+                                color: ColorUtils.grey,
+                                // Set the desired border color
+                                width: 1.0, // Set the desired border width
+                              ),
+                              // color: ColorUtils.red
                             ),
-                            // color: ColorUtils.red
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              const WileToneImageWidget(
-                                image: AppIconAssets.sort,
-                                imageType: ImageType.png,
-                              ),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              WileToneTextWidget(
-                                title: VariablesUtils.sorttext,
-                                fontSize: 12.sp,
-                                fontFamily: AssetsUtils.poppins,
-                                fontWeight: FontWeight.w500,
-                                color: ColorUtils.black,
-                              ),
-                              SizedBox(
-                                width: 4.w,
-                              ),
-                              const WileToneImageWidget(
-                                image: AppIconAssets.arrow,
-                                imageType: ImageType.png,
-                              ),
-                            ],
+
+                            child: Row(
+                              children: [
+
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+
+                                const WileToneImageWidget(
+                                  image: AppIconAssets.sort,
+                                  imageType: ImageType.png,
+                                ),
+
+                                SizedBox(
+                                  width: 3.w,
+                                ),
+
+                                WileToneTextWidget(
+                                  title: VariablesUtils.sorttext,
+                                  fontSize: 12.sp,
+                                  fontFamily: AssetsUtils.poppins,
+                                  fontWeight: FontWeight.w500,
+                                  color: ColorUtils.black,
+                                ),
+                                SizedBox(
+                                  width: 4.w,
+                                ),
+                                const WileToneImageWidget(
+                                  image: AppIconAssets.arrow,
+                                  imageType: ImageType.png,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
+
                         SizedBox(
                           width: 10.w,
                         ),
+
                         Container(
-                          height: 30.h,
-                          width: 60.w,
+                          height : 30.h,
+                          width : 60.w,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
                             border: Border.all(
@@ -270,11 +303,14 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                             ),
                             // color: ColorUtils.red
                           ),
+
                           child: Row(
                             children: [
+
                               SizedBox(
                                 width: 5.w,
                               ),
+
                               WileToneTextWidget(
                                 title: VariablesUtils.near,
                                 fontSize: 12.sp,
@@ -285,9 +321,11 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                             ],
                           ),
                         ),
+
                         SizedBox(
                           width: 10.w,
                         ),
+
                         Container(
                           height: 30.h,
                           width: 86.w,
@@ -300,16 +338,19 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                             ),
                             // color: ColorUtils.red
                           ),
-                          child: Row(
-                            children: [
+
+                          child : Row(
+                            children : [
+
                               SizedBox(
-                                width: 5.w,
+                                width : 5.w,
                               ),
+
                               WileToneTextWidget(
-                                title: VariablesUtils.greatoffer,
-                                fontSize: 12.sp,
-                                fontFamily: AssetsUtils.poppins,
-                                fontWeight: FontWeight.w500,
+                                title : VariablesUtils.greatoffer,
+                                fontSize : 12.sp,
+                                fontFamily : AssetsUtils.poppins,
+                                fontWeight : FontWeight.w500,
                                 color: ColorUtils.black,
                               ),
                             ],
@@ -318,40 +359,49 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                         SizedBox(
                           width: 10.w,
                         ),
-                        Container(
-                          height: 30.h,
-                          width: 69.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.sp),
-                            border: Border.all(
-                              color: ColorUtils.grey,
-                              // Set the desired border color
-                              width: 1.0, // Set the desired border width
+
+                        InkWell(
+                          onTap: (){
+                            timesheet.showTimingData(context);
+                          },
+                          child: Container(
+                            height: 30.h,
+                            width: 69.w,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.sp),
+                              border: Border.all(
+                                color: ColorUtils.grey,
+                                // Set the desired border color
+                                width: 1.0, // Set the desired border width
+                              ),
+                              // color: ColorUtils.red
                             ),
-                            // color: ColorUtils.red
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              WileToneTextWidget(
-                                title: VariablesUtils.Timing,
-                                fontSize: 12.sp,
-                                fontFamily: AssetsUtils.poppins,
-                                fontWeight: FontWeight.w500,
-                                color: ColorUtils.black,
-                              ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              const WileToneImageWidget(
-                                image: AppIconAssets.arrow,
-                                imageType: ImageType.png,
-                              ),
-                            ],
+
+                            child: Row(
+                              children: [
+
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                WileToneTextWidget(
+                                  title: VariablesUtils.Timing,
+                                  fontSize: 12.sp,
+                                  fontFamily: AssetsUtils.poppins,
+                                  fontWeight: FontWeight.w500,
+                                  color: ColorUtils.black,
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                const WileToneImageWidget(
+                                  image: AppIconAssets.arrow,
+                                  imageType: ImageType.png,
+                                ),
+                              ],
+                            ),
                           ),
                         )
+
                       ],
                     ),
 
@@ -359,37 +409,41 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                       height: 10.h,
                     ),
 
+
                     /// Hotel data
+
                     Expanded(
-                      child: ListView.builder(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 15.w, vertical: 0.h),
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: 8,
-                        itemBuilder: (context, index) {
+                      child : ListView.builder(
+                        padding : EdgeInsets.symmetric(horizontal: 15.w, vertical: 0.h),
+                        scrollDirection : Axis.vertical,
+                        // physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap : true,
+                        itemCount : 5,
+                        itemBuilder : (context, index){
                           return Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                              crossAxisAlignment : CrossAxisAlignment.start,
+                              children : [
+
                                 Padding(
-                                  padding: EdgeInsets.symmetric(
+                                  padding : EdgeInsets.symmetric(
                                       vertical: 10.h, horizontal: 5.w),
-                                  child: WileToneImageWidget(
-                                    image: AppIconAssets.zomatoimage[index]
-                                        .toString(),
-                                    imageType: ImageType.png,
+                                  child : WileToneImageWidget(
+                                    image : AppIconAssets.zomatoimage[index].toString(),
+                                    imageType : ImageType.png,
                                   ),
                                 ),
+
                                 SizedBox(
                                   width: 15.w,
                                 ),
+
                                 Padding(
-                                  padding: EdgeInsets.only(top: 25.h),
-                                  child: Column(
+                                  padding : EdgeInsets.only(top: 25.h),
+                                  child : Column(
                                     // mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment : CrossAxisAlignment.start,
                                     children: [
+
                                       Align(
                                         alignment: Alignment.center,
                                         child: WileToneTextWidget(
@@ -401,6 +455,7 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                           color: ColorUtils.black,
                                         ),
                                       ),
+
                                       WileToneTextWidget(
                                         title: VariablesUtils.foodname[index]
                                             .toString(),
@@ -409,52 +464,53 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
                                         fontWeight: FontWeight.w400,
                                         color: ColorUtils.grey8D,
                                       ),
+
                                       Row(
                                         children: [
+
                                           WileToneTextWidget(
                                             title: VariablesUtils
                                                 .discountpercentage[index]
                                                 .toString(),
                                             fontSize: 24.sp,
-                                            fontFamily: AssetsUtils.metrophobic,
+                                            fontFamily: AssetsUtils.inter,
                                             fontWeight: FontWeight.w700,
                                             color: ColorUtils.lightgreen,
                                           ),
+
                                           SizedBox(
                                             width: 10.sp,
                                           ),
+
                                           WileToneTextWidget(
-                                            title: VariablesUtils.off[index]
-                                                .toString(),
-                                            fontSize: 18.sp,
+                                            title: VariablesUtils.off[index].toString(),
+                                            fontSize: 15.sp,
                                             fontFamily: AssetsUtils.metrophobic,
                                             fontWeight: FontWeight.w700,
                                             color: ColorUtils.lightgreen,
                                           )
                                         ],
                                       )
+
                                     ],
                                   ),
                                 ),
+
                                 SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width / 5.5,
+                                  width : MediaQuery.of(context).size.width / 10.5,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 20.h),
-                                  child: WileToneImageWidget(
-                                    image: AppIconAssets.dotimage[index]
-                                        .toString(),
-                                    imageType: ImageType.png,
-                                  ),
-                                ),
+
+                                popup.popup(context)
+
                               ]);
                         },
                       ),
                     )
+
                   ],
                 ),
               ),
+
             ],
           ),
         ));

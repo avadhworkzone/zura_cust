@@ -121,9 +121,9 @@ class VariablesUtils {
     'Zomato Dining',
 
     'Zomato Dining',
-    'Zomato Dining',
-    'Zomato Dining',
-    'Zomato Dining',
+    // 'Zomato Dining',
+    // 'Zomato Dining',
+    // 'Zomato Dining',
 
 
   ];
@@ -135,9 +135,9 @@ class VariablesUtils {
     'Food',
 
     'Food',
-    'Food',
-    'Food',
-    'Food',
+    // 'Food',
+    // 'Food',
+    // 'Food',
 
 
 
@@ -151,9 +151,9 @@ class VariablesUtils {
     '20%',
 
     '20%',
-    '20%',
-    '20%',
-    '20%',
+    // '20%',
+    // '20%',
+    // '20%',
  ];
 
   static const List off = [
@@ -163,9 +163,9 @@ class VariablesUtils {
     'OFF',
 
     'OFF',
-    'OFF',
-    'OFF',
-    'OFF',
+    // 'OFF',
+    // 'OFF',
+    // 'OFF',
 
   ];
 
@@ -332,7 +332,7 @@ class VariablesUtils {
  static const extra = 'Extra';
  static const off2 = 'off';
  static const pay = 'Pay';
- static const summary = 'summary';
+ static const summary = 'SUMMARY';
  static const payOnly = 'You pay only';
 
  ///Payment Success Screen
