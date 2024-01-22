@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,7 @@ import 'model/apiService/api_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -49,4 +51,5 @@ class MyApp extends StatelessWidget {
   BaseService baseService = Get.put(BaseService());
   AuthViewModel authViewModel = Get.put(AuthViewModel());
   ConnectivityViewModel connectivityViewModel = Get.put(ConnectivityViewModel());
+
 }
