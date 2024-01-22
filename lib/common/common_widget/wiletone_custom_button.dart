@@ -7,7 +7,8 @@ import 'package:wilatone_restaurant/utils/font_style_utils.dart';
 
 import '../../utils/typedef_utils.dart';
 
-class WileToneCustomButton extends StatelessWidget {
+class WileToneCustomButton extends StatelessWidget{
+
   final OnTap? onPressed;
   final EdgeInsetsGeometry padding;
   final String buttonName;

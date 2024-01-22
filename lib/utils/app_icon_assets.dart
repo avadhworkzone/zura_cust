@@ -148,4 +148,10 @@ class AppIconAssets {
   static const moneyIcon = "${ConstUtils.baseIconAssetsPath}moneyIcon.svg";
   static const payment = "${ConstUtils.baseIconAssetsPath}Paymentpattern.png";
 
+  /// Offer view
+
+  static const place  =  "${ConstUtils.baseIconAssetsPath}place.png";
+  static const directlocation  =  "${ConstUtils.baseIconAssetsPath}directlocation.png";
+  static const callhotel  =  "${ConstUtils.baseIconAssetsPath}callhotel.png";
+
 }

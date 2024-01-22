@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
-import 'package:wilatone_restaurant/view/restaurant_detail_screen/restaurant_detail.dart';
+import 'package:wilatone_restaurant/view/restaurantDetailScreen/restaurant_detail.dart';
 import '../../common/common_widget/wiletone_text_widget.dart';
 import '../../utils/app_icon_assets.dart';
 import '../../utils/assets/assets_utils.dart';

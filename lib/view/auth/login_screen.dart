@@ -1,10 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:wilatone_restaurant/common/common_widget/loading_indicator.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_custom_button.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_image_widget.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
+import 'package:wilatone_restaurant/model/apiModel/responseModel/send_otp_res_model.dart';
+import 'package:wilatone_restaurant/model/apiService/api_service.dart';
+import 'package:wilatone_restaurant/model/apiService/base_service.dart';
+import 'package:wilatone_restaurant/model/apis/api_response.dart';
 import 'package:wilatone_restaurant/utils/app_icon_assets.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
@@ -12,22 +19,26 @@ import 'package:wilatone_restaurant/utils/const_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/font_style_utils.dart';
 import 'package:wilatone_restaurant/utils/preference_utils.dart';
+import 'package:wilatone_restaurant/utils/utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/otp_verify_screen.dart';
 import 'package:wilatone_restaurant/view/general/wilestone_web_view.dart';
+import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 
-
-class LoginScreen extends StatefulWidget{
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>{
-
-  final phoneController = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController phoneController = TextEditingController();
   String phoneNumber = '', dialCode = "";
+  ApiService apiService = Get.find<ApiService>();
+  BaseService baseService = Get.find<BaseService>();
+  AuthViewModel authViewModel = Get.find<AuthViewModel>();
+  SendOtpResModel sendOtpResModel = SendOtpResModel();
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +46,16 @@ class _LoginScreenState extends State<LoginScreen>{
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           WileToneTextWidget(
             title: VariablesUtils.byContinuing,
             color: ColorUtils.grey5B,
             fontWeight: FontWeight.w500,
             fontSize: 10.sp,
           ),
-
           SizedBox(height: 3.h),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               InkWell(
                 onTap: () {
                   Get.to(WileStoneWebview(
@@ -148,6 +155,7 @@ class _LoginScreenState extends State<LoginScreen>{
               ),
             ),
             SizedBox(height: 30.h),
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: IntlPhoneField(
@@ -197,11 +205,88 @@ class _LoginScreenState extends State<LoginScreen>{
               ),
             ),
             SizedBox(height: 20.h),
+
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20.w),
+            //   child: WileToneCustomButton(
+            //     onPressed: () async {
+            //
+            //       if(phoneController.text == ''){
+            //         Utils.snackbar('Plz Enter Phone Number', '');
+            //       // ignore: unrelated_type_equality_checks
+            //       }
+            //
+            //       else if(authViewModel.sendOtpApiResponse.status == ApiResponse.complete){
+            //
+            //         print("code :-  ${sendOtpResModel.code}");
+            //
+            //       await apiService.getResponse(
+            //             apiType: APIType.aPost,
+            //             url: baseService.sendOtp,
+            //             withToken: false,
+            //             body: {"mobile": phoneController.text});
+            //
+            //         Utils.snackbar('${sendOtpResModel.message}', '');
+            //
+            //         print("dialCode :- $dialCode==============");
+            //
+            //         Get.to(OtpVerificationScreen(
+            //           phoneNumber: phoneController.text,
+            //           dialcode: dialCode == '' ? '91' : dialCode,
+            //         ));
+            //
+            //         phoneController.clear();
+            //       }
+            //     },
+            //     buttonHeight: MediaQuery.of(context).size.height / 14,
+            //     buttonColor: ColorUtils.greenColor,
+            //     buttonName: VariablesUtils.continueText,
+            //   ),
+            // ),
+
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: WileToneCustomButton(
-                onPressed: () {
-                  Get.to(const OtpVerificationScreen());
+                onPressed: () async {
+
+                  FocusManager.instance.primaryFocus?.unfocus();
+
+                  if (phoneController.text == '') {
+                    return Utils.snackBar(message: 'Plz Enter Phone Number',);
+                  }
+
+                  Get.dialog(
+                    postDataLoadingIndicator(),
+                  );
+
+                  await authViewModel.sendOtp(phoneNumber = phoneController.text, true);
+
+                  if(authViewModel.sendOtpApiResponse.status ==  Status.COMPLETE){
+
+                    SendOtpResModel res = authViewModel.sendOtpApiResponse.data;
+                    Get.back();
+
+                    Utils.snackBar(message: '${res.message}');
+
+                     if(res.code == 200){
+
+                      log("Status code :- ${res.code}========================");
+                      log("res :- ${res.message}");
+
+                      Get.to(() => OtpVerificationScreen(
+                            phoneNumber: phoneController.text,
+                            dialcode: dialCode.isEmpty ? '91' : dialCode,
+                          ))!.then((value) => phoneController.clear());
+
+                    }
+
+                     else {
+                       Get.back();
+                      Utils.snackBar(message: '${res.message}',bgColor: Colors.red);
+                    }
+                  }
+
+
                 },
                 buttonHeight: 52,
                 buttonColor: ColorUtils.greenColor,
@@ -239,22 +324,18 @@ class _LoginScreenState extends State<LoginScreen>{
                 ],
               ),
             ),
-
             SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 const WileToneImageWidget(
                   image: AppIconAssets.googleIcon,
                   imageType: ImageType.png,
                   scale: 5,
                 ),
-
                 SizedBox(
                   width: 10.w,
                 ),
-
                 const WileToneImageWidget(
                   image: AppIconAssets.appleIcon,
                   imageType: ImageType.png,

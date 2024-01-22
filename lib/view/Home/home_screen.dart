@@ -3,11 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wilatone_restaurant/view/All_menu_screen/all_menu_screen.dart';
-import 'package:wilatone_restaurant/view/Bottom_sheet/sort_bottomsheet.dart';
-import 'package:wilatone_restaurant/view/Bottom_sheet/timing_bottomsheet.dart';
-import 'package:wilatone_restaurant/view/Pop_up/pop_up.dart';
-import 'package:wilatone_restaurant/view/restaurant_detail_screen/restaurant_detail.dart';
+import 'package:wilatone_restaurant/view/Popup/pop_up.dart';
+import 'package:wilatone_restaurant/view/allMenuScreen/all_menu_screen.dart';
+import 'package:wilatone_restaurant/view/bottomSheet/sort_bottomsheet.dart';
+import 'package:wilatone_restaurant/view/bottomSheet/timing_bottomsheet.dart';
+import 'package:wilatone_restaurant/view/restaurantDetailScreen/restaurant_detail.dart';
 import '../../common/common_widget/wiletone_image_widget.dart';
 import '../../common/common_widget/wiletone_text_form_field.dart';
 import '../../common/common_widget/wiletone_text_widget.dart';
@@ -19,24 +19,20 @@ import '../../utils/variables_utils.dart';
 import '../dashboard/all_brands.dart';
 import '../dashboard/reward_screen.dart';
 
-class HomeScreen extends StatefulWidget{
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>{
-
-
-
+class _HomeScreenState extends State<HomeScreen> {
   RxInt current = 0.obs;
   static Rx<TextEditingController> searchstores = TextEditingController().obs;
   final _controller = CarouselController().obs;
-  Sortbottomsheet sortsheet =  Sortbottomsheet();
+  Sortbottomsheet sortsheet = Sortbottomsheet();
   TimingBottomSheet timesheet = TimingBottomSheet();
   PopupMenu popup = PopupMenu();
-
 
   static List imagename = [
     'Restaurant',
@@ -63,10 +59,8 @@ class _HomeScreenState extends State<HomeScreen>{
   }
 
   @override
-  Widget build(BuildContext context){
-
+  Widget build(BuildContext context) {
     return Scaffold(
-
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 15.w,
@@ -76,9 +70,8 @@ class _HomeScreenState extends State<HomeScreen>{
             SizedBox(
               height: 190.h,
               width: Get.width.w,
-              child : Column(
-                children : [
-
+              child: Column(
+                children: [
                   /// Top App bar
                   Container(
                     width: double.infinity.w,
@@ -96,12 +89,11 @@ class _HomeScreenState extends State<HomeScreen>{
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.sp),
                             bottomRight: Radius.circular(30.sp))),
-                    child : Padding(
-                      padding : EdgeInsets.only(bottom: 15.h),
-                      child : Row(
-                        crossAxisAlignment : CrossAxisAlignment.end,
-                        children : [
-
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 15.h),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
                           SizedBox(
                             width: 15.w,
                           ),
@@ -109,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen>{
                           /// person icon
                           InkWell(
                             onTap: () {
-                                 Get.to(const AllMenuScreen());
+                              Get.to(const AllMenuScreen());
                             },
                             child: WileToneImageWidget(
                               // color: ColorUtils.lightGreyA6,
@@ -146,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen>{
                           ),
 
                           SizedBox(
-                            width: 70.w,
+                            width: MediaQuery.of(context).size.width.w / 13,
                           ),
 
                           /// reward icon
@@ -202,7 +194,6 @@ class _HomeScreenState extends State<HomeScreen>{
                       child: AbsorbPointer(
                         absorbing: true,
                         child: WileToneTextFormField(
-
                           controller: searchstores.value,
                           pIcon: WileToneImageWidget(
                             color: ColorUtils.lightGreyA6,
@@ -211,13 +202,13 @@ class _HomeScreenState extends State<HomeScreen>{
                             height: 52.h,
                             // width: 24.w,
                           ),
-
                           filled: false,
                           height: 52.h,
-                          borderSide : const BorderSide(color: ColorUtils.lightGreyD7),
+                          borderSide:
+                              const BorderSide(color: ColorUtils.lightGreyD7),
                           borderRadius: 57.sp,
-                          hintText : VariablesUtils.searchstores,
-                          hintStyle : TextStyle(
+                          hintText: VariablesUtils.searchstores,
+                          hintStyle: TextStyle(
                               fontSize: 14.sp,
                               color: ColorUtils.lightGreyA6,
                               fontWeight: FontWeight.w500),
@@ -299,14 +290,13 @@ class _HomeScreenState extends State<HomeScreen>{
                     options: CarouselOptions(
                         enableInfiniteScroll: false,
                         autoPlay: true,
-                        onPageChanged: ( index, reason){
+                        onPageChanged: (index, reason) {
                           log("Index :- $index");
                           log("Reason :- $reason");
                           setState(() {
                             current.value = index;
                           });
                         },
-
                         autoPlayInterval: const Duration(seconds: 2),
                         autoPlayAnimationDuration:
                             const Duration(milliseconds: 800),
@@ -317,7 +307,8 @@ class _HomeScreenState extends State<HomeScreen>{
                   SizedBox(
                     height: 10.h,
                   ),
-                 /// Slider
+
+                  /// Slider
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: AppIconAssets.listviewimages
@@ -344,8 +335,8 @@ class _HomeScreenState extends State<HomeScreen>{
 
                   ///checkout rewards
                   InkWell(
-                    onTap: (){
-                       Get.to(const RewardScreen());
+                    onTap: () {
+                      Get.to(const RewardScreen());
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -386,7 +377,6 @@ class _HomeScreenState extends State<HomeScreen>{
                       ),
                     ),
                   ),
-
 
                   SizedBox(
                     height: 35.h,
@@ -436,16 +426,13 @@ class _HomeScreenState extends State<HomeScreen>{
                                 fontWeight: FontWeight.w500,
                                 color: ColorUtils.black,
                               ),
-
                               SizedBox(
                                 width: 4.w,
                               ),
-
                               const WileToneImageWidget(
                                 image: AppIconAssets.arrow,
                                 imageType: ImageType.png,
                               ),
-
                             ],
                           ),
                         ),
@@ -470,11 +457,9 @@ class _HomeScreenState extends State<HomeScreen>{
                         ),
                         child: Row(
                           children: [
-
                             SizedBox(
                               width: 5.w,
                             ),
-
                             WileToneTextWidget(
                               title: VariablesUtils.near,
                               fontSize: 12.sp,
@@ -579,26 +564,33 @@ class _HomeScreenState extends State<HomeScreen>{
                     itemCount: 5,
                     itemBuilder: (context, index) {
                       return InkWell(
-                        // onTap: (){
-                        //   // Get.to(const RestaurantDetailScreen());
-                        // },
+                        onTap: () {
+                          Get.to(const RestaurantDetailScreen());
+                        },
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 5.w, vertical: 10.h),
-                                child: WileToneImageWidget(
-                                  image:
-                                      AppIconAssets.zomatoimage[index].toString(),
-                                  imageType: ImageType.png,
+                                child: SizedBox(
+                                  // height : ,
+                                  width: Get.width <= 290 ? 60 : 90,
+                                  child: WileToneImageWidget(
+                                    image: AppIconAssets.zomatoimage[index]
+                                        .toString(),
+                                    imageType: ImageType.png,
+                                  ),
                                 ),
                               ),
+
                               SizedBox(
                                 width: 15.w,
                               ),
+
                               Padding(
-                                padding: EdgeInsets.only(top: 25.h),
+                                padding: EdgeInsets.only(
+                                    top: Get.width <= 280 ? 15.h : 25.h),
                                 child: Column(
                                   // mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -651,9 +643,8 @@ class _HomeScreenState extends State<HomeScreen>{
                                 ),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width / 10.5,
+                                width: MediaQuery.of(context).size.width / 7.5,
                               ),
-
 
                               popup.popup(context)
 
@@ -661,7 +652,6 @@ class _HomeScreenState extends State<HomeScreen>{
                               //   log("================Click");
                               //        Get.to(const PopupMenu());
                               // }, icon: const Icon(Icons.more_vert,size: 20,color: ColorUtils.grey,)),
-
 
                               // InkWell(
                               //   onTap: () {
@@ -689,12 +679,4 @@ class _HomeScreenState extends State<HomeScreen>{
       ),
     );
   }
-
-
-  // void getdirectionpopup(){
-  //      Container();
-  // }
-
-
-
 }

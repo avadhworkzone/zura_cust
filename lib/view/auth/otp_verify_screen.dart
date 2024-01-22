@@ -4,32 +4,43 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+import 'package:wilatone_restaurant/common/common_widget/loading_indicator.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_app_bar.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
+import 'package:wilatone_restaurant/model/apiModel/responseModel/send_otp_res_model.dart';
+import 'package:wilatone_restaurant/model/apis/api_response.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
+import 'package:wilatone_restaurant/utils/utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
-import 'package:wilatone_restaurant/view/auth/create_profile_screen.dart';
-import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
-
+import 'package:wilatone_restaurant/view/auth/login_screen.dart';
+import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 
 class OtpVerificationScreen extends StatefulWidget{
 
-  const OtpVerificationScreen({Key? key}) : super(key: key);
+  final String phoneNumber;
+  final String dialcode;
+
+  const OtpVerificationScreen(
+      {Key? key, required this.phoneNumber, required this.dialcode})
+      : super(key: key);
+
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
-
   final otpEditController = TextEditingController();
+  LoginScreen loginScreen = const LoginScreen();
+  AuthViewModel authViewModel = Get.find<AuthViewModel>();
+
   final interval = const Duration(seconds: 1);
   int currentSeconds = 60, countDownTime = 150, timerMaxSeconds = 150;
   String? timerText = "150";
   Timer? _timer;
 
-  void _startTimer(){
-    _timer = Timer.periodic(interval, (timer){
+  void _startTimer() {
+    _timer = Timer.periodic(interval, (timer) {
       setState(() {});
     });
   }
@@ -40,8 +51,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     }
   }
 
-  startTimeout([int? milliseconds]) {
-    Timer.periodic(interval, (timer) {
+  startTimeout([int? milliseconds]){
+    Timer.periodic(interval, (timer){
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         if (mounted) {
           currentSeconds = currentSeconds - 1;
@@ -84,34 +95,41 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               SizedBox(
                 height: 20.h,
               ),
+
               WileToneTextWidget(
                 title: VariablesUtils.weHaveSentVerificationCodeTo,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w600,
                 color: ColorUtils.grey5B,
               ),
+
               SizedBox(
                 height: 2.5.h,
               ),
+
+              /// OTP MOBILE NUMBER
+
               WileToneTextWidget(
-                title: "+91-9067757747",
+                title: "+${widget.dialcode} ${widget.phoneNumber}",
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w700,
                 color: ColorUtils.black,
               ),
+
               SizedBox(
                 height: 30.h,
               ),
+
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 3.w),
                 child: Pinput(
-                  length: 6,
+                  length: 4,
                   autofocus: true,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please enter Otp';
-                    } else if (value.length != 6) {
-                      return 'OTP must be 6 digits';
+                    } else if (value.length != 4) {
+                      return 'OTP must be 4 digits';
                     }
                     return null;
                   },
@@ -168,12 +186,39 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ),
                 ),
               ),
+
               SizedBox(
                 height: 30.h,
               ),
+
               InkWell(
-                onTap: () {
-                  Get.to(const CreateProfileScreen());
+                onTap: () async {
+
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  Get.dialog(
+                    postDataLoadingIndicator(),
+                  );
+                  await authViewModel.sendOtp(widget.phoneNumber, false);
+
+                  if (authViewModel.sendOtpApiResponse.status == Status.COMPLETE){
+
+                    SendOtpResModel res = authViewModel.sendOtpApiResponse.data;
+                    print('RES CODE ==>${res.code}');
+
+                    if(res.code == 200){
+
+                      currentSeconds = 30;
+                      startTimeout();
+                      print('======${res.message}');
+                      Get.back();
+                      Utils.snackBar(message: '${res.message}');
+                    }
+
+                    else {
+                      Get.back();
+                      Utils.snackBar(message: '${res.message}',bgColor: Colors.red);
+                    }
+                  }
                 },
                 child: Text.rich(
                   TextSpan(
@@ -207,12 +252,16 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ),
                 ),
               ),
+
               SizedBox(
                 height: 10.h,
               ),
+
               InkWell(
                 onTap: () {
-                  Get.to(const BottombarScreen());
+
+
+                  // Get.to(const BottombarScreen());
                 },
                 child: WileToneTextWidget(
                   title: VariablesUtils.goBackToLoginMethods,

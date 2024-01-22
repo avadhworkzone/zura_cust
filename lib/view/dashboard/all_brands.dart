@@ -10,9 +10,10 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
-import 'package:wilatone_restaurant/view/Bottom_sheet/sort_bottomsheet.dart';
-import 'package:wilatone_restaurant/view/Bottom_sheet/timing_bottomsheet.dart';
-import 'package:wilatone_restaurant/view/Pop_up/pop_up.dart';
+import 'package:wilatone_restaurant/view/bottomSheet/sort_bottomsheet.dart';
+import 'package:wilatone_restaurant/view/bottomSheet/timing_bottomsheet.dart';
+import 'package:wilatone_restaurant/view/popUp/pop_up.dart';
+import '../restaurantDetailScreen/restaurant_detail.dart';
 
 
 class AllBrandsScreen  extends  StatefulWidget {
@@ -28,30 +29,30 @@ class _AllBrandsScreenState extends State<AllBrandsScreen>{
   Rx<TextEditingController> searchstores1 = TextEditingController().obs;
   Sortbottomsheet sortsheet =  Sortbottomsheet();
   TimingBottomSheet timesheet = TimingBottomSheet();
-  RxBool isvisible = false.obs;
+  // RxBool isvisible = false.obs;
   PopupMenu popup = PopupMenu();
 
 
-  final ScrollController _scrollController = ScrollController();
+  // final ScrollController _scrollController = ScrollController();
 
-  @override
-  void initState(){
-    super.initState();
-
-    if (_scrollController.initialScrollOffset < 250) {
-      isvisible.value = true;
-    } else {
-      isvisible.value = false;
-    }
-
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels < 250) {
-        isvisible.value = true;
-      } else {
-        isvisible.value = false;
-      }
-    });
-  }
+  // @override
+  // void initState(){
+  //   super.initState();
+  //
+  //   if (_scrollController.initialScrollOffset < 250) {
+  //     isvisible.value = true;
+  //   } else {
+  //     isvisible.value = false;
+  //   }
+  //
+  //   _scrollController.addListener(() {
+  //     if (_scrollController.position.pixels < 250) {
+  //       isvisible.value = true;
+  //     } else {
+  //       isvisible.value = false;
+  //     }
+  //   });
+  // }
 
 
   @override
@@ -119,73 +120,36 @@ class _AllBrandsScreenState extends State<AllBrandsScreen>{
 
 
                   /// All Brands data
-                      Visibility(
-                        visible: isvisible.value,
-                        child: SizedBox(
-                          height: 78.h,
-                          child: ListView.builder(
-                            padding: EdgeInsets.symmetric(horizontal: 10.w),
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemCount : 12,
-                            itemBuilder : (context, index){
+                      SizedBox(
+                        height: 78.h,
+                        child: ListView.builder(
+                          padding: EdgeInsets.symmetric(horizontal: 10.w),
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount : 12,
+                          itemBuilder : (context, index){
 
-                              if(index == 0){
-                                log("Index0 :- $index");
+                            if(index == 0){
+                              log("Index0 :- $index");
 
-                                return  Padding(
-                                  padding : EdgeInsets.only(right: 5.w),
-                                  child : Column(
-                                      mainAxisSize : MainAxisSize.min,
-                                      children : [
-
-                                        Container(
-                                          height : 45.h,
-                                          width : 45.h,
-                                          decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      AppIconAssets.menu1))),
-                                        ),
-
-                                        Expanded(
-                                          child: WileToneTextWidget(
-                                            title: 'All Brands',
-                                            fontSize: 12.sp,
-                                            fontFamily: AssetsUtils.inter,
-                                            fontWeight: FontWeight.w500,
-                                            color: ColorUtils.black,
-                                          ),
-                                        ),
-                                      ]),
-                                );
-                              }
-
-                              log("Index1 :- $index");
-
-                              return Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 9.w),
-                                child: Column(
-
-                                    children: [
+                              return  Padding(
+                                padding : EdgeInsets.only(right: 5.w),
+                                child : Column(
+                                    mainAxisSize : MainAxisSize.min,
+                                    children : [
 
                                       Container(
-                                        height: 45.h,
-                                        width: 45.h,
-                                        decoration: BoxDecoration(
+                                        height : 45.h,
+                                        width : 45.h,
+                                        decoration: const BoxDecoration(
                                             image: DecorationImage(
                                                 image: AssetImage(
-
-                                          AppIconAssets.breadimages[index - 1]
-                                              .toString(),
-                                        ))),
+                                                    AppIconAssets.menu1))),
                                       ),
 
                                       Expanded(
                                         child: WileToneTextWidget(
-                                          title: VariablesUtils
-                                              .listname[index - 1]
-                                              .toString(),
+                                          title: 'All Brands',
                                           fontSize: 12.sp,
                                           fontFamily: AssetsUtils.inter,
                                           fontWeight: FontWeight.w500,
@@ -194,8 +158,42 @@ class _AllBrandsScreenState extends State<AllBrandsScreen>{
                                       ),
                                     ]),
                               );
-                            },
-                          ),
+                            }
+
+                            log("Index1 :- $index");
+
+                            return Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 9.w),
+                              child: Column(
+
+                                  children: [
+
+                                    Container(
+                                      height: 45.h,
+                                      width: 45.h,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+
+                                        AppIconAssets.breadimages[index - 1]
+                                            .toString(),
+                                      ))),
+                                    ),
+
+                                    Expanded(
+                                      child: WileToneTextWidget(
+                                        title: VariablesUtils
+                                            .listname[index - 1]
+                                            .toString(),
+                                        fontSize: 12.sp,
+                                        fontFamily: AssetsUtils.inter,
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorUtils.black,
+                                      ),
+                                    ),
+                                  ]),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -236,9 +234,10 @@ class _AllBrandsScreenState extends State<AllBrandsScreen>{
                         ),
 
                         InkWell(
-                          onTap: (){
+                          onTap : (){
                             sortsheet.showSortData(context);
                           },
+
                           child: Container(
                             height: 30.h,
                             width: 69.w,
@@ -420,89 +419,98 @@ class _AllBrandsScreenState extends State<AllBrandsScreen>{
                         shrinkWrap : true,
                         itemCount : 5,
                         itemBuilder : (context, index){
-                          return Row(
-                              crossAxisAlignment : CrossAxisAlignment.start,
-                              children : [
+                          return InkWell(
+                            onTap: (){
+                              Get.to(const RestaurantDetailScreen());
+                            },
+                            child: Row(
+                                crossAxisAlignment : CrossAxisAlignment.start,
+                                children : [
 
-                                Padding(
-                                  padding : EdgeInsets.symmetric(
-                                      vertical: 10.h, horizontal: 5.w),
-                                  child : WileToneImageWidget(
-                                    image : AppIconAssets.zomatoimage[index].toString(),
-                                    imageType : ImageType.png,
+                                  Padding(
+                                    padding : EdgeInsets.symmetric(
+                                        vertical: 10.h, horizontal: 5.w),
+                                    child : SizedBox(
+                                      width : Get.width <= 290 ? 60 : 90,
+
+                                      child: WileToneImageWidget(
+                                        image : AppIconAssets.zomatoimage[index].toString(),
+                                        imageType : ImageType.png,
+                                      ),
+                                    ),
                                   ),
-                                ),
 
-                                SizedBox(
-                                  width: 15.w,
-                                ),
+                                  SizedBox(
+                                    width: 15.w,
+                                  ),
 
-                                Padding(
-                                  padding : EdgeInsets.only(top: 25.h),
-                                  child : Column(
-                                    // mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment : CrossAxisAlignment.start,
-                                    children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(top: Get.width <= 280 ? 15.h :  25.h ),
+                                    child : Column(
+                                      // mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment : CrossAxisAlignment.start,
+                                      children: [
 
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: WileToneTextWidget(
-                                          title: VariablesUtils.hotelname[index]
-                                              .toString(),
-                                          fontSize: 20.sp,
-                                          fontFamily: AssetsUtils.inter,
-                                          fontWeight: FontWeight.w600,
-                                          color: ColorUtils.black,
-                                        ),
-                                      ),
-
-                                      WileToneTextWidget(
-                                        title: VariablesUtils.foodname[index]
-                                            .toString(),
-                                        fontSize: 14.sp,
-                                        fontFamily: AssetsUtils.inter,
-                                        fontWeight: FontWeight.w400,
-                                        color: ColorUtils.grey8D,
-                                      ),
-
-                                      Row(
-                                        children: [
-
-                                          WileToneTextWidget(
-                                            title: VariablesUtils
-                                                .discountpercentage[index]
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: WileToneTextWidget(
+                                            title: VariablesUtils.hotelname[index]
                                                 .toString(),
-                                            fontSize: 24.sp,
+                                            fontSize: 20.sp,
                                             fontFamily: AssetsUtils.inter,
-                                            fontWeight: FontWeight.w700,
-                                            color: ColorUtils.lightgreen,
+                                            fontWeight: FontWeight.w600,
+                                            color: ColorUtils.black,
                                           ),
+                                        ),
 
-                                          SizedBox(
-                                            width: 10.sp,
-                                          ),
+                                        WileToneTextWidget(
+                                          title: VariablesUtils.foodname[index]
+                                              .toString(),
+                                          fontSize: 14.sp,
+                                          fontFamily: AssetsUtils.inter,
+                                          fontWeight: FontWeight.w400,
+                                          color: ColorUtils.grey8D,
+                                        ),
 
-                                          WileToneTextWidget(
-                                            title: VariablesUtils.off[index].toString(),
-                                            fontSize: 15.sp,
-                                            fontFamily: AssetsUtils.metrophobic,
-                                            fontWeight: FontWeight.w700,
-                                            color: ColorUtils.lightgreen,
-                                          )
-                                        ],
-                                      )
+                                        Row(
+                                          children: [
 
-                                    ],
+                                            WileToneTextWidget(
+                                              title: VariablesUtils
+                                                  .discountpercentage[index]
+                                                  .toString(),
+                                              fontSize: 24.sp,
+                                              fontFamily: AssetsUtils.inter,
+                                              fontWeight: FontWeight.w700,
+                                              color: ColorUtils.lightgreen,
+                                            ),
+
+                                            SizedBox(
+                                              width: 10.sp,
+                                            ),
+
+                                            WileToneTextWidget(
+                                              title: VariablesUtils.off[index].toString(),
+                                              fontSize: 15.sp,
+                                              fontFamily: AssetsUtils.metrophobic,
+                                              fontWeight: FontWeight.w700,
+                                              color: ColorUtils.lightgreen,
+                                            )
+                                          ],
+                                        )
+
+                                      ],
+                                    ),
                                   ),
-                                ),
 
-                                SizedBox(
-                                  width : MediaQuery.of(context).size.width / 10.5,
-                                ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width / 7.5,
+                                  ),
 
-                                popup.popup(context)
+                                  popup.popup(context)
 
-                              ]);
+                                ]),
+                          );
                         },
                       ),
                     )

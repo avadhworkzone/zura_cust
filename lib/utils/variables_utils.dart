@@ -349,4 +349,21 @@ class VariablesUtils {
  static const emailid = 'Help@zura.com';
  static const mobilenumber = '+91 9067757747';
 
+ /// offer letter
+ static const cuisine  = 'Cuisine';
+ static const foodregion  = 'Panjabi, chinese, Marathtrian, South indian';
+ static const address  = 'Royal Arcade, Pune - Satara Rd, near Shankar\nMaharaj Math, kk market, Dhankawadi, Pune,\nMaharashtra 411043';
+ static const getdirection  = 'Get Direction';
+ static const callrestaurant  = 'Call Restaurant';
+ static const offerstore  = 'This Store Offers';
+ static const off20  = '20% OFF';
+
+ /// loading indicator
+
+ static const somethingwentwrong   = 'Something Went Wrong';
+ static const notApplicable   = 'Not Applicable';
+ static const fieldIsEmpty   = 'Field is Empty';
+ static const dataNotFound   = 'Data Not Found';
+
+
 }
