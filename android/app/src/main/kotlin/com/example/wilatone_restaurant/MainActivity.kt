@@ -1,4 +1,4 @@
-package com.example.wilatone_restaurant
+package com.example.zura_customer
 
 import io.flutter.embedding.android.FlutterActivity
 

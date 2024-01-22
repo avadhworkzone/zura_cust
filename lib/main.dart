@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,17 +16,16 @@ import 'viewModel/connectivity_view_model.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-
 // ignore: must_be_immutable
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   @override
-  Widget build(BuildContext context){
-
+  Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -40,11 +40,11 @@ class MyApp extends StatelessWidget{
           fontFamily: AssetsUtils.poppins,
         ),
         debugShowCheckedModeBanner: false,
-        home :   const BottombarScreen(),
+        home: const BottombarScreen(),
       ),
     );
   }
 
-  ConnectivityViewModel connectivityViewModel = Get.put(ConnectivityViewModel());
-
+  ConnectivityViewModel connectivityViewModel =
+      Get.put(ConnectivityViewModel());
 }

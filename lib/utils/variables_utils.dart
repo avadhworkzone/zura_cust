@@ -1,6 +1,5 @@
 class VariablesUtils {
-
-  static const appName = 'WileTone';
+  static const appName = 'Zura Customer';
 
   /// ==================== DASH BOARD ==================== ///
   static const totalSales = "Total Sales";
@@ -38,7 +37,8 @@ class VariablesUtils {
   static const privacyPolicy = 'Privacy Policy';
   static const contentPolicies = 'Content Policies';
   static const oTPVerification = 'OTP Verification';
-  static const weHaveSentVerificationCodeTo = 'We have sent a verification code to';
+  static const weHaveSentVerificationCodeTo =
+      'We have sent a verification code to';
   static const didntGetOtp = 'Didn’t get the OTP? ';
   static const resendSMSIn = 'Resend SMS in';
   static const goBackToLoginMethods = 'Go back to login methods';
@@ -66,7 +66,8 @@ class VariablesUtils {
 
   ///  Location Screen
   static const location = "What's your location?";
-  static const store = "We need your location to show available\nstores and products.";
+  static const store =
+      "We need your location to show available\nstores and products.";
   static const devicelocation = "Enable Device Location";
   static const manually = "Enter Manually";
 
@@ -96,7 +97,6 @@ class VariablesUtils {
   static const ApplyBtn = 'Apply';
   static const all = 'All';
 
-
   static const List listname = [
     'All Brands',
     'Restaurant',
@@ -107,10 +107,9 @@ class VariablesUtils {
     'Cafe',
     'Sweet Shop',
     'Salon',
-     'Restaurant',
+    'Restaurant',
     'Cafe',
     'Sweet Shop',
-
   ];
 
   static const List hotelname = [
@@ -118,13 +117,10 @@ class VariablesUtils {
     'Zomato Dining',
     'Zomato Dining',
     'Zomato Dining',
-
     'Zomato Dining',
     'Zomato Dining',
     'Zomato Dining',
     'Zomato Dining',
-
-
   ];
 
   static const List foodname = [
@@ -132,15 +128,10 @@ class VariablesUtils {
     'Food',
     'Food',
     'Food',
-
     'Food',
     'Food',
     'Food',
     'Food',
-
-
-
-
   ];
 
   static const List discountpercentage = [
@@ -148,29 +139,26 @@ class VariablesUtils {
     '20%',
     '20%',
     '20%',
-
     '20%',
     '20%',
     '20%',
     '20%',
- ];
+  ];
 
   static const List off = [
     'OFF',
     'OFF',
     'OFF',
     'OFF',
-
     'OFF',
     'OFF',
     'OFF',
     'OFF',
-
   ];
 
   /// Reward Screen
 
-  static const rewardtext= 'My Rewards';
+  static const rewardtext = 'My Rewards';
   static const sheetalhotel = [
     'Sheetal Hotel',
     'Sheetal Hotel',
@@ -198,5 +186,4 @@ class VariablesUtils {
     '3PM - 7PM',
     '7PM - 12PM',
   ];
-
 }
