@@ -2,11 +2,14 @@ import 'package:get_storage/get_storage.dart';
 
 class PreferenceManagerUtils {
   static final getStorage = GetStorage();
+  // static final shareprefernce = await SharedPreferences.getInstance();
 
   static String dialCode = 'dialCode';
   static String countryCode = "countryCode";
   static String allCountryCurrency = "countryCode";
   static String countryName = "countryName";
+
+
 
   ///setCountryName
   static Future setCountryName(String value) async {

@@ -42,15 +42,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-<<<<<<< HEAD
-
-  TextEditingController phoneController = TextEditingController();
-  String phoneNumber = '', dialCode = "";
-=======
   final phoneController = TextEditingController();
 
   String phoneNumber = '', dialCode = "91";
->>>>>>> origin/Dinesh_dev
   ApiService apiService = Get.find<ApiService>();
   BaseService baseService = Get.find<BaseService>();
   AuthViewModel authViewModel = Get.find<AuthViewModel>();
@@ -164,16 +158,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const Expanded(
                       child: Divider(
-                    color: ColorUtils.lightGreyE6,
-                    height: 1,
-                  )),
+                        color: ColorUtils.lightGreyE6,
+                        height: 1,
+                      )),
                 ],
               ),
             ),
             SizedBox(height: 30.h),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding : EdgeInsets.symmetric(horizontal: 20.w),
               child: IntlPhoneField(
                 controller: phoneController,
                 obscureText: false,
@@ -187,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontFamily: AssetsUtils.poppins),
                   errorBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(color: ColorUtils.red, width: 1),
+                      const BorderSide(color: ColorUtils.red, width: 1),
                       borderRadius: BorderRadius.circular(12)),
                   focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
@@ -209,9 +203,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 flagsButtonPadding: EdgeInsets.only(left: 2.w),
                 dropdownTextStyle: TextStyle(
                     fontSize: 16.sp, fontWeight: FontWeightClass.semiB),
-                onChanged: (phone) {
+                onChanged: (phone){
                   phoneNumber = phone.number;
                 },
+
                 onCountryChanged: (phone) async {
                   dialCode = phone.dialCode.toString();
                   logs("Code ${phone.code}");
@@ -222,48 +217,11 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 20.h),
 
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 20.w),
-            //   child: WileToneCustomButton(
-            //     onPressed: () async {
-            //
-            //       if(phoneController.text == ''){
-            //         Utils.snackbar('Plz Enter Phone Number', '');
-            //       // ignore: unrelated_type_equality_checks
-            //       }
-            //
-            //       else if(authViewModel.sendOtpApiResponse.status == ApiResponse.complete){
-            //
-            //         print("code :-  ${sendOtpResModel.code}");
-            //
-            //       await apiService.getResponse(
-            //             apiType: APIType.aPost,
-            //             url: baseService.sendOtp,
-            //             withToken: false,
-            //             body: {"mobile": phoneController.text});
-            //
-            //         Utils.snackbar('${sendOtpResModel.message}', '');
-            //
-            //         print("dialCode :- $dialCode==============");
-            //
-            //         Get.to(OtpVerificationScreen(
-            //           phoneNumber: phoneController.text,
-            //           dialcode: dialCode == '' ? '91' : dialCode,
-            //         ));
-            //
-            //         phoneController.clear();
-            //       }
-            //     },
-            //     buttonHeight: MediaQuery.of(context).size.height / 14,
-            //     buttonColor: ColorUtils.greenColor,
-            //     buttonName: VariablesUtils.continueText,
-            //   ),
-            // ),
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: WileToneCustomButton(
                 onPressed: () async {
+
                   FocusManager.instance.primaryFocus?.unfocus();
 
                   if (phoneController.text == '') {
@@ -276,40 +234,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     postDataLoadingIndicator(),
                   );
 
-<<<<<<< HEAD
+                  await authViewModel.sendOtp(phoneNumber, true);
 
-                  await authViewModel.sendOtp(phoneController.text, true);
-
-                  if(authViewModel.sendOtpApiResponse.status ==  Status.COMPLETE){
-
-                    log("authViewModel.sendOtpApiResponse.data :- ${authViewModel.sendOtpApiResponse.data}");
-                    log("authViewModel.sendOtpApiResponse.status  :- ${authViewModel.sendOtpApiResponse.status }");
-
-=======
-                  await authViewModel.sendOtp(dialCode + phoneNumber, true);
-
-                  if (authViewModel.sendOtpApiResponse.status ==
-                      Status.COMPLETE) {
->>>>>>> origin/Dinesh_dev
+                  if (authViewModel.sendOtpApiResponse.status == Status.COMPLETE) {
                     SendOtpResModel res = authViewModel.sendOtpApiResponse.data;
-
                     Get.back();
 
                     Utils.snackBar(message: '${res.message}');
 
-                    if (res.code == 200) {
+                    if(res.code == 200){
+
                       log("Status code :- ${res.code}========================");
                       log("res :- ${res.message}");
+                      log("dialCode :- $dialCode");
 
                       Get.to(() => OtpVerificationScreen(
-                                phoneNumber: phoneController.text,
-                                dialcode: dialCode.isEmpty ? '91' : dialCode,
-                              ))!
-                          .then((value) => phoneController.clear());
-                    } else {
+                        phoneNumber: phoneController.text,
+                        dialcode: dialCode.isEmpty ? '91' : dialCode,
+                      ))!.then((value) => phoneController.clear());
+                    }
+                    else {
                       Get.back();
                       Utils.snackBar(
-                          message: '${res.message}', bgColor: Colors.red);
+                          message: res.message ?? VariablesUtils.somethingwentwrong, bgColor: Colors.red);
                     }
                   }
                 },
@@ -343,9 +290,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const Expanded(
                       child: Divider(
-                    color: ColorUtils.lightGreyE6,
-                    height: 1,
-                  )),
+                        color: ColorUtils.lightGreyE6,
+                        height: 1,
+                      )),
                 ],
               ),
             ),

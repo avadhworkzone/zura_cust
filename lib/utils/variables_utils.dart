@@ -338,8 +338,16 @@ class VariablesUtils {
 
   /// loading indicator
 
-  static const somethingwentwrong = 'Something Went Wrong';
+  static const somethingwentwrong = 'Something went wrong';
   static const notApplicable = 'Not Applicable';
   static const fieldIsEmpty = 'Field is Empty';
   static const dataNotFound = 'Data Not Found';
+
+  /// Login and sign up message
+
+
+static const verifyotp = 'Invalid Otp';
+static const codesent = 'Failed to resend OTP, Please try again.';
+
+
 }

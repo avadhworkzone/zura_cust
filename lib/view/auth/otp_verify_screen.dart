@@ -216,7 +216,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                     else {
                       Get.back();
-                      Utils.snackBar(message: '${res.message}',bgColor: Colors.red);
+                      Utils.snackBar(message: res.message ?? VariablesUtils.codesent,bgColor: Colors.red);
                     }
                   }
                 },
@@ -274,7 +274,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                     if(res.code == 200){
 
-
                       print('======${res.message}');
                       Get.back();
                       Utils.snackBar(message: '${res.message}');
@@ -282,7 +281,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                     else {
                       Get.back();
-                      Utils.snackBar(message: '${res.message}',bgColor: Colors.red);
+                      Utils.snackBar(message: res.message ?? VariablesUtils.verifyotp,bgColor: Colors.red);
                     }
                   }
                   // Get.to(const BottombarScreen());
