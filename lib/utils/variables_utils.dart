@@ -102,7 +102,6 @@ class VariablesUtils {
     'Cafe',
     'Sweet Shop',
     'Salon',
-
     'Restaurant',
     'Cafe',
     'Sweet Shop',
@@ -137,7 +136,7 @@ class VariablesUtils {
     '20%',
     '20%',
     '20%',
- ];
+  ];
 
   static const List off = [
     'OFF',
@@ -180,7 +179,6 @@ class VariablesUtils {
     '3PM - 7PM',
     '7PM - 12PM',
   ];
-}
 
   /// All menu Screen
 
@@ -190,11 +188,9 @@ class VariablesUtils {
     'Profile Details',
     'My Rewards',
     'My Orders',
-
     'About Us',
     'Help & Support',
     'Settings',
-
   ];
   static const madeinindia = 'Made in India with';
 
@@ -203,7 +199,7 @@ class VariablesUtils {
     'Name',
     'Mobile',
     'Email',
-];
+  ];
 
   static const profilename = [
     'Akash Ghadi',
@@ -212,7 +208,7 @@ class VariablesUtils {
   ];
 
   /// My order screen
-  static const myorder  = 'My Orders';
+  static const myorder = 'My Orders';
   static const hotelName = 'Sheetal Hotel';
   static const hotelAddress = 'Karve Road, Kothrud, Pune -38';
   static const amount = '₹500';
@@ -222,12 +218,12 @@ class VariablesUtils {
   static const help = 'Help and Support';
   static const contactUs = 'Contact Us';
   static const whatiszura = 'What is Zura?';
-  static const content = "There are many variations of passages of Lorem\nIpsum available, but the majority have suffered\nalteration in some form, by injected humour,or\nrandomised words which don't look even slightly\nbelievable.";
+  static const content =
+      "There are many variations of passages of Lorem\nIpsum available, but the majority have suffered\nalteration in some form, by injected humour,or\nrandomised words which don't look even slightly\nbelievable.";
   static const helpandsupport = [
     'What is Zura?',
     'How does Hubble work?',
     'How does Hubble provide instant\ndiscounts?',
-
     'What are the benefits of using Zura?',
     'Is Zura safe & secure?',
     'What are the Resturents present on  Zura?',
@@ -235,20 +231,20 @@ class VariablesUtils {
 
   /// Setting screen
 
-   static const setting = 'Settings';
-   static const notification = 'Notifications';
-   static const enable = 'Enable or disable app notifications.';
-   static const settinglogout = 'Log out';
-   static const easilylogout = 'Easily log out for convenience.';
+  static const setting = 'Settings';
+  static const notification = 'Notifications';
+  static const enable = 'Enable or disable app notifications.';
+  static const settinglogout = 'Log out';
+  static const easilylogout = 'Easily log out for convenience.';
 
   /// About Us Screen
 
-    static const aboutus = 'About Us';
-    static const aboutustitle = [
-      'About Zura',
-      'Terms of Service',
-      'Privacy Policy',
-    ];
+  static const aboutus = 'About Us';
+  static const aboutustitle = [
+    'About Zura',
+    'Terms of Service',
+    'Privacy Policy',
+  ];
 
   static const aboutussubtitle = [
     'Read more about Zura',
@@ -262,90 +258,88 @@ class VariablesUtils {
   static const privacy = 'Privacy Policy';
   static const terrms = 'Terms of Service';
 
-  static const conttentzura = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
-  "\nDefinitions"
-  "\nFor the purposes of these Terms and Conditions: "
-  "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
-  "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
-  "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
-  "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
-  "\n• Country refers to: Romania"
-  "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
-  "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service";
+  static const conttentzura =
+      "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
+      "\nDefinitions"
+      "\nFor the purposes of these Terms and Conditions: "
+      "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
+      "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
+      "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
+      "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
+      "\n• Country refers to: Romania"
+      "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
+      "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service";
 
-  static const conttentterms = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
-  "\nDefinitions"
-  "\nFor the purposes of these Terms and Conditions: "
-  "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
-  "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
-  "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
-  "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
-  "\n• Country refers to: Romania"
-  "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
-  "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service"
-  "\n• Products refer to the products or items offered for sale\n\t\t on the Service."
-  "\n• Orders mean a request by You to purchase Products\n\t\t from Us.";
+  static const conttentterms =
+      "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
+      "\nDefinitions"
+      "\nFor the purposes of these Terms and Conditions: "
+      "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
+      "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
+      "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
+      "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
+      "\n• Country refers to: Romania"
+      "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
+      "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service"
+      "\n• Products refer to the products or items offered for sale\n\t\t on the Service."
+      "\n• Orders mean a request by You to purchase Products\n\t\t from Us.";
 
+  static const privacypolicy =
+      "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
+      "\nDefinitions"
+      "\nFor the purposes of these Terms and Conditions: "
+      "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
+      "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
+      "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
+      "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
+      "\n• Country refers to: Romania"
+      "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
+      "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service"
+      "\n• Products refer to the products or items offered for sale\n\t\t on the Service."
+      "\n• Orders mean a request by You to purchase Products\n\t\t from Us.";
 
-  static const privacypolicy = "Interpretation and Definitions\nInterpretation\nThe words of which the initial letter is capitalized have meanings defined under the following conditions.The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
-  "\nDefinitions"
-  "\nFor the purposes of these Terms and Conditions: "
-  "\n• Affiliate means an entity that 'controls', is controlled by\n\t\t or is under common control with a party, where\n\t\t 'control' means ownership of 50% or more of the\n\t\t shares, equity interest or other securities entitled to\n\t\t vote for election of directors or other managing\n\t\t authority."
-  "\n• Account means a unique account created for You to\n\t\t access our Service or parts of our Service."
-  "\n• Company (referred to as either 'the Company', 'We',\n\t\t 'Us' or 'Our' in this Agreement) refers to\n\t\t FreePrivacyPolicy.com website."
-  "\n• Content refers to content such as text, images, or other\n\t\t information that can be posted, uploaded, linked to or\n\t\t otherwise made available by You, regardless of the\n\t\t form of that content."
-  "\n• Country refers to: Romania"
-  "\n• Device means any device that can access the Service\n\t\t such as a computer, a cellphone or a digital tablet."
-  "\n• Feedback means feedback, innovations or suggestions\n\t\t sent by You regarding the attributes, performance or\n\t\t features of our Service"
-  "\n• Products refer to the products or items offered for sale\n\t\t on the Service."
-  "\n• Orders mean a request by You to purchase Products\n\t\t from Us.";
+  /// Restaurant Detail screen
+  static const gallery = 'Gallery';
+  static const paybill = 'Pay Bill';
+  static const offers = 'Offers';
+  static const about = 'About';
+  static const billAmount = 'Bill Amount';
+  static const enterAmount = 'Enter amount';
+  static const magicCoupon = 'Magic Coupon';
+  static const extra = 'Extra';
+  static const off2 = 'off';
+  static const pay = 'Pay';
+  static const summary = 'SUMMARY';
+  static const payOnly = 'You pay only';
 
+  ///Payment Success Screen
+  static const youSaved = "You've Saved";
+  static const done = "Done";
 
+  ///Restaurant Images
+  static const ambience = "Ambience";
+  static const offering = "offering";
 
+  /// Email-No bottom sheet
+  static const emailsheet = 'Email';
+  static const mobilesheet = 'Mobile No';
+  static const emailid = 'Help@zura.com';
+  static const mobilenumber = '+91 9067757747';
 
- /// Restaurant Detail screen
- static const gallery = 'Gallery';
- static const paybill = 'Pay Bill';
- static const offers = 'Offers';
- static const about = 'About';
- static const billAmount = 'Bill Amount';
- static const enterAmount = 'Enter amount';
- static const magicCoupon = 'Magic Coupon';
- static const extra = 'Extra';
- static const off2 = 'off';
- static const pay = 'Pay';
- static const summary = 'SUMMARY';
- static const payOnly = 'You pay only';
+  /// offer letter
+  static const cuisine = 'Cuisine';
+  static const foodregion = 'Panjabi, chinese, Marathtrian, South indian';
+  static const address =
+      'Royal Arcade, Pune - Satara Rd, near Shankar\nMaharaj Math, kk market, Dhankawadi, Pune,\nMaharashtra 411043';
+  static const getdirection = 'Get Direction';
+  static const callrestaurant = 'Call Restaurant';
+  static const offerstore = 'This Store Offers';
+  static const off20 = '20% OFF';
 
- ///Payment Success Screen
- static const youSaved = "You've Saved";
- static const done = "Done";
+  /// loading indicator
 
- ///Restaurant Images
- static const ambience = "Ambience";
- static const offering = "offering";
-
- /// Email-No bottom sheet
- static const emailsheet = 'Email';
- static const mobilesheet = 'Mobile No';
- static const emailid = 'Help@zura.com';
- static const mobilenumber = '+91 9067757747';
-
- /// offer letter
- static const cuisine  = 'Cuisine';
- static const foodregion  = 'Panjabi, chinese, Marathtrian, South indian';
- static const address  = 'Royal Arcade, Pune - Satara Rd, near Shankar\nMaharaj Math, kk market, Dhankawadi, Pune,\nMaharashtra 411043';
- static const getdirection  = 'Get Direction';
- static const callrestaurant  = 'Call Restaurant';
- static const offerstore  = 'This Store Offers';
- static const off20  = '20% OFF';
-
- /// loading indicator
-
- static const somethingwentwrong   = 'Something Went Wrong';
- static const notApplicable   = 'Not Applicable';
- static const fieldIsEmpty   = 'Field is Empty';
- static const dataNotFound   = 'Data Not Found';
-
-
+  static const somethingwentwrong = 'Something Went Wrong';
+  static const notApplicable = 'Not Applicable';
+  static const fieldIsEmpty = 'Field is Empty';
+  static const dataNotFound = 'Data Not Found';
 }

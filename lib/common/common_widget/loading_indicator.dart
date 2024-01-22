@@ -5,9 +5,8 @@ import 'package:get/get.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 
-Container postDataLoadingIndicator({Color? color}){
-
-   return Container(
+Container postDataLoadingIndicator({Color? color}) {
+  return Container(
       height: Get.height,
       width: Get.width,
       // color: color ?? ColorUtils.black12,
@@ -21,29 +20,5 @@ Widget getDataLoadingIndicator() {
       // ignore: prefer_const_constructors
       valueColor: AlwaysStoppedAnimation<Color>(ColorUtils.skyBlue),
     ),
-  );
-}
-
-Widget getDataErrorMsg() {
-  return const Center(
-    child: Text(VariablesUtils.somethingwentwrong),
-  );
-}
-
-Widget getNotApplicableMsg({String? msg}) {
-  return Center(
-    child: Text(msg ?? VariablesUtils.notApplicable),
-  );
-}
-
-Widget getFieldIsEmptyMsg() {
-  return const Center(
-    child: Text(VariablesUtils.fieldIsEmpty),
-  );
-}
-
-Widget emptyMsg() {
-  return const Center(
-    child: Text(VariablesUtils.dataNotFound),
   );
 }
