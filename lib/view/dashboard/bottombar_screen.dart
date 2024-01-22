@@ -1,20 +1,15 @@
 import 'dart:developer';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_image_widget.dart';
-import 'package:wilatone_restaurant/common/common_widget/wiletone_text_form_field.dart';
-import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
 import 'package:wilatone_restaurant/utils/app_icon_assets.dart';
-import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
-import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/Home/home_screen.dart';
 import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
 import 'package:wilatone_restaurant/view/dashboard/reward_screen.dart';
+
 
 class BottombarScreen extends StatefulWidget{
   const BottombarScreen({Key? key}) : super(key: key);
@@ -23,7 +18,7 @@ class BottombarScreen extends StatefulWidget{
   State<BottombarScreen> createState() => _BottombarScreenState();
 }
 
-class _BottombarScreenState extends State<BottombarScreen>{
+class _BottombarScreenState extends State<BottombarScreen> {
 
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -52,27 +47,28 @@ class _BottombarScreenState extends State<BottombarScreen>{
   }
 
   static final List<Widget> _widgetOptions = <Widget>[
-
     /// Home Screen
-  HomeScreen(),
+    const HomeScreen(),
 
     /// Reward screen
-    RewardScreen(),
 
-    const Text(
-      'Index 2: Explore',
-      style: optionStyle,
-    ),
+    const RewardScreen(),
 
+    const AllBrandsScreen(),
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      if (kDebugMode){
-        print("Index :- $index");
-      }
-      _selectedIndex = index;
-    });
+    if(index==1){
+      Get.to(()=>const RewardScreen());
+    }else if(index==2){
+      Get.to(()=>const AllBrandsScreen());
+    }else{
+      setState(() {
+        log("_selectedIndex :- $_selectedIndex");
+        _selectedIndex = index;
+      });
+    }
+
   }
 
   @override
@@ -80,11 +76,10 @@ class _BottombarScreenState extends State<BottombarScreen>{
 
     return SafeArea(
       child: Scaffold(
-
         body: _widgetOptions.elementAt(_selectedIndex),
-
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar : BottomNavigationBar(
           items: [
+
             BottomNavigationBarItem(
               icon: WileToneImageWidget(
                 color: _getIconColor(0),
@@ -95,6 +90,7 @@ class _BottombarScreenState extends State<BottombarScreen>{
               ),
               label: 'Home',
             ),
+
             BottomNavigationBarItem(
               icon: WileToneImageWidget(
                 color: _getIconColor(1),
@@ -105,6 +101,7 @@ class _BottombarScreenState extends State<BottombarScreen>{
               ),
               label: 'Rewards',
             ),
+
             BottomNavigationBarItem(
               icon: WileToneImageWidget(
                 color: _getIconColor(2),
@@ -117,14 +114,15 @@ class _BottombarScreenState extends State<BottombarScreen>{
             ),
           ],
 
-          currentIndex : _selectedIndex,
-          selectedItemColor : ColorUtils.black,
-          selectedFontSize : 12.sp,
-          unselectedItemColor : ColorUtils.lightGreyA6,
-          unselectedFontSize : 12.sp,
-          selectedLabelStyle : TextStyle(color: ColorUtils.black, fontSize: 12.sp),
+          currentIndex: _selectedIndex,
+          selectedItemColor: ColorUtils.black,
+          selectedFontSize: 12.sp,
+          unselectedItemColor: ColorUtils.lightGreyA6,
+          unselectedFontSize: 12.sp,
+          selectedLabelStyle:
+          TextStyle(color: ColorUtils.black, fontSize: 12.sp),
           // unselectedLabelStyle : TextStyle(color: ColorUtils.black,fontSize: 12.sp),
-          onTap : _onItemTapped,
+          onTap: _onItemTapped,
         ),
       ),
     );

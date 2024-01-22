@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_text_widget.dart';
+import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/font_style_utils.dart';
 
 import '../../utils/typedef_utils.dart';
 
-class WileToneCustomButton extends StatelessWidget {
+class WileToneCustomButton extends StatelessWidget{
+
   final OnTap? onPressed;
   final EdgeInsetsGeometry padding;
   final String buttonName;
+  final String? fontFamily ;
   final double? fontSize;
   final Color fontColor;
   final double? buttonRadius;
@@ -35,18 +38,17 @@ class WileToneCustomButton extends StatelessWidget {
       this.elevation,
       this.fontWeight,
       this.icon,
-      this.isBorderShape = false})
+      this.isBorderShape = false, this.fontFamily})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Padding(
       padding: padding,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          minimumSize:
-              MaterialStateProperty.all(Size(buttonWidth, buttonHeight ?? 52)),
+          minimumSize:  MaterialStateProperty.all(Size(buttonWidth, buttonHeight ?? 52)),
           shape: isBorderShape
               ? MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
@@ -64,13 +66,15 @@ class WileToneCustomButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(
               isBorderShape ? ColorUtils.white : buttonColor),
         ),
+
         child: Row(
           mainAxisSize: icon != null ? MainAxisSize.max : MainAxisSize.min,
-          mainAxisAlignment:
-              icon != null ? MainAxisAlignment.start : MainAxisAlignment.center,
+          mainAxisAlignment: icon != null ? MainAxisAlignment.start : MainAxisAlignment.center,
           children: [
             icon ?? const SizedBox(),
+
             WileToneTextWidget(
+              fontFamily: fontFamily,
               title: buttonName,
               fontSize: fontSize,
               color: isBorderShape ? buttonColor : fontColor,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 
@@ -42,7 +43,7 @@ class WileToneTextWidget extends StatelessWidget{
         color: color ?? ColorUtils.black,
         fontFamily: fontFamily,
         fontWeight: fontWeight,
-        fontSize: fontSize ?? 14,
+        fontSize: fontSize ?? 14.sp,
         height: height,
         fontStyle: fontStyle,
         overflow: overflow,

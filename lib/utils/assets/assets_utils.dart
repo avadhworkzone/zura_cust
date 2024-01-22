@@ -12,4 +12,5 @@ class AssetsUtils {
   static const menu = "${iconPath}menu.png";
 
 
+
 }

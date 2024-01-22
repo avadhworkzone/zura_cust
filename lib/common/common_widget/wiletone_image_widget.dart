@@ -30,7 +30,6 @@ class WileToneImageWidget extends StatelessWidget {
         ? Image.asset(
             image!,
             fit: fit,
-
             height: height,
             width: width,
             color: color,
