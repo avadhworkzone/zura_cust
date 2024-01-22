@@ -258,9 +258,33 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               ),
 
               InkWell(
-                onTap: () {
+                onTap: () async {
+
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  Get.dialog(
+                    postDataLoadingIndicator(),
+                  );
+
+                  await authViewModel.verifyOtp(widget.phoneNumber,otpEditController.text);
+
+                  if (authViewModel.verifyOtpApiResponse.status == Status.COMPLETE){
+
+                    SendOtpResModel res = authViewModel.verifyOtpApiResponse.data;
+                    print('RES CODE ==>${res.code}');
+
+                    if(res.code == 200){
 
 
+                      print('======${res.message}');
+                      Get.back();
+                      Utils.snackBar(message: '${res.message}');
+                    }
+
+                    else {
+                      Get.back();
+                      Utils.snackBar(message: '${res.message}',bgColor: Colors.red);
+                    }
+                  }
                   // Get.to(const BottombarScreen());
                 },
                 child: WileToneTextWidget(

@@ -33,6 +33,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   TextEditingController phoneController = TextEditingController();
   String phoneNumber = '', dialCode = "";
   ApiService apiService = Get.find<ApiService>();
@@ -259,11 +260,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     postDataLoadingIndicator(),
                   );
 
-                  await authViewModel.sendOtp(phoneNumber = phoneController.text, true);
+
+                  await authViewModel.sendOtp(phoneController.text, true);
 
                   if(authViewModel.sendOtpApiResponse.status ==  Status.COMPLETE){
 
+                    log("authViewModel.sendOtpApiResponse.data :- ${authViewModel.sendOtpApiResponse.data}");
+                    log("authViewModel.sendOtpApiResponse.status  :- ${authViewModel.sendOtpApiResponse.status }");
+
                     SendOtpResModel res = authViewModel.sendOtpApiResponse.data;
+
                     Get.back();
 
                     Utils.snackBar(message: '${res.message}');

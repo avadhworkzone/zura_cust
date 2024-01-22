@@ -28,10 +28,12 @@ class AuthViewModel extends GetxController{
   Future<void> verifyOtp(String phoneNumber, String otp) async {
     verifyOtpApiResponse = ApiResponse.loading('Loading');
     update();
+
     try {
       final response = await AuthRepo().verifyOtpRepo(phoneNumber, otp);
       verifyOtpApiResponse = ApiResponse.complete(response);
-    } catch (e) {
+    }
+    catch (e) {
       print('sendOtpApiResponse ERROR  :=>$e');
       verifyOtpApiResponse = ApiResponse.error('ERROR');
     }

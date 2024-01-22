@@ -1,4 +1,5 @@
 
+// ignore: constant_identifier_names
 enum Status { INITIAL, LOADING, COMPLETE, ERROR }
 
 class ApiResponse<T>{
