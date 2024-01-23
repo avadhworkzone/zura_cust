@@ -8,6 +8,7 @@ import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:tuple/tuple.dart';
 
 class AESService {
+
   static String encryptionKey = "encryptdatasecretkey";
 
   static String encryptAES(String plainText) {
@@ -49,14 +50,17 @@ class AESService {
         16,
         encryptedBytesWithSalt.length,
       );
+
       final salt = encryptedBytesWithSalt.sublist(
         8,
         16,
       );
+
       var keyndIV = deriveKeyAndIV(
         encryptionKey,
         salt,
       );
+
       final key = encrypt.Key(keyndIV.item1);
       final iv = encrypt.IV(keyndIV.item2);
 
@@ -124,4 +128,5 @@ class AESService {
     }
     return uint8list;
   }
+
 }

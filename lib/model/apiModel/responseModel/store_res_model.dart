@@ -1,14 +1,16 @@
 class StoreResModel {
+
   StoreResModel({
-      this.code, 
+      this.code,
       this.message, 
       this.data,});
 
-  StoreResModel.fromJson(dynamic json) {
+  StoreResModel.fromJson(dynamic json){
     code = json['code'];
     message = json['message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
+
   num? code;
   String? message;
   Data? data;
@@ -26,6 +28,7 @@ class StoreResModel {
 }
 
 class Data {
+
   Data({
       this.restaurant, 
       this.bankDetails,});

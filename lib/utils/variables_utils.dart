@@ -345,8 +345,7 @@ class VariablesUtils {
 
   /// Login and sign up message
 
-
-static const verifyotp = 'Invalid Otp';
+static const verifyotp = 'Invalid verification code.';
 static const codesent = 'Failed to resend OTP, Please try again.';
 
 

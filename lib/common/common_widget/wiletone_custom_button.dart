@@ -44,12 +44,12 @@ class WileToneCustomButton extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Padding(
-      padding: padding,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ButtonStyle(
-          minimumSize:  MaterialStateProperty.all(Size(buttonWidth, buttonHeight ?? 52)),
-          shape: isBorderShape
+      padding : padding,
+      child : ElevatedButton(
+        onPressed : onPressed,
+        style : ButtonStyle(
+          minimumSize :  MaterialStateProperty.all(Size(buttonWidth, buttonHeight ?? 52)),
+          shape : isBorderShape
               ? MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(buttonRadius ?? 8),

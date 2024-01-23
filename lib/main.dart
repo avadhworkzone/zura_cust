@@ -12,6 +12,7 @@ import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 import 'package:wilatone_restaurant/viewModel/connectivity_view_model.dart';
 import 'model/apiService/api_service.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();

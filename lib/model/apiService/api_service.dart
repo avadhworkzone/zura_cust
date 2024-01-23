@@ -129,12 +129,13 @@ class ApiService  extends  BaseService{
       required APIType apiType,
       required String url,
       bool withToken = true,
-      Map<String, dynamic>? body,
+      Map<dynamic, dynamic>? body,
       bool fileUpload = false}) async {
 
     try {
-      log("URL ---> ${Uri.parse(baseURL + url)}");
 
+      log("URL ---> ${Uri.parse(baseURL + url)}");
+      log("Body :- ${jsonEncode(body)}");
       ///------------------------------------ GET METHOD -------------------------------------///
 
       if(apiType == APIType.aGet) {
@@ -156,7 +157,7 @@ class ApiService  extends  BaseService{
 
         var postUri = Uri.parse(baseURL + url);
         var request = http.MultipartRequest("POST", postUri);
-        List<String> keysList = body!.keys.toList();
+        List keysList = body!.keys.toList();
         List<dynamic> valueList = body.values.toList();
         for (int index = 0; index < body.keys.toList().length; index++) {
           if (valueList[index]['isFile']) {
@@ -188,7 +189,7 @@ class ApiService  extends  BaseService{
         String encodeBody = jsonEncode(body);
         var result = await http.post(
           Uri.parse(baseURL + url),
-          headers: header(status: withToken?APIHeaderType.jsonBodyWithToken:null),
+          headers: header(status: withToken ? APIHeaderType.jsonBodyWithToken : null),
           body: encodeBody,
         );
         response = returnResponse(result.statusCode, result.body);
@@ -202,12 +203,13 @@ class ApiService  extends  BaseService{
     }
   }
 
-  dynamic returnResponse(int status, String result) {
+  dynamic returnResponse(int status, String result){
+
     switch (status) {
       case 200:
         return jsonDecode(result);
       case 400:
-        throw BadRequestException('Bad Request');
+        return jsonDecode(result);
       case 401:
         throw UnauthorisedException('Unauthorised user');
       case 404:
@@ -220,28 +222,36 @@ class ApiService  extends  BaseService{
 }
 
 Map<String, String> header({APIHeaderType? status}) {
-  if (status == APIHeaderType.fileUploadWithToken) {
+
+  if(status == APIHeaderType.fileUploadWithToken){
     return {
       'Content-Type': "form-data",
       "Authorization":
           'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiY2Q1OWRmMmRjZTVlN2IyNjc0ZGY2OTVjNzM1OWZkNGM0MTY3ZGE4Y2VjNjkxYWUzNTYyNjZlZWZmOTRmMzgwZTY5YTM3Yjg1OGEyN2EwZjciLCJpYXQiOjE2Mjg0MDA2NjUuOTMwMzEyLCJuYmYiOjE2Mjg0MDA2NjUuOTMwMzE4LCJleHAiOjE2NTk5MzY2NjUuODcwNjcxLCJzdWIiOiIxNDgiLCJzY29wZXMiOltdfQ.P2ck7V0qJALgeEk9xUbpI_lHgUHcO7L5qwvGfjK8wC4omfZvOWfm8hTl9qTj9CSkhcDhW84XnSULJqwN4__dADsqWja_8O7ZyIkeBQqqfIjSrjhw3YYttU3LQpf4xDuwhbw6XElhaSmxMzqdC9Im4TDDlyyU29Wzk_-cB0Pux3X0dfq0xAJzG8wO1IafNmCIPyCi_L13UbAvINh_ok-CfDFoGog9siEj182_QhkIxlvnF788hnO8xTmieFoCxIYYHmkafzs3ccT6hSXg7aPfliqMIJ10LP9b3mwZNFAx7Xhocx_lvNnnZlF1LCsPmgYRKBgPlXll4xPi4_LhCLErpNmvB6JepiFOXDwKANgdiP4MyCA-4SOLj4r4vfCO0_BIUkXWMHylV6bekVmsV_AbrblZd8k6Q0uxqq14vFsSz5BYqqbfXsWJ-2JyLX-hE_OrbmkU3-3zRry7v2hwjBkJIh-xMF6TtDaSlpGDJLxNA0QwgcIOLQVm8ILXAYFVwP0gKN5X4H2AbR0yCRTF9eT5fXwHMPwx04Tv98cXF299dhz21gJOtWKOurmB5wBdQ2DGN7P6KbriPxsQ0AxKLaYgN5fDikBGsFzxYyYI7tvTjv2hMqGeJyE50BSNj8DMSObW0UIo9uRPGGtPCTVBMvGWwRCj6dfnFINPiH2xBEQmwn8'
     };
-  } else if (status == APIHeaderType.fileUploadWithoutToken) {
+  }
+
+  else if(status == APIHeaderType.fileUploadWithoutToken){
+
     return {
       'Content-Type': "form-data",
     };
-  } else if (status == APIHeaderType.jsonBodyWithToken) {
+  }
+
+  else if (status == APIHeaderType.jsonBodyWithToken) {
     return {
       'Content-Type': 'application/json',
-      "Authorization":
-          'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiY2Q1OWRmMmRjZTVlN2IyNjc0ZGY2OTVjNzM1OWZkNGM0MTY3ZGE4Y2VjNjkxYWUzNTYyNjZlZWZmOTRmMzgwZTY5YTM3Yjg1OGEyN2EwZjciLCJpYXQiOjE2Mjg0MDA2NjUuOTMwMzEyLCJuYmYiOjE2Mjg0MDA2NjUuOTMwMzE4LCJleHAiOjE2NTk5MzY2NjUuODcwNjcxLCJzdWIiOiIxNDgiLCJzY29wZXMiOltdfQ.P2ck7V0qJALgeEk9xUbpI_lHgUHcO7L5qwvGfjK8wC4omfZvOWfm8hTl9qTj9CSkhcDhW84XnSULJqwN4__dADsqWja_8O7ZyIkeBQqqfIjSrjhw3YYttU3LQpf4xDuwhbw6XElhaSmxMzqdC9Im4TDDlyyU29Wzk_-cB0Pux3X0dfq0xAJzG8wO1IafNmCIPyCi_L13UbAvINh_ok-CfDFoGog9siEj182_QhkIxlvnF788hnO8xTmieFoCxIYYHmkafzs3ccT6hSXg7aPfliqMIJ10LP9b3mwZNFAx7Xhocx_lvNnnZlF1LCsPmgYRKBgPlXll4xPi4_LhCLErpNmvB6JepiFOXDwKANgdiP4MyCA-4SOLj4r4vfCO0_BIUkXWMHylV6bekVmsV_AbrblZd8k6Q0uxqq14vFsSz5BYqqbfXsWJ-2JyLX-hE_OrbmkU3-3zRry7v2hwjBkJIh-xMF6TtDaSlpGDJLxNA0QwgcIOLQVm8ILXAYFVwP0gKN5X4H2AbR0yCRTF9eT5fXwHMPwx04Tv98cXF299dhz21gJOtWKOurmB5wBdQ2DGN7P6KbriPxsQ0AxKLaYgN5fDikBGsFzxYyYI7tvTjv2hMqGeJyE50BSNj8DMSObW0UIo9uRPGGtPCTVBMvGWwRCj6dfnFINPiH2xBEQmwn8'
+      "x-access-token":
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjoxLCJpYXQiOjE3MDU3NDA0NTYsImV4cCI6MTcwNjI0MDQ1Nn0.4NjmGFxKqGHbccRVMPnk2Y7hvyQNw6yARMsOusowrIg'
     };
-  } else if (status == APIHeaderType.onlyToken) {
+  }
+  else if (status == APIHeaderType.onlyToken) {
     return {
       "Authorization":
           'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiY2Q1OWRmMmRjZTVlN2IyNjc0ZGY2OTVjNzM1OWZkNGM0MTY3ZGE4Y2VjNjkxYWUzNTYyNjZlZWZmOTRmMzgwZTY5YTM3Yjg1OGEyN2EwZjciLCJpYXQiOjE2Mjg0MDA2NjUuOTMwMzEyLCJuYmYiOjE2Mjg0MDA2NjUuOTMwMzE4LCJleHAiOjE2NTk5MzY2NjUuODcwNjcxLCJzdWIiOiIxNDgiLCJzY29wZXMiOltdfQ.P2ck7V0qJALgeEk9xUbpI_lHgUHcO7L5qwvGfjK8wC4omfZvOWfm8hTl9qTj9CSkhcDhW84XnSULJqwN4__dADsqWja_8O7ZyIkeBQqqfIjSrjhw3YYttU3LQpf4xDuwhbw6XElhaSmxMzqdC9Im4TDDlyyU29Wzk_-cB0Pux3X0dfq0xAJzG8wO1IafNmCIPyCi_L13UbAvINh_ok-CfDFoGog9siEj182_QhkIxlvnF788hnO8xTmieFoCxIYYHmkafzs3ccT6hSXg7aPfliqMIJ10LP9b3mwZNFAx7Xhocx_lvNnnZlF1LCsPmgYRKBgPlXll4xPi4_LhCLErpNmvB6JepiFOXDwKANgdiP4MyCA-4SOLj4r4vfCO0_BIUkXWMHylV6bekVmsV_AbrblZd8k6Q0uxqq14vFsSz5BYqqbfXsWJ-2JyLX-hE_OrbmkU3-3zRry7v2hwjBkJIh-xMF6TtDaSlpGDJLxNA0QwgcIOLQVm8ILXAYFVwP0gKN5X4H2AbR0yCRTF9eT5fXwHMPwx04Tv98cXF299dhz21gJOtWKOurmB5wBdQ2DGN7P6KbriPxsQ0AxKLaYgN5fDikBGsFzxYyYI7tvTjv2hMqGeJyE50BSNj8DMSObW0UIo9uRPGGtPCTVBMvGWwRCj6dfnFINPiH2xBEQmwn8'
     };
-  } else {
+  }
+  else {
     return {
       'Content-Type': 'application/json',
     };
