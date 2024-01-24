@@ -14,8 +14,8 @@ import 'package:wilatone_restaurant/model/apiModel/responseModel/verify_otp_res_
 import 'package:wilatone_restaurant/model/apis/api_response.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
+import 'package:wilatone_restaurant/utils/preference_utils.dart';
 import 'package:wilatone_restaurant/view/auth/create_profile_screen.dart';
-import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
 import '../../utils/utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/login_screen.dart';
@@ -28,7 +28,7 @@ class OtpVerificationScreen extends StatefulWidget{
   final String dialcode;
 
   const OtpVerificationScreen(
-      {Key? key, required this.phoneNumber, required this.dialcode})
+      {Key? key, required this.phoneNumber, required this.dialcode,})
       : super(key: key);
 
   @override
@@ -39,7 +39,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   final otpEditController = TextEditingController();
   LoginScreen loginScreen = const LoginScreen();
+  // PreferenceManagerUtils preferenceManagerUtils = PreferenceManagerUtils();
   AuthViewModel authViewModel = Get.find<AuthViewModel>();
+  VerifyOtpResModel verifyOtpRes = VerifyOtpResModel();
 
   final interval = const Duration(seconds: 1);
   int currentSeconds = 60, countDownTime = 150, timerMaxSeconds = 150;
@@ -201,6 +203,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   height: 30.h,
                 ),
 
+
+
                 /// ReSend OTP
                 InkWell(
                   onTap: () async {
@@ -278,7 +282,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                 /// Verify OTP
                  InkWell(
-                  onTap: () async {
+                  onTap : () async {
 
                     FocusManager.instance.primaryFocus?.unfocus();
 
@@ -286,12 +290,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       postDataLoadingIndicator(),
                     );
 
-
+                    /// Post data
                     await authViewModel.verifyOtp(widget.phoneNumber,otpEditController.text);
 
                     log("OTP :- ${otpEditController.text}");
 
-                    if (authViewModel.verifyOtpApiResponse.status == Status.COMPLETE){
+                    if(authViewModel.verifyOtpApiResponse.status == Status.COMPLETE){
 
                       VerifyOtpResModel res = authViewModel.verifyOtpApiResponse.data;
 
@@ -305,6 +309,24 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           print('====== message :- ${res.message}');
                         }
 
+                        // Now, you can access the accessToken
+                        String? accessToken = res.data?.accessToken;
+                        print('AccessToken: $accessToken');
+
+                        await PreferenceManagerUtils.saveAccessToken(accessToken!);
+
+                        String? getaccessToken =  PreferenceManagerUtils.getAccessToken();
+
+                        if(getaccessToken != '' && getaccessToken.isNotEmpty){
+
+                          log("Get Token :- $getaccessToken");
+                          // headers: {'Authorization': 'Bearer $accessToken'}
+                        }
+
+                        else {
+                          log(" Access token is not available, handle accordingly");
+                        }
+
                         Get.back();
                         Utils.snackBar(message: '${res.message}');
                         otpEditController.clear();
@@ -312,7 +334,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                       }
 
-                      else{
+                      else {
                         log("res.message :- ${res.message}");
                         Get.back();
                         Utils.snackBar(message: res.message ?? VariablesUtils.verifyotp,bgColor: Colors.red);

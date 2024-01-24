@@ -31,6 +31,7 @@ class VariablesUtils {
   static const loginSignUp = 'Login in or sign up';
   static const enterMobileNumber = 'Enter Mobile Number';
   static const continueText = 'Continue';
+  static const done = 'Done';
   static const or = 'or';
   static const byContinuing = 'By continuing. you agree to our';
   static const termsOfService = 'Terms of service';
@@ -314,7 +315,6 @@ class VariablesUtils {
 
   ///Payment Success Screen
   static const youSaved = "You've Saved";
-  static const done = "Done";
 
   ///Restaurant Images
   static const ambience = "Ambience";

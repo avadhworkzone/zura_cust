@@ -23,6 +23,7 @@ dependencies:
 
   #radio
   custom_radio_group_list: ^1.1.2
+
   #image view
   flutter_svg: ^2.0.9
 
@@ -34,10 +35,11 @@ dependencies:
   shared_preferences: ^2.2.2
   pinput: ^3.0.1
   carousel_slider: ^4.2.1
+  geolocator: ^10.1.0
   intl_phone_field:
     path: packages/intl_phone_field-master
 
-  #charts
+  # charts
   fl_chart: ^0.66.0
 
   # ENCRYPTION

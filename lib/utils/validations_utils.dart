@@ -55,7 +55,7 @@ class ValidationMethod {
   static String? validateUserName(value){
 
     bool regex = RegExp(RegularExpression.emailValidationPattern).hasMatch(value);
-
+     print("Value :- $value $regex");
     if(value == null){
       return ValidationMsg.isRequired.tr;
     }

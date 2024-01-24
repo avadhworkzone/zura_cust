@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wilatone_restaurant/model/apiService/base_service.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
+import 'package:wilatone_restaurant/utils/preference_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/login_screen.dart';
+import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
 import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 import 'package:wilatone_restaurant/viewModel/connectivity_view_model.dart';
 import 'model/apiService/api_service.dart';
@@ -20,9 +22,21 @@ void main() async {
   runApp(MyApp());
 }
 
+
+
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+
+  // void initState() {
+  //   if(PreferenceManagerUtils.getLoginData == true){
+  //     Get.off(const BottombarScreen());
+  //   }
+  //   else{
+  //     Get.to(const LoginScreen());
+  //   }
+  //   // super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +56,7 @@ class MyApp extends StatelessWidget {
             fontFamily: AssetsUtils.poppins,
           ),
           debugShowCheckedModeBanner: false,
-          home: const LoginScreen(),
+          home: PreferenceManagerUtils.getLoginData() == true ?  const BottombarScreen() : const LoginScreen(),
         ),
       ),
     );

@@ -39,7 +39,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen>{
 
   final phoneController = TextEditingController();
   RxString phoneNumber = ''.obs, dialCode = "91".obs;
@@ -48,6 +48,17 @@ class _LoginScreenState extends State<LoginScreen> {
   BaseService baseService = Get.find<BaseService>();
   AuthViewModel authViewModel = Get.find<AuthViewModel>();
   SendOtpResModel sendOtpResModel = SendOtpResModel();
+
+  // @override
+  // void initState() {
+  //   if(PreferenceManagerUtils.getLoginData == true){
+  //       Get.off(const BottombarScreen());
+  //   }
+  //   else{
+  //     Get.to(const LoginScreen());
+  //   }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -368,13 +379,13 @@ class _LoginScreenState extends State<LoginScreen> {
       final body = {
         "email": user.email,
       };
-      print('GOOGLE body =>${jsonEncode(body)}');
+      print('GOOGLE body => ${jsonEncode(body)}');
 
       String encryptedToken = AESService.encryptAES(
         jsonEncode(body),
       );
 
-      print('GOOGLE encryptedToken =>$encryptedToken');
+      print('GOOGLE encryptedToken => $encryptedToken');
 
       await authViewModel.socialLogin(encryptedToken);
 

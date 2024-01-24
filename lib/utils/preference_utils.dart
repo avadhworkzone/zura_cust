@@ -1,15 +1,15 @@
+import 'dart:ffi';
 import 'package:get_storage/get_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceManagerUtils {
 
   static final getStorage = GetStorage();
-  static late SharedPreferences sharedPreferences;
   static String dialCode = 'dialCode';
   static String countryCode = "countryCode";
   static String allCountryCurrency = "countryCode";
   static String countryName = "countryName";
-  static String accessToken =  'gettoken';
+  static String getToken = 'gettoken';
+  static String isLoggedIn = 'isLoggedIn';
 
   ///setCountryName
   static Future setCountryName(String value) async {
@@ -31,16 +31,22 @@ class PreferenceManagerUtils {
 
   /// Set login user data
 
-  static Future<void> initSharePreference() async {
-    sharedPreferences = await SharedPreferences.getInstance();
+ static  Future saveAccessToken(String accessToken) async {
+    await getStorage.write(getToken, accessToken ?? '');
   }
 
-  static Future<void> setLoginUserData(bool value) async {
-    await sharedPreferences.setBool(accessToken, value);
+  static String getAccessToken(){
+    return getStorage.read(getToken) ?? '';
   }
 
-  static bool? getLoginUserData()  {
-    return sharedPreferences.getBool(accessToken);
+  /// Login and logout
+
+  static  Future saveLoginData(bool value) async {
+    await getStorage.write(isLoggedIn, value);
+  }
+
+  static bool getLoginData(){
+    return getStorage.read(isLoggedIn) ?? false;
   }
 
 }

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,9 +15,10 @@ import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/utils.dart';
 import 'package:wilatone_restaurant/utils/validations_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/auth/enable_location_screen.dart';
 import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 
-class CreateProfileScreen extends StatefulWidget {
+class CreateProfileScreen extends StatefulWidget{
   const CreateProfileScreen({Key? key}) : super(key: key);
 
   @override
@@ -26,6 +26,7 @@ class CreateProfileScreen extends StatefulWidget {
 }
 
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
+
   Rx<TextEditingController> namecontroller = TextEditingController().obs;
   Rx<TextEditingController> emailcontroller = TextEditingController().obs;
   AuthViewModel authViewModel = Get.find<AuthViewModel>();
@@ -42,26 +43,31 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               const WileToneAppBar(title: ""),
+
               SizedBox(
                 height: 20.h,
               ),
+
               WileToneTextWidget(
                 title: VariablesUtils.helpUsToLetYouKnow,
                 fontWeight: FontWeight.w600,
                 fontSize: 20.sp,
               ),
+
               SizedBox(
                 height: 20.h,
               ),
+
               WileToneTextFormField(
                 isValidate: true,
                 validationMessage: 'Plz Enter Name',
+                regularExpression: RegularExpression.alphabetSpacePattern,
                 borderRadius: 10.sp,
                 controller: namecontroller.value,
                 borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
                 hintText: VariablesUtils.name,
-                regularExpression: RegularExpression.alphabetSpacePattern,
                 hintStyle: TextStyle(
                     color: ColorUtils.lightGreyA6,
                     fontSize: 14.sp,
@@ -73,11 +79,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               WileToneTextFormField(
                 borderRadius: 10.sp,
                 validationMessage: 'Plz Enter Email',
+                regularExpression: RegularExpression.emailPattern,
+                validationtype: ValidationType.email,
                 controller: emailcontroller.value,
                 borderSide: const BorderSide(color: ColorUtils.lightGreyD3),
                 hintText: VariablesUtils.email,
-                validationtype: ValidationType.email,
-                regularExpression: RegularExpression.emailPattern,
                 textInputType: TextInputType.emailAddress,
                 hintStyle: TextStyle(
                     color: ColorUtils.lightGreyA6,
@@ -94,36 +100,39 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 onPressed : () async {
 
                   if(formKey.currentState!.validate()){
-                  }
 
 
 
+                    print("Calling=====================");
                     FocusManager.instance.primaryFocus?.unfocus();
 
                     Get.dialog(
                       postDataLoadingIndicator(),
                     );
 
-                    await authViewModel.updateProfile(namecontroller.value.text,
-                        emailcontroller.value.text, '');
+                    await authViewModel.updateProfile(
+                        namecontroller.value.text, emailcontroller.value.text,
+                        '');
 
-                    if(authViewModel.updateProfileApiResponse.status == Status.COMPLETE){
+                    if (authViewModel.updateProfileApiResponse.status ==
+                        Status.COMPLETE) {
+                      UpdateProfileResModel res = authViewModel
+                          .updateProfileApiResponse.data;
 
-                      UpdateProfileResModel res = authViewModel.updateProfileApiResponse.data;
-
-                      if(kDebugMode){
+                      if (kDebugMode) {
                         print('RES CODE ==>${res.code}');
                       }
 
-                      if (res.code == 200){
-
-                        if(kDebugMode){
+                      if (res.code == 200) {
+                        if (kDebugMode) {
                           print('====== message :- ${res.message}');
                         }
 
                         Get.back();
                         Utils.snackBar(message: '${res.message}');
-                        // Get.to(const CreateProfileScreen());
+                        namecontroller.value.clear();
+                        emailcontroller.value.clear();
+                        Get.to(() => const LocationScreen());
                       }
 
                       else {
@@ -133,12 +142,13 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             message: res.message ?? '', bgColor: Colors.red);
                       }
                     }
-
-                  // Get.to(() => const LocationScreen());
+                  }
                 },
+
                 buttonHeight: 52,
                 buttonColor: ColorUtils.greenColor,
                 buttonName: VariablesUtils.continueText,
+
               ),
             ],
           ),

@@ -46,10 +46,15 @@ class AuthRepo extends BaseService {
     return result;
   }
 
+
+
+
   ///  ============================== Update Profile ======================= ///
 
   Future<UpdateProfileResModel> updateProfileRepo(String name, String email,String areaname) async {
+
     Map<String, dynamic> body = {
+
       "name": name,
       "email": email,
       "area_name": areaname,

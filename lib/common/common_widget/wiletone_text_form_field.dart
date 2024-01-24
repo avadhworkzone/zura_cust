@@ -26,7 +26,7 @@ class WileToneTextFormField extends StatelessWidget {
     this.sIcon,
     this.borderRadius,
     this.containerBgColor,
-    this.obscureValue = false,
+    // this.obscureValue = false,
     this.pIcon,
     this.textCapitalization,
     this.focusNode,
@@ -62,7 +62,7 @@ class WileToneTextFormField extends StatelessWidget {
   final bool? filled;
   final Widget? sIcon;
   final Widget? pIcon;
-  final bool? obscureValue;
+  // final bool? obscureValue;
   final bool? withOutIcon;
   final double? borderRadius;
   final double? containerHeight;
@@ -85,6 +85,7 @@ class WileToneTextFormField extends StatelessWidget {
       height: height,
       width: width,
       child: TextFormField(
+
         controller: controller,
         focusNode: focusNode,
         onChanged: onChange,
@@ -101,11 +102,11 @@ class WileToneTextFormField extends StatelessWidget {
         },
 
         cursorColor: Colors.grey,
-        obscureText: obscureValue!,
+        // obscureText: obscureValue,
         maxLines: maxLine ?? 1,
         textInputAction: textInputAction ?? TextInputAction.done,
         textCapitalization: textCapitalization ?? TextCapitalization.none,
-        inputFormatters: regularExpression!.isEmpty
+        inputFormatters: (regularExpression != null && regularExpression!.isEmpty)
             ? [
           LengthLimitingTextInputFormatter(inputLength),
           // FilteringTextInputFormatter.deny(RegExp(r'\s')),

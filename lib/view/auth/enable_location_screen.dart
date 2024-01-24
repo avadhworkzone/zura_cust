@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_app_bar.dart';
 import 'package:wilatone_restaurant/common/common_widget/wiletone_custom_button.dart';
@@ -21,6 +24,22 @@ class LocationScreen extends StatefulWidget {
 
 class _LocationScreenState extends State<LocationScreen>{
 
+void getCurrentLocation() async{
+
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if(permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+
+      log("Location Denied");
+      LocationPermission ask = await Geolocator.requestPermission();
+    }
+
+    else{
+      Position currentposition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+      log(" Latitude= ${currentposition.latitude.toString()}");
+      log("Longitude=${currentposition.longitude.toString()}");
+    }
+}
   @override
   Widget  build(BuildContext context){
 
@@ -78,12 +97,15 @@ class _LocationScreenState extends State<LocationScreen>{
                   width: 63.w,
                 ),
               ),
+
               SizedBox(
                 height: 30.h,
               ),
+
               WileToneCustomButton(
                 onPressed: () {
-                  Get.to(const SearchArea());
+                  getCurrentLocation();
+                  // Get.to(const SearchArea());
                 },
                 fontSize: 14.sp,
                 buttonHeight: 52,
@@ -91,9 +113,11 @@ class _LocationScreenState extends State<LocationScreen>{
                 buttonColor: ColorUtils.greenColor,
                 buttonName: VariablesUtils.devicelocation,
               ),
+
               SizedBox(
                 height: 20.h,
               ),
+
               Align(
                 alignment: Alignment.center,
                 child: InkWell(
