@@ -96,16 +96,16 @@ class TimingBottomSheet{
                         Row(
                           children: [
                             WileToneCustomButton(
-                              buttonHeight: Get.height * 0.06,
-                              buttonWidth: Get.width / 2.2,
+                              buttonHeight: MediaQuery.of(context).size.height / 14,
+                              buttonWidth: MediaQuery.of(context).size.width / 2.3,
                               buttonColor: ColorUtils.white,
                               onPressed: () {},
                               buttonName: VariablesUtils.clearAll,
                               fontColor: ColorUtils.green,
                             ),
                             WileToneCustomButton(
-                              buttonHeight: Get.height * 0.06,
-                              buttonWidth: Get.width / 2.2,
+                              buttonHeight:MediaQuery.of(context).size.height / 14,
+                              buttonWidth: MediaQuery.of(context).size.width / 2.2,
                               buttonColor: ColorUtils.green,
                               onPressed: () {},
                               buttonName: VariablesUtils.ApplyBtn,

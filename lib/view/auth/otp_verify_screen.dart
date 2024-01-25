@@ -16,30 +16,31 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/preference_utils.dart';
 import 'package:wilatone_restaurant/view/auth/create_profile_screen.dart';
+import 'package:wilatone_restaurant/view/auth/enable_location_screen.dart';
+import 'package:wilatone_restaurant/view/auth/search_area.dart';
+import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
 import '../../utils/utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/login_screen.dart';
 import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 
-
-class OtpVerificationScreen extends StatefulWidget{
-
+class OtpVerificationScreen extends StatefulWidget {
   final String phoneNumber;
   final String dialcode;
 
-  const OtpVerificationScreen(
-      {Key? key, required this.phoneNumber, required this.dialcode,})
-      : super(key: key);
+  const OtpVerificationScreen({
+    Key? key,
+    required this.phoneNumber,
+    required this.dialcode,
+  }) : super(key: key);
 
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
-
   final otpEditController = TextEditingController();
   LoginScreen loginScreen = const LoginScreen();
-  // PreferenceManagerUtils preferenceManagerUtils = PreferenceManagerUtils();
   AuthViewModel authViewModel = Get.find<AuthViewModel>();
   VerifyOtpResModel verifyOtpRes = VerifyOtpResModel();
 
@@ -60,8 +61,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     }
   }
 
-  startTimeout([int? milliseconds]){
-    Timer.periodic(interval, (timer){
+  startTimeout([int? milliseconds]) {
+    Timer.periodic(interval, (timer) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         if (mounted) {
           currentSeconds = currentSeconds - 1;
@@ -78,6 +79,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
     super.initState();
   }
+
   final formKey = GlobalKey<FormState>();
 
   String codeValue = "";
@@ -203,16 +205,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   height: 30.h,
                 ),
 
-
-
                 /// ReSend OTP
                 InkWell(
                   onTap: () async {
-
                     FocusManager.instance.primaryFocus?.unfocus();
 
-                    if(formKey.currentState!.validate()){
-                    }
+                    if (formKey.currentState!.validate()) {}
 
                     Get.dialog(
                       postDataLoadingIndicator(),
@@ -220,32 +218,31 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                     await authViewModel.sendOtp(widget.phoneNumber, false);
 
-                    if(authViewModel.sendOtpApiResponse.status == Status.COMPLETE){
+                    if (authViewModel.sendOtpApiResponse.status ==
+                        Status.COMPLETE) {
+                      SendOtpResModel res =
+                          authViewModel.sendOtpApiResponse.data;
+                      if (kDebugMode) {
+                        print('RES CODE ==>${res.code}');
+                      }
 
-                      SendOtpResModel res = authViewModel.sendOtpApiResponse.data;
-                      print('RES CODE ==>${res.code}');
-
-                      if(res.code == 200){
-
+                      if (res.code == 200) {
                         currentSeconds = 30;
                         startTimeout();
                         print('======${res.message}');
                         Get.back();
                         Utils.snackBar(message: '${res.message}');
-                      }
-
-                      else {
+                      } else {
                         Get.back();
-                        Utils.snackBar(message: res.message ?? VariablesUtils.codesent,bgColor: Colors.red);
+                        Utils.snackBar(
+                            message: res.message ?? VariablesUtils.codesent,
+                            bgColor: Colors.red);
                       }
                     }
                   },
-
                   child: Text.rich(
-
                     TextSpan(
                       children: [
-
                         TextSpan(
                           text: VariablesUtils.didntGetOtp,
                           style: TextStyle(
@@ -281,9 +278,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 ),
 
                 /// Verify OTP
-                 InkWell(
-                  onTap : () async {
-
+                InkWell(
+                  onTap: () async {
                     FocusManager.instance.primaryFocus?.unfocus();
 
                     Get.dialog(
@@ -291,11 +287,16 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     );
 
                     /// Post data
-                    await authViewModel.verifyOtp(widget.phoneNumber,otpEditController.text);
+                    await authViewModel.verifyOtp(
+                        widget.phoneNumber, otpEditController.text);
 
-                    log("OTP :- ${otpEditController.text}");
+                     log("OTP :- ${otpEditController.text}");
+                     if(otpEditController.text.isEmpty){
+                       Get.back();
+                       Utils.snackBar(message: 'Plz Enter OTP');
+                     }
 
-                    if(authViewModel.verifyOtpApiResponse.status == Status.COMPLETE){
+                   else if(authViewModel.verifyOtpApiResponse.status == Status.COMPLETE){
 
                       VerifyOtpResModel res = authViewModel.verifyOtpApiResponse.data;
 
@@ -303,9 +304,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         print('RES CODE ==>${res.code}');
                       }
 
-                      if(res.code == 200){
+                      if (res.code == 200){
 
-                        if(kDebugMode){
+                        if(kDebugMode) {
                           print('====== message :- ${res.message}');
                         }
 
@@ -315,12 +316,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                         await PreferenceManagerUtils.saveAccessToken(accessToken!);
 
-                        String? getaccessToken =  PreferenceManagerUtils.getAccessToken();
+                        String? getaccessToken = PreferenceManagerUtils.getAccessToken();
 
-                        if(getaccessToken != '' && getaccessToken.isNotEmpty){
-
+                        if (getaccessToken != '' && getaccessToken.isNotEmpty){
                           log("Get Token :- $getaccessToken");
-                          // headers: {'Authorization': 'Bearer $accessToken'}
+
                         }
 
                         else {
@@ -330,23 +330,56 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         Get.back();
                         Utils.snackBar(message: '${res.message}');
                         otpEditController.clear();
-                        Get.to(const CreateProfileScreen());
 
-                      }
+                        if (authViewModel.verifyOtpApiResponse.status ==
+                            Status.COMPLETE) {
+                          VerifyOtpResModel response =
+                              authViewModel.verifyOtpApiResponse.data;
 
-                      else {
+                          if (response.code == 200) {
+                            log("Name :- ${response.data!.name}");
+
+                            if(response.data!.name != null && response.data!.areaName != null){
+                              PreferenceManagerUtils.saveLoginData(true);
+                              log("saveLoginData :- ${PreferenceManagerUtils.saveLoginData(true)}");
+                              Get.to(const BottombarScreen());
+                              otpEditController.clear();
+                            }
+
+                            else if(response.data!.name == null){
+
+                              Get.to(const CreateProfileScreen());
+                              otpEditController.clear();
+                            }
+                            else{
+                              Get.to(const LocationScreen());
+                              otpEditController.clear();
+                            }
+                          }
+
+                          else {
+                            log("res.message :- ${res.message}");
+                            Get.back();
+                            Utils.snackBar(
+                                message:
+                                    res.message ?? VariablesUtils.verifyotp,
+                                bgColor: Colors.red);
+                          }
+                        }
+                      } else {
                         log("res.message :- ${res.message}");
                         Get.back();
-                        Utils.snackBar(message: res.message ?? VariablesUtils.verifyotp,bgColor: Colors.red);
+                        Utils.snackBar(
+                            message: res.message ?? VariablesUtils.verifyotp,
+                            bgColor: Colors.red);
                       }
                     }
                   },
-
-                  child : WileToneTextWidget(
-                    title : VariablesUtils.goBackToLoginMethods,
-                    color : ColorUtils.greenColor,
-                    fontWeight : FontWeight.w600,
-                    fontSize : 12.sp,
+                  child: WileToneTextWidget(
+                    title: VariablesUtils.goBackToLoginMethods,
+                    color: ColorUtils.greenColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.sp,
                   ),
                 )
               ],
@@ -356,7 +389,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       ),
     );
   }
-
 
   String formatHHMMSS(int seconds) {
     int hours = (seconds / 3600).truncate();
@@ -373,5 +405,4 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
     return "$hoursStr:$minutesStr:$secondsStr";
   }
-
 }

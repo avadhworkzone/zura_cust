@@ -3,11 +3,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wilatone_restaurant/model/apiModel/responseModel/home_page_res_model.dart';
+import 'package:wilatone_restaurant/model/apiService/base_service.dart';
+import 'package:wilatone_restaurant/model/apis/api_response.dart';
 import 'package:wilatone_restaurant/view/Popup/pop_up.dart';
 import 'package:wilatone_restaurant/view/allMenuScreen/all_menu_screen.dart';
 import 'package:wilatone_restaurant/view/bottomSheet/sort_bottomsheet.dart';
 import 'package:wilatone_restaurant/view/bottomSheet/timing_bottomsheet.dart';
 import 'package:wilatone_restaurant/view/restaurantDetailScreen/restaurant_detail.dart';
+import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
+import 'package:wilatone_restaurant/viewModel/home_view_model.dart';
 import '../../common/common_widget/wiletone_image_widget.dart';
 import '../../common/common_widget/wiletone_text_form_field.dart';
 import '../../common/common_widget/wiletone_text_widget.dart';
@@ -29,6 +34,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   RxInt current = 0.obs;
   static Rx<TextEditingController> searchstores = TextEditingController().obs;
+  final HomeViewModel homeViewModel = Get.find<HomeViewModel>();
+
   final _controller = CarouselController().obs;
   Sortbottomsheet sortsheet = Sortbottomsheet();
   TimingBottomSheet timesheet = TimingBottomSheet();
@@ -50,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    homeViewModel.categoryList();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       for (var imageUrl in AppIconAssets.listviewimages) {
         precacheImage(AssetImage(imageUrl), context);
@@ -138,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
 
                           SizedBox(
-                            width: MediaQuery.of(context).size.width.w / 13,
+                            width: MediaQuery.of(context).size.width.w / 5,
                           ),
 
                           /// reward icon
@@ -237,72 +245,154 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
 
-                  GridView.builder(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
-                    shrinkWrap: true,
-                    itemCount: 8,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4),
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 0, vertical: 15.h),
-                        minVerticalPadding: 0,
-                        title: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: WileToneImageWidget(
-                            image: AppIconAssets.hotelimages[index].toString(),
-                            imageType: ImageType.png,
-                            height: 70.h,
-                            width: 70.w,
-                          ),
-                        ),
-                        subtitle: Align(
-                          alignment: Alignment.topCenter,
-                          child: WileToneTextWidget(
-                            title: imagename[index].toString(),
-                            fontSize: 12.sp,
-                            fontFamily: AssetsUtils.poppins,
-                            fontWeight: FontWeight.w500,
-                            color: ColorUtils.black,
-                          ),
-                        ),
-                      );
-                    },
+                  Center(
+                    child: GetBuilder<HomeViewModel>(
+
+                      builder: (controller) {
+                        if (controller.homePageApiResponse.status == Status.LOADING ||
+                            controller.homePageApiResponse.status ==
+                                Status.INITIAL){
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                        if (controller.homePageApiResponse.status ==
+                            Status.ERROR) {
+                          return const Text("Some thing went wrong");
+                        }
+
+                        HomePageResModel model = controller.homePageApiResponse.data;
+
+                     return Column(
+                          children: [
+                              GridView.builder(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 0.w, vertical: 0.h),
+                              shrinkWrap: true,
+                              itemCount: model.data!.categoryList!.length,
+                              gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 4),
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 0, vertical: 15.h),
+                                  minVerticalPadding: 0,
+                                  title: Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Image.network(BaseService.categoryImage
+                                      ,height: 70.h,
+                                      width: 70.w,
+                                    ),
+                                  ),
+                                  subtitle: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: WileToneTextWidget(
+                                      title: model.data!.categoryList![0].name
+                                          .toString(),
+                                      fontSize: 12.sp,
+                                      fontFamily: AssetsUtils.poppins,
+                                      fontWeight: FontWeight.w500,
+                                      color: ColorUtils.black,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+
+                             ///Crousal Slider
+                             CarouselSlider.builder(
+                              itemCount: model.data!.bannerList!.length,
+                              itemBuilder: (context, index, realIndex) {
+                                return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10.w, vertical: 0.h),
+                                    child: Image.network(
+                                        BaseService.bannerImage));
+                              },
+                              options: CarouselOptions(
+                                  enableInfiniteScroll: false,
+                                  autoPlay: true,
+                                  onPageChanged: (index, reason) {
+                                    log("Index :- $index");
+                                    log("Reason :- $reason");
+                                    setState(() {
+                                      current.value = index;
+                                    });
+                                  },
+                                  autoPlayInterval: const Duration(seconds: 2),
+                                  autoPlayAnimationDuration:
+                                  const Duration(milliseconds: 800),
+                                  enlargeCenterPage: false,
+                                  scrollDirection: Axis.horizontal),
+                            ),
+                          ],
+                        );
+                      }
+
+                    )
                   ),
+
+
+                  // FutureBuilder(
+                  //   future: homeViewModel.categoryList(),
+                  //   builder: (context, snapshot) {
+                  //     if(homeViewModel.homePageApiResponse.status == Status.COMPLETE) {
+                  //
+                  //       HomePageResModel res = homeViewModel.homePageApiResponse.data;
+                  //
+                  //       if (res.code == 200) {
+                  //         log("Status code :- ${res.code}========================");
+                  //         log("res :- ${res.message}");
+                  //         log("Category :- ${res.data!.categoryList![0].name}");
+                  //
+                  //         return GridView.builder(
+                  //           padding: EdgeInsets.symmetric(
+                  //               horizontal: 0.w, vertical: 0.h),
+                  //           shrinkWrap: true,
+                  //           itemCount: res.data!.categoryList!.length,
+                  //           gridDelegate:
+                  //               const SliverGridDelegateWithFixedCrossAxisCount(
+                  //                   crossAxisCount: 4),
+                  //           itemBuilder: (context, index) {
+                  //             return ListTile(
+                  //               contentPadding: EdgeInsets.symmetric(
+                  //                   horizontal: 0, vertical: 15.h),
+                  //               minVerticalPadding: 0,
+                  //               title: Align(
+                  //                 alignment: Alignment.bottomCenter,
+                  //                 child: WileToneImageWidget(
+                  //                   image: res.data!.categoryList![0].image
+                  //                       .toString(),
+                  //                   imageType: ImageType.png,
+                  //                   height: 70.h,
+                  //                   width: 70.w,
+                  //                 ),
+                  //               ),
+                  //               subtitle: Align(
+                  //                 alignment: Alignment.topCenter,
+                  //                 child: WileToneTextWidget(
+                  //                   title: res.data!.categoryList![0].name
+                  //                       .toString(),
+                  //                   fontSize: 12.sp,
+                  //                   fontFamily: AssetsUtils.poppins,
+                  //                   fontWeight: FontWeight.w500,
+                  //                   color: ColorUtils.black,
+                  //                 ),
+                  //               ),
+                  //             );
+                  //           },
+                  //         );
+                  //       }
+                  //     }
+                  //     return const Center(child: CircularProgressIndicator());
+                  //   },
+                  // ),
 
                   SizedBox(
                     height: 20.h,
                   ),
 
-                  ///Crousal Slider
-                  CarouselSlider.builder(
-                    itemCount: AppIconAssets.listviewimages.length,
-                    itemBuilder: (context, index, realIndex) {
-                      return Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.w, vertical: 0.h),
-                          child: Image.asset(
-                              AppIconAssets.listviewimages[index].toString()));
-                    },
-                    options: CarouselOptions(
-                        enableInfiniteScroll: false,
-                        autoPlay: true,
-                        onPageChanged: (index, reason) {
-                          log("Index :- $index");
-                          log("Reason :- $reason");
-                          setState(() {
-                            current.value = index;
-                          });
-                        },
-                        autoPlayInterval: const Duration(seconds: 2),
-                        autoPlayAnimationDuration:
-                            const Duration(milliseconds: 800),
-                        enlargeCenterPage: false,
-                        scrollDirection: Axis.horizontal),
-                  ),
+
 
                   SizedBox(
                     height: 10.h,

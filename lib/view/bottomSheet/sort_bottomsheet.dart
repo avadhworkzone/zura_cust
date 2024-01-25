@@ -9,6 +9,8 @@ import 'package:wilatone_restaurant/utils/variables_utils.dart';
 
 class Sortbottomsheet{
 
+  int? selectedOption;
+
   void  showSortData(BuildContext context){
 
     showModalBottomSheet<void>(
@@ -49,11 +51,15 @@ class Sortbottomsheet{
                           // color: ColorUtils.black,
                         ),
                         const Spacer(),
-                        Icon(
-                          Icons.radio_button_checked,
-                          color: ColorUtils.green,
-                          size: 25.h,
-                        ),
+                        Radio(
+                            activeColor: ColorUtils.green,
+                            value: 2,
+                            groupValue: selectedOption,
+                            onChanged: (value) {
+                              selectedOption = value;
+                              // setState(() {
+                              // });
+                            }),
                       ],
                     ),
                     SizedBox(
@@ -69,11 +75,15 @@ class Sortbottomsheet{
                           // color: ColorUtils.black,
                         ),
                         const Spacer(),
-                        Icon(
-                          Icons.radio_button_checked,
-                          color: ColorUtils.green,
-                          size: 25.h,
-                        ),
+                        Radio(
+                            activeColor: ColorUtils.green,
+                            value: 2,
+                            groupValue: selectedOption,
+                            onChanged: (value) {
+                              // setState(() {
+                                selectedOption = value;
+                              // });
+                            }),
                       ],
                     ),
                     SizedBox(
@@ -89,29 +99,35 @@ class Sortbottomsheet{
                           // color: ColorUtils.black,
                         ),
                         const Spacer(),
-                        Icon(
-                          Icons.radio_button_checked,
-                          color: ColorUtils.green,
-                          size: 25.h,
-                        ),
+                        Radio(
+                            activeColor: ColorUtils.green,
+                            value: 2,
+                            groupValue: selectedOption,
+                            onChanged: (value) {
+                              selectedOption = value;
+                              // setState(() {
+                              // });
+                            }),
                       ],
                     ),
                     SizedBox(
                       height: 20.h,
                     ),
+
+                    /// buttons
                     Row(
                       children: [
                         WileToneCustomButton(
                           buttonHeight: MediaQuery.of(context).size.height / 14,
-                          buttonWidth: Get.width / 2.2,
+                          buttonWidth: MediaQuery.of(context).size.width / 2.3,
                           buttonColor: ColorUtils.white,
                           onPressed: () {},
                           buttonName: VariablesUtils.clearAll,
                           fontColor: ColorUtils.green,
                         ),
                         WileToneCustomButton(
-                          buttonHeight: Get.height * 0.07,
-                          buttonWidth: Get.width / 2.2,
+                          buttonHeight:MediaQuery.of(context).size.height / 14,
+                          buttonWidth: MediaQuery.of(context).size.width / 2.2,
                           buttonColor: ColorUtils.green,
                           onPressed: () {},
                           buttonName: VariablesUtils.ApplyBtn,

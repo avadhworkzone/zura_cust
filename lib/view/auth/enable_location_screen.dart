@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
@@ -22,46 +21,39 @@ class LocationScreen extends StatefulWidget {
   State<LocationScreen> createState() => _LocationScreenState();
 }
 
-class _LocationScreenState extends State<LocationScreen>{
-
-void getCurrentLocation() async{
-
+class _LocationScreenState extends State<LocationScreen> {
+  void getCurrentLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
 
-    if(permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
-
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
       log("Location Denied");
       LocationPermission ask = await Geolocator.requestPermission();
-    }
-
-    else{
-      Position currentposition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    } else {
+      Position currentposition = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
       log(" Latitude= ${currentposition.latitude.toString()}");
       log("Longitude=${currentposition.longitude.toString()}");
     }
-}
-  @override
-  Widget  build(BuildContext context){
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               SizedBox(
                 height: 20.h,
               ),
-
               const WileToneAppBar(title: ''),
-
               SizedBox(
                 height: 20.h,
               ),
-
               WileToneTextWidget(
                 title: VariablesUtils.location,
                 fontSize: 20.sp,
@@ -69,11 +61,9 @@ void getCurrentLocation() async{
                 fontWeight: FontWeight.w600,
                 color: ColorUtils.black,
               ),
-
               SizedBox(
                 height: 4.h,
               ),
-
               WileToneTextWidget(
                 title: VariablesUtils.store,
                 fontSize: 12.sp,
@@ -81,15 +71,12 @@ void getCurrentLocation() async{
                 fontWeight: FontWeight.w500,
                 color: ColorUtils.greyShade1,
               ),
-
               SizedBox(
                 height: 30.h,
               ),
-
               Align(
                 alignment: Alignment.center,
                 child: WileToneImageWidget(
-
                   color: ColorUtils.lightGreyA6,
                   image: AppIconAssets.locationIcon,
                   imageType: ImageType.png,
@@ -97,15 +84,13 @@ void getCurrentLocation() async{
                   width: 63.w,
                 ),
               ),
-
               SizedBox(
                 height: 30.h,
               ),
-
               WileToneCustomButton(
                 onPressed: () {
                   getCurrentLocation();
-                  // Get.to(const SearchArea());
+                  Get.to(const SearchArea());
                 },
                 fontSize: 14.sp,
                 buttonHeight: 52,
@@ -113,15 +98,13 @@ void getCurrentLocation() async{
                 buttonColor: ColorUtils.greenColor,
                 buttonName: VariablesUtils.devicelocation,
               ),
-
               SizedBox(
                 height: 20.h,
               ),
-
               Align(
                 alignment: Alignment.center,
                 child: InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.to(const SearchArea());
                   },
                   child: WileToneTextWidget(
@@ -133,7 +116,6 @@ void getCurrentLocation() async{
                   ),
                 ),
               ),
-
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:wilatone_restaurant/model/apiModel/responseModel/home_page_res_model.dart';
 import 'package:wilatone_restaurant/model/apiModel/responseModel/send_otp_res_model.dart';
 import 'package:wilatone_restaurant/model/apiModel/responseModel/social_login_res_model.dart';
 import 'package:wilatone_restaurant/model/apiModel/responseModel/update_profile_res_model.dart';
@@ -46,18 +47,15 @@ class AuthRepo extends BaseService {
     return result;
   }
 
+  ///  ============================== Update Profile Email and Name======================= ///
 
-
-
-  ///  ============================== Update Profile ======================= ///
-
-  Future<UpdateProfileResModel> updateProfileRepo(String name, String email,String areaname) async {
+  Future<UpdateProfileResModel> updateProfileRepo(String name, String email) async {
 
     Map<String, dynamic> body = {
 
       "name": name,
       "email": email,
-      "area_name": areaname,
+
     };
 
     var response = await ApiService().getResponse(
@@ -69,6 +67,39 @@ class AuthRepo extends BaseService {
     return result;
   }
 
+  ///  ============================== Update Profile Area======================= ///
+
+  Future<UpdateProfileResModel> updateProfileAreaRepo(String area) async {
+
+    Map<String, dynamic> body = {
+
+      "area_name": area,
+
+
+    };
+
+    var response = await ApiService().getResponse(
+      apiType: APIType.aPost , body: body, url: updateProfile,);
+
+    log("=============RES:=========$response");
+    UpdateProfileResModel result = UpdateProfileResModel.fromJson(response);
+
+    return result;
+  }
+
+
+  /// ===============================  Featch Category List ========================== ///
+
+  Future<HomePageResModel> featchCategoryListRepo() async {
+
+  var response = await ApiService().getResponse(apiType: APIType.aGet , url: homePage,);
+
+    log("========Featch Category List=====RES:=========$response");
+    HomePageResModel result = HomePageResModel.fromJson(response);
+
+    return result;
+
+  }
 
   /// =============================  SOCIAL LOGIN  ============================== ///
 

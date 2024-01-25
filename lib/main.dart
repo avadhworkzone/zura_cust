@@ -12,6 +12,7 @@ import 'package:wilatone_restaurant/view/auth/login_screen.dart';
 import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
 import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 import 'package:wilatone_restaurant/viewModel/connectivity_view_model.dart';
+import 'package:wilatone_restaurant/viewModel/home_view_model.dart';
 import 'model/apiService/api_service.dart';
 
 
@@ -46,17 +47,17 @@ class MyApp extends StatelessWidget {
     ]);
 
     return ScreenUtilInit(
-      designSize: const Size(390, 844),
-      child: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: GetMaterialApp(
-          title: VariablesUtils.appName,
-          theme: ThemeData(
+      designSize : const Size(390, 844),
+      child : GestureDetector(
+        onTap : () => FocusManager.instance.primaryFocus?.unfocus(),
+        child : GetMaterialApp(
+          title : VariablesUtils.appName,
+          theme : ThemeData(
             useMaterial3: true,
             fontFamily: AssetsUtils.poppins,
           ),
           debugShowCheckedModeBanner: false,
-          home: PreferenceManagerUtils.getLoginData() == true ?  const BottombarScreen() : const LoginScreen(),
+          home : PreferenceManagerUtils.getLoginData() == true ?  const BottombarScreen() : const LoginScreen(),
         ),
       ),
     );
@@ -66,5 +67,7 @@ class MyApp extends StatelessWidget {
   BaseService baseService = Get.put(BaseService());
   AuthViewModel authViewModel = Get.put(AuthViewModel());
   ConnectivityViewModel connectivityViewModel = Get.put(ConnectivityViewModel());
+  final HomeViewModel homeViewModel = Get.put(HomeViewModel());
+
 
 }

@@ -57,12 +57,15 @@ class _BottombarScreenState extends State<BottombarScreen> {
     const AllBrandsScreen(),
   ];
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index){
+
     if(index==1){
       Get.to(()=>const RewardScreen());
-    }else if(index==2){
+    }
+    else if(index==2){
       Get.to(()=>const AllBrandsScreen());
-    }else{
+    }
+    else{
       setState(() {
         log("_selectedIndex :- $_selectedIndex");
         _selectedIndex = index;

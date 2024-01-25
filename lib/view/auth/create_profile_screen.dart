@@ -18,6 +18,7 @@ import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/enable_location_screen.dart';
 import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 
+
 class CreateProfileScreen extends StatefulWidget{
   const CreateProfileScreen({Key? key}) : super(key: key);
 
@@ -101,8 +102,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
                   if(formKey.currentState!.validate()){
 
-
-
                     print("Calling=====================");
                     FocusManager.instance.primaryFocus?.unfocus();
 
@@ -112,7 +111,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
                     await authViewModel.updateProfile(
                         namecontroller.value.text, emailcontroller.value.text,
-                        '');
+                        );
 
                     if (authViewModel.updateProfileApiResponse.status ==
                         Status.COMPLETE) {

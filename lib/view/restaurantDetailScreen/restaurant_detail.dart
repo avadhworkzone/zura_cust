@@ -11,7 +11,6 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/restaurantDetailScreen/restaurant_gallery_screen.dart';
-
 import '../../common/common_widget/wiletone_image_widget.dart';
 import '../../utils/enum_utils.dart';
 import '../payment/payment_success_screen.dart';
@@ -339,8 +338,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                                       border: Border.all(
                                           color: ColorUtils.lightGreyD3)),
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 10.w),
+                                    padding : EdgeInsets.symmetric(horizontal: 10.w),
                                     child: Row(
                                       children: [
                                         SvgPicture.asset(

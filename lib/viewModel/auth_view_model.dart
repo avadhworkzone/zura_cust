@@ -3,25 +3,24 @@ import 'package:get/get.dart';
 import 'package:wilatone_restaurant/model/apis/api_response.dart';
 import 'package:wilatone_restaurant/model/repo/auth_repo.dart';
 
-
-class  AuthViewModel extends GetxController {
+class AuthViewModel extends GetxController {
 
   ApiResponse sendOtpApiResponse = ApiResponse.initial('INITIAL');
   ApiResponse verifyOtpApiResponse = ApiResponse.initial('INITIAL');
   ApiResponse updateProfileApiResponse = ApiResponse.initial('INITIAL');
   ApiResponse socialLoginApiResponse = ApiResponse.initial('INITIAL');
 
+
+
   /// SEND OTP
   Future<void> sendOtp(String phoneNumber, bool isSendAPI) async {
-
     sendOtpApiResponse = ApiResponse.loading('Loading');
-    update(); 
+    update();
 
     try {
-      final response = await AuthRepo().sendOtpRepo( phoneNumber, isSendAPI);
+      final response = await AuthRepo().sendOtpRepo(phoneNumber, isSendAPI);
       sendOtpApiResponse = ApiResponse.complete(response);
-    }
-    catch (e) {
+    } catch (e) {
       if (kDebugMode) {
         print('sendOtpApiResponse ERROR  :=>$e');
       }
@@ -32,18 +31,14 @@ class  AuthViewModel extends GetxController {
 
   /// VERIFY OTP
   Future<void> verifyOtp(String phoneNumber, String otp) async {
-
     verifyOtpApiResponse = ApiResponse.loading('Loading');
     update();
 
     try {
       final response = await AuthRepo().verifyOtpRepo(phoneNumber, otp);
       verifyOtpApiResponse = ApiResponse.complete(response);
-    }
-
-    catch(e){
-
-      if(kDebugMode){
+    } catch (e) {
+      if (kDebugMode) {
         print('verifyOtpApiResponse ERROR  :=> $e');
       }
 
@@ -54,22 +49,37 @@ class  AuthViewModel extends GetxController {
     update();
   }
 
+  /// Update Profile of Name and Email
 
-  /// Update Profile
-
-  Future<void> updateProfile(String name, String email,String areaname)  async {
-
+  Future<void> updateProfile(String name, String email) async {
     updateProfileApiResponse = ApiResponse.loading('Loading');
     update();
 
     try {
-      final response = await AuthRepo().updateProfileRepo(name, email,areaname);
+      final response = await AuthRepo().updateProfileRepo(name, email);
       updateProfileApiResponse = ApiResponse.complete(response);
+    } catch (e) {
+      if (kDebugMode) {
+        Get.back();
+        print('updateProfileApiResponse ERROR  :=>$e');
+      }
+      updateProfileApiResponse = ApiResponse.error('ERROR');
     }
 
-    catch (e) {
+    update();
+  }
 
-      if(kDebugMode){
+  /// Update Profile of Area
+
+  Future<void> updateAreaProfile(String area) async {
+    updateProfileApiResponse = ApiResponse.loading('Loading');
+    update();
+
+    try {
+      final response = await AuthRepo().updateProfileAreaRepo(area);
+      updateProfileApiResponse = ApiResponse.complete(response);
+    } catch (e) {
+      if (kDebugMode) {
         Get.back();
         print('updateProfileApiResponse ERROR  :=>$e');
       }
@@ -80,18 +90,17 @@ class  AuthViewModel extends GetxController {
   }
 
 
+
+
   /// SOCIAL LOGIN
   Future<void> socialLogin(String encryptedData) async {
-
     socialLoginApiResponse = ApiResponse.loading('Loading');
     update();
 
     try {
       final response = await AuthRepo().socialLoginRepo(encryptedData);
       socialLoginApiResponse = ApiResponse.complete(response);
-    }
-
-    catch(e){
+    } catch (e) {
       if (kDebugMode) {
         print('socialLoginApiResponse ERROR  :=>$e');
       }
@@ -99,5 +108,4 @@ class  AuthViewModel extends GetxController {
     }
     update();
   }
-
 }

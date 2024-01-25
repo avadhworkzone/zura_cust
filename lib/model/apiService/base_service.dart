@@ -1,4 +1,5 @@
 class BaseService {
+
   final String baseURL = 'https://zuraapi.comuniqate.com/';
 
   /// =============== AUTH APIS ================= ///
@@ -9,6 +10,10 @@ class BaseService {
   final String  updateProfile = "api/customer/auth/update-profile";
   final String socialLogin = "api/customer/auth/social-login";
 
-  /// =============== STORE ================= ///
-  // final String store="api/customer/auth/store";
+  ///  ==================  Home APIs ====================== ///
+
+  final String  homePage = "api/customer/home-page";
+  static String  categoryImage = "https://zuraapi.comuniqate.com/assets/uploads/category/image-1706163313543.png";
+  static String  bannerImage = "https://zuraapi.comuniqate.com/assets/uploads/banner/image-1706163449654.png";
+
 }

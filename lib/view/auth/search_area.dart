@@ -23,7 +23,6 @@ import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
 import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 
-
 class SearchArea extends StatefulWidget {
   const SearchArea({Key? key}) : super(key: key);
 
@@ -130,17 +129,15 @@ class _SearchAreaState extends State<SearchArea> {
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: WileToneCustomButton(
                     onPressed: () async {
-
-                      if(formKey.currentState!.validate()){
-
+                      if (formKey.currentState!.validate()) {
                         FocusManager.instance.primaryFocus?.unfocus();
 
                         Get.dialog(
                           postDataLoadingIndicator(),
                         );
 
-                        await authViewModel.updateProfile(
-                            '', '', searchareacontroller.value.text);
+                        await authViewModel
+                            .updateAreaProfile(searchareacontroller.value.text);
 
                         if (authViewModel.updateProfileApiResponse.status ==
                             Status.COMPLETE) {
@@ -157,8 +154,9 @@ class _SearchAreaState extends State<SearchArea> {
                             }
 
                             Get.back();
-                            Utils.snackBar(message: 'You Are Login Successfully');
-                           await PreferenceManagerUtils.saveLoginData(true);
+                            Utils.snackBar(
+                                message: 'You Are Login Successfully');
+                            await PreferenceManagerUtils.saveLoginData(true);
                             log("Login :- ${PreferenceManagerUtils.getLoginData()}");
                             Get.to(() => const BottombarScreen());
                           } else {

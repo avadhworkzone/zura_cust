@@ -49,16 +49,6 @@ class _LoginScreenState extends State<LoginScreen>{
   AuthViewModel authViewModel = Get.find<AuthViewModel>();
   SendOtpResModel sendOtpResModel = SendOtpResModel();
 
-  // @override
-  // void initState() {
-  //   if(PreferenceManagerUtils.getLoginData == true){
-  //       Get.off(const BottombarScreen());
-  //   }
-  //   else{
-  //     Get.to(const LoginScreen());
-  //   }
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {

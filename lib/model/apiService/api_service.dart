@@ -154,6 +154,7 @@ class ApiService  extends  BaseService{
           result.body,
         );
         log("Get response......$response");
+
       }
 
       ///------------------------------------ FILE UPLOAD METHOD -------------------------------------///
@@ -202,6 +203,7 @@ class ApiService  extends  BaseService{
           body: encodeBody,
         );
         response = returnResponse(result.statusCode, result.body);
+
         log("statusCode :- ${result.statusCode}");
         log("body :- ${ result.body}");
         log("response......$response");
