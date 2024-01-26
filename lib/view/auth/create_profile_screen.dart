@@ -63,7 +63,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
               WileToneTextFormField(
                 isValidate: true,
-                validationMessage: 'Plz Enter Name',
+                validationMessage: 'Please enter name',
                 regularExpression: RegularExpression.alphabetSpacePattern,
                 borderRadius: 10.sp,
                 controller: namecontroller.value,
@@ -79,7 +79,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               ),
               WileToneTextFormField(
                 borderRadius: 10.sp,
-                validationMessage: 'Plz Enter Email',
+                validationMessage: 'Please enter email',
                 regularExpression: RegularExpression.emailPattern,
                 validationtype: ValidationType.email,
                 controller: emailcontroller.value,

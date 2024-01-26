@@ -10,7 +10,7 @@ import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
-import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
+import 'package:wilatone_restaurant/view/dashboard/explore_screen.dart';
 
 class RewardScreen extends StatefulWidget{
   const RewardScreen({Key? key}) : super(key: key);
@@ -156,7 +156,7 @@ class _RewardScreenState extends State<RewardScreen> {
             padding : EdgeInsets.symmetric(horizontal: 15.w),
             child : WileToneCustomButton(
               onPressed : (){
-                Get.to(const AllBrandsScreen());
+                Get.to(const ExploreScreen());
               },
               buttonName : 'Save More',
             ),

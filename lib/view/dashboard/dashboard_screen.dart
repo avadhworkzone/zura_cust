@@ -7,18 +7,18 @@ import 'package:wilatone_restaurant/utils/app_icon_assets.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/view/Home/home_screen.dart';
-import 'package:wilatone_restaurant/view/dashboard/all_brands.dart';
+import 'package:wilatone_restaurant/view/dashboard/explore_screen.dart';
 import 'package:wilatone_restaurant/view/dashboard/reward_screen.dart';
 
 
-class BottombarScreen extends StatefulWidget{
-  const BottombarScreen({Key? key}) : super(key: key);
+class DashBoardScreen extends StatefulWidget{
+  const DashBoardScreen({Key? key}) : super(key: key);
 
   @override
-  State<BottombarScreen> createState() => _BottombarScreenState();
+  State<DashBoardScreen> createState() => _DashBoardScreenState();
 }
 
-class _BottombarScreenState extends State<BottombarScreen> {
+class _DashBoardScreenState extends State<DashBoardScreen> {
 
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -40,22 +40,15 @@ class _BottombarScreenState extends State<BottombarScreen> {
     'Fitness',
     'Fashion',
   ];
+
   static int currentIndex = 0;
 
   Color _getIconColor(int index) {
     return index == _selectedIndex ? ColorUtils.black : ColorUtils.lightGreyA6;
   }
 
-  static final List<Widget> _widgetOptions = <Widget>[
-    /// Home Screen
-    const HomeScreen(),
 
-    /// Reward screen
 
-    const RewardScreen(),
-
-    const AllBrandsScreen(),
-  ];
 
   void _onItemTapped(int index){
 
@@ -63,7 +56,7 @@ class _BottombarScreenState extends State<BottombarScreen> {
       Get.to(()=>const RewardScreen());
     }
     else if(index==2){
-      Get.to(()=>const AllBrandsScreen());
+      Get.to(()=>const ExploreScreen());
     }
     else{
       setState(() {
@@ -75,13 +68,32 @@ class _BottombarScreenState extends State<BottombarScreen> {
   }
 
   @override
+  void initState(){
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context){
 
+     final List<Widget> widgetOptions = <Widget>[
+
+      /// Home Screen
+      const HomeScreen(),
+
+      /// Reward screen
+
+      const RewardScreen(),
+
+      const ExploreScreen(),
+    ];
+
+
     return SafeArea(
-      child: Scaffold(
-        body: _widgetOptions.elementAt(_selectedIndex),
+      child : Scaffold(
+        body : widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar : BottomNavigationBar(
-          items: [
+
+          items : [
 
             BottomNavigationBarItem(
               icon: WileToneImageWidget(
@@ -115,6 +127,7 @@ class _BottombarScreenState extends State<BottombarScreen> {
               ),
               label: 'Explore',
             ),
+
           ],
 
           currentIndex: _selectedIndex,

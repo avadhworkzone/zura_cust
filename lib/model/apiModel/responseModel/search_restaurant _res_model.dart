@@ -81,17 +81,33 @@ class Restaurant {
 }
 
 class Discount {
-  int? discountPercentage;
+  String? startTime;
+  String? endTime;
+  int? discount;
+  double? discountPercentage;
+  int? discountCommission;
 
   Discount({
+    this.startTime,
+    this.endTime,
+    this.discount,
     this.discountPercentage,
+    this.discountCommission,
   });
 
   factory Discount.fromJson(Map<String, dynamic> json) => Discount(
-    discountPercentage: json["discount_percentage"],
+    startTime: json["start_time "],
+    endTime: json["end_time"],
+    discount: json["discount"],
+    discountPercentage: json["discount_percentage"]?.toDouble(),
+    discountCommission: json["discount_commission"],
   );
 
   Map<String, dynamic> toJson() => {
+    "start_time ": startTime,
+    "end_time": endTime,
+    "discount": discount,
     "discount_percentage": discountPercentage,
+    "discount_commission": discountCommission,
   };
 }

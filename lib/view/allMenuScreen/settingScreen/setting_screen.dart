@@ -13,7 +13,7 @@ import 'package:wilatone_restaurant/utils/enum_utils.dart';
 import 'package:wilatone_restaurant/utils/preference_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/login_screen.dart';
-import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
+import 'package:wilatone_restaurant/view/dashboard/dashboard_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);

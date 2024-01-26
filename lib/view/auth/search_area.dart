@@ -20,7 +20,7 @@ import 'package:wilatone_restaurant/utils/preference_utils.dart';
 import 'package:wilatone_restaurant/utils/utils.dart';
 import 'package:wilatone_restaurant/utils/validations_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
-import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
+import 'package:wilatone_restaurant/view/dashboard/dashboard_screen.dart';
 import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 
 class SearchArea extends StatefulWidget {
@@ -65,7 +65,7 @@ class _SearchAreaState extends State<SearchArea> {
                   height: 20.h,
                 ),
                 WileToneTextFormField(
-                  validationMessage: 'Plz Enter Area Name',
+                  validationMessage: 'Please enter area name',
                   controller: searchareacontroller.value,
                   filled: true,
                   height: 100.h,
@@ -158,7 +158,7 @@ class _SearchAreaState extends State<SearchArea> {
                                 message: 'You Are Login Successfully');
                             await PreferenceManagerUtils.saveLoginData(true);
                             log("Login :- ${PreferenceManagerUtils.getLoginData()}");
-                            Get.to(() => const BottombarScreen());
+                            Get.to(() => const DashBoardScreen());
                           } else {
                             log("res.message :- ${res.message}");
                             Get.back();

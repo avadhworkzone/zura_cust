@@ -61,16 +61,17 @@ class WileToneCustomButton extends StatelessWidget{
                     borderRadius: BorderRadius.circular(buttonRadius ?? 8),
                   ),
                 ),
+
           elevation:
               elevation == null ? null : MaterialStateProperty.all(elevation),
-          backgroundColor: MaterialStateProperty.all(
-              isBorderShape ? ColorUtils.white : buttonColor),
+
+          backgroundColor : MaterialStateProperty.all(isBorderShape ? ColorUtils.white : buttonColor),
         ),
 
         child: Row(
-          mainAxisSize: icon != null ? MainAxisSize.max : MainAxisSize.min,
-          mainAxisAlignment: icon != null ? MainAxisAlignment.start : MainAxisAlignment.center,
-          children: [
+          mainAxisSize : icon != null ? MainAxisSize.max : MainAxisSize.min,
+          mainAxisAlignment : icon != null ? MainAxisAlignment.start : MainAxisAlignment.center,
+          children : [
             icon ?? const SizedBox(),
 
             WileToneTextWidget(

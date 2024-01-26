@@ -36,7 +36,7 @@ class _RestaurantGalleryScreenState extends State<RestaurantGalleryScreen> {
                SizedBox(height: 20.h,),
                   DefaultTabController(length: 3, child: Column(
                     children: [
-                       Padding(
+                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: TabBar(
                             dividerColor: Colors.transparent,
@@ -57,13 +57,13 @@ class _RestaurantGalleryScreenState extends State<RestaurantGalleryScreen> {
                             tabs: <Widget>[
                           Tab( text:  VariablesUtils.all,),
 
-                          const Tab( text: VariablesUtils.ambience,),
-                          const Tab( text: VariablesUtils.offering,),
+                          Tab( text: VariablesUtils.ambience,),
+                          Tab( text: VariablesUtils.offering,),
 
                             ]),
                       ),
 
-                      Container(
+                      SizedBox(
                         height: Get.height.h/2,
                         child: TabBarView(children: [
                           Padding(padding: const EdgeInsets.symmetric(horizontal: 5),

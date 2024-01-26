@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:wilatone_restaurant/model/apiModel/responseModel/home_page_res_model.dart';
+import 'package:wilatone_restaurant/model/apiModel/responseModel/search_restaurant%20_res_model.dart';
 import 'package:wilatone_restaurant/model/apiService/base_service.dart';
 import 'package:wilatone_restaurant/model/apis/api_response.dart';
 import 'package:wilatone_restaurant/view/Popup/pop_up.dart';
@@ -11,7 +12,6 @@ import 'package:wilatone_restaurant/view/allMenuScreen/all_menu_screen.dart';
 import 'package:wilatone_restaurant/view/bottomSheet/sort_bottomsheet.dart';
 import 'package:wilatone_restaurant/view/bottomSheet/timing_bottomsheet.dart';
 import 'package:wilatone_restaurant/view/restaurantDetailScreen/restaurant_detail.dart';
-import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 import 'package:wilatone_restaurant/viewModel/home_view_model.dart';
 import '../../common/common_widget/wiletone_image_widget.dart';
 import '../../common/common_widget/wiletone_text_form_field.dart';
@@ -21,65 +21,59 @@ import '../../utils/assets/assets_utils.dart';
 import '../../utils/color_utils.dart';
 import '../../utils/enum_utils.dart';
 import '../../utils/variables_utils.dart';
-import '../dashboard/all_brands.dart';
+import '../dashboard/explore_screen.dart';
 import '../dashboard/reward_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget{
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>{
+
   RxInt current = 0.obs;
   static Rx<TextEditingController> searchstores = TextEditingController().obs;
   final HomeViewModel homeViewModel = Get.find<HomeViewModel>();
 
   final _controller = CarouselController().obs;
-  Sortbottomsheet sortsheet = Sortbottomsheet();
+  Sortbottomsheet sortsheet =  Sortbottomsheet();
   TimingBottomSheet timesheet = TimingBottomSheet();
   PopupMenu popup = PopupMenu();
-
-  static List imagename = [
-    'Restaurant',
-    'Cafe',
-    'Sweet Shop',
-    'Salon',
-    'Stationery',
-    'Pharmacy',
-    'Fitness',
-    'Fashion',
-  ];
 
   // ignore: non_constant_identifier_names
   String? RestaurantTime;
 
   @override
   void initState() {
-    homeViewModel.categoryList();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      for (var imageUrl in AppIconAssets.listviewimages) {
-        precacheImage(AssetImage(imageUrl), context);
-      }
+    log("Call  homeViewModel.categoryList();");
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      homeViewModel.categoryList();
+      homeViewModel.searchRestaurantList();
     });
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+
     return Scaffold(
       body: Padding(
+
         padding: EdgeInsets.symmetric(
           horizontal: 15.w,
         ),
+
         child: Column(
           children: [
+
             SizedBox(
               height: 190.h,
               width: Get.width.w,
               child: Column(
                 children: [
+
                   /// Top App bar
                   Container(
                     width: double.infinity.w,
@@ -197,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 14.sp),
                     child: InkWell(
                       onTap: () {
-                        Get.to(const AllBrandsScreen());
+                        Get.to(const ExploreScreen());
                       },
                       child: AbsorbPointer(
                         absorbing: true,
@@ -227,13 +221,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+
             SizedBox(
               height: 20.h,
             ),
+
             Expanded(
               child: ListView(
                 shrinkWrap: true,
                 children: [
+
                   Align(
                     alignment: Alignment.topLeft,
                     child: WileToneTextWidget(
@@ -245,18 +242,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
 
+                  /// Create Home Page API Category and Carosual Slider
                   Center(
                     child: GetBuilder<HomeViewModel>(
 
                       builder: (controller) {
-                        if (controller.homePageApiResponse.status == Status.LOADING ||
-                            controller.homePageApiResponse.status ==
-                                Status.INITIAL){
-                          return const Center(
-                              child: CircularProgressIndicator());
+                        if(controller.homePageApiResponse.status == Status.LOADING ||
+                            controller.homePageApiResponse.status == Status.INITIAL){
+
+                          return const Center(child: CircularProgressIndicator());
                         }
-                        if (controller.homePageApiResponse.status ==
-                            Status.ERROR) {
+
+                        if(controller.homePageApiResponse.status == Status.ERROR) {
                           return const Text("Some thing went wrong");
                         }
 
@@ -264,6 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                      return Column(
                           children: [
+
                               GridView.builder(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 0.w, vertical: 0.h),
@@ -273,13 +271,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 4),
                               itemBuilder: (context, index) {
+                                // log("Image :--------------${BaseService.categoryImage}${model.data!.categoryList![0].image}");
                                 return ListTile(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 0, vertical: 15.h),
                                   minVerticalPadding: 0,
                                   title: Align(
                                     alignment: Alignment.bottomCenter,
-                                    child: Image.network(BaseService.categoryImage
+                                    child: Image.network("${BaseService.categoryImage}${model.data!.categoryList![0].image}"
                                       ,height: 70.h,
                                       width: 70.w,
                                     ),
@@ -307,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 10.w, vertical: 0.h),
                                     child: Image.network(
-                                        BaseService.bannerImage));
+                                        "${BaseService.bannerImage}${model.data!.bannerList![0].image}"));
                               },
                               options: CarouselOptions(
                                   enableInfiniteScroll: false,
@@ -332,71 +331,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ),
 
-
-                  // FutureBuilder(
-                  //   future: homeViewModel.categoryList(),
-                  //   builder: (context, snapshot) {
-                  //     if(homeViewModel.homePageApiResponse.status == Status.COMPLETE) {
-                  //
-                  //       HomePageResModel res = homeViewModel.homePageApiResponse.data;
-                  //
-                  //       if (res.code == 200) {
-                  //         log("Status code :- ${res.code}========================");
-                  //         log("res :- ${res.message}");
-                  //         log("Category :- ${res.data!.categoryList![0].name}");
-                  //
-                  //         return GridView.builder(
-                  //           padding: EdgeInsets.symmetric(
-                  //               horizontal: 0.w, vertical: 0.h),
-                  //           shrinkWrap: true,
-                  //           itemCount: res.data!.categoryList!.length,
-                  //           gridDelegate:
-                  //               const SliverGridDelegateWithFixedCrossAxisCount(
-                  //                   crossAxisCount: 4),
-                  //           itemBuilder: (context, index) {
-                  //             return ListTile(
-                  //               contentPadding: EdgeInsets.symmetric(
-                  //                   horizontal: 0, vertical: 15.h),
-                  //               minVerticalPadding: 0,
-                  //               title: Align(
-                  //                 alignment: Alignment.bottomCenter,
-                  //                 child: WileToneImageWidget(
-                  //                   image: res.data!.categoryList![0].image
-                  //                       .toString(),
-                  //                   imageType: ImageType.png,
-                  //                   height: 70.h,
-                  //                   width: 70.w,
-                  //                 ),
-                  //               ),
-                  //               subtitle: Align(
-                  //                 alignment: Alignment.topCenter,
-                  //                 child: WileToneTextWidget(
-                  //                   title: res.data!.categoryList![0].name
-                  //                       .toString(),
-                  //                   fontSize: 12.sp,
-                  //                   fontFamily: AssetsUtils.poppins,
-                  //                   fontWeight: FontWeight.w500,
-                  //                   color: ColorUtils.black,
-                  //                 ),
-                  //               ),
-                  //             );
-                  //           },
-                  //         );
-                  //       }
-                  //     }
-                  //     return const Center(child: CircularProgressIndicator());
-                  //   },
-                  // ),
-
                   SizedBox(
                     height: 20.h,
                   ),
 
 
-
-                  SizedBox(
-                    height: 10.h,
-                  ),
 
                   /// Slider
                   Row(
@@ -428,16 +367,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       Get.to(const RewardScreen());
                     },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.w),
-                      child: Container(
-                        height: 52.h,
-                        width: Get.width.w,
-                        decoration: BoxDecoration(
-                            color: ColorUtils.black,
-                            borderRadius: BorderRadius.circular(10.sp)),
-                        child: Row(
+
+                    child : Padding(
+                      padding : EdgeInsets.symmetric(horizontal: 15.w),
+                      child : Container(
+                        height : 52.h,
+                        width : Get.width.w,
+                        decoration : BoxDecoration(
+                            color : ColorUtils.black,
+                            borderRadius : BorderRadius.circular(10.sp)),
+                        child : Row(
                           children: [
+
                             SizedBox(
                               width: 10.w,
                             ),
@@ -643,124 +584,154 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 20.h,
                   ),
+                  ///  Restaurant list
+                  Center(
+                      child: GetBuilder<HomeViewModel>(
 
-                  ///Restaurant detail
-                  ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    // padding: EdgeInsets.symmetric(
-                    //     horizontal: 0.w, vertical: 0.h),
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Get.to(const RestaurantDetailScreen());
-                        },
-                        child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 5.w, vertical: 10.h),
-                                child: SizedBox(
-                                  // height : ,
-                                  width: Get.width <= 290 ? 60 : 90,
-                                  child: WileToneImageWidget(
-                                    image: AppIconAssets.zomatoimage[index]
-                                        .toString(),
-                                    imageType: ImageType.png,
-                                  ),
-                                ),
-                              ),
+                          builder : (controller){
 
-                              SizedBox(
-                                width: 15.w,
-                              ),
+                            if(controller.searchRestaurantApiResponse.status == Status.LOADING ||
+                                controller.searchRestaurantApiResponse.status == Status.INITIAL){
 
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: Get.width <= 280 ? 15.h : 25.h),
-                                child: Column(
-                                  // mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: WileToneTextWidget(
-                                        title: VariablesUtils.hotelname[index]
-                                            .toString(),
-                                        fontSize: 20.sp,
-                                        fontFamily: AssetsUtils.inter,
-                                        fontWeight: FontWeight.w600,
-                                        color: ColorUtils.black,
-                                      ),
-                                    ),
-                                    WileToneTextWidget(
-                                      title: VariablesUtils.foodname[index]
-                                          .toString(),
-                                      fontSize: 14.sp,
-                                      fontFamily: AssetsUtils.inter,
-                                      fontWeight: FontWeight.w400,
-                                      color: ColorUtils.grey8D,
-                                    ),
-                                    Row(
-                                      children: [
-                                        WileToneTextWidget(
-                                          title: VariablesUtils
-                                              .discountpercentage[index]
-                                              .toString(),
-                                          fontSize: 24.sp,
-                                          fontFamily: AssetsUtils.inter,
-                                          fontWeight: FontWeight.w700,
-                                          color: ColorUtils.lightgreen,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 5.h, top: 10.h),
-                                          child: WileToneTextWidget(
-                                            title: VariablesUtils.off[index]
-                                                .toString(),
-                                            fontSize: 15.sp,
-                                            fontFamily: AssetsUtils.metrophobic,
-                                            fontWeight: FontWeight.w700,
-                                            color: ColorUtils.lightgreen,
+                              return const Center(child: CircularProgressIndicator());
+                            }
+
+                            if(controller.searchRestaurantApiResponse.status == Status.ERROR) {
+                              return const Text("Some thing went wrong");
+                            }
+
+                            SearchRestaurantsResModel model = controller.searchRestaurantApiResponse.data;
+                            log("storeName :-  ${model.data!.restaurants![0].storeName}");
+
+                            ///  Restaurant list
+                            return  ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                // padding: EdgeInsets.symmetric(
+                                //     horizontal: 0.w, vertical: 0.h),
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: model.data!.restaurants!.length,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Get.to(const RestaurantDetailScreen());
+                                    },
+                                    child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5.w, vertical: 10.h),
+                                            child: SizedBox(
+                                              // height : ,
+                                              width: Get.width <= 290 ? 60 : 90,
+                                              child: WileToneImageWidget(
+                                                image: AppIconAssets.zomatoimage[index]
+                                                    .toString(),
+                                                imageType: ImageType.png,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 7.5,
-                              ),
 
-                              popup.popup(context)
+                                          SizedBox(
+                                            width: 15.w,
+                                          ),
 
-                              // IconButton(onPressed: (){
-                              //   log("================Click");
-                              //        Get.to(const PopupMenu());
-                              // }, icon: const Icon(Icons.more_vert,size: 20,color: ColorUtils.grey,)),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: Get.width <= 280 ? 15.h : 25.h),
+                                            child: Column(
+                                              // mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
 
-                              // InkWell(
-                              //   onTap: () {
-                              //     log("================Click");
-                              //     const PopupMenu();
-                              //   },
-                              //   child: Padding(
-                              //     padding: EdgeInsets.only(top: 20.h),
-                              //     child: WileToneImageWidget(
-                              //       image: AppIconAssets.dotimage[index].toString(),
-                              //       imageType: ImageType.png,
-                              //       scale: 1,
-                              //     ),
-                              //   ),
-                              // ),
-                            ]),
-                      );
-                    },
-                  )
+                                                /// Hotel Name
+                                                Align(
+                                                  alignment: Alignment.center,
+                                                  child: WileToneTextWidget(
+                                                    title: model.data!.restaurants![0].storeName
+                                                        .toString(),
+                                                    fontSize: 20.sp,
+                                                    fontFamily: AssetsUtils.inter,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: ColorUtils.black,
+                                                  ),
+                                                ),
+
+                                                /// Food name
+                                                WileToneTextWidget(
+                                                  title: VariablesUtils.foodname[index]
+                                                      .toString(),
+                                                  fontSize: 14.sp,
+                                                  fontFamily: AssetsUtils.inter,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: ColorUtils.grey8D,
+                                                ),
+
+                                                /// Discount Percentage off
+                                                Row(
+                                                  children: [
+                                                    WileToneTextWidget(
+                                                      title: VariablesUtils
+                                                          .discountpercentage[index]
+                                                          .toString(),
+                                                      fontSize: 24.sp,
+                                                      fontFamily: AssetsUtils.inter,
+                                                      fontWeight: FontWeight.w700,
+                                                      color: ColorUtils.lightgreen,
+                                                    ),
+
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 5.h, top: 10.h),
+                                                      child: WileToneTextWidget(
+                                                        title: VariablesUtils.off[index]
+                                                            .toString(),
+                                                        fontSize: 15.sp,
+                                                        fontFamily: AssetsUtils.metrophobic,
+                                                        fontWeight: FontWeight.w700,
+                                                        color: ColorUtils.lightgreen,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: MediaQuery.of(context).size.width / 7.5,
+                                          ),
+
+                                          popup.popup(context)
+
+                                          // IconButton(onPressed: (){
+                                          //   log("================Click");
+                                          //        Get.to(const PopupMenu());
+                                          // }, icon: const Icon(Icons.more_vert,size: 20,color: ColorUtils.grey,)),
+
+                                          // InkWell(
+                                          //   onTap: () {
+                                          //     log("================Click");
+                                          //     const PopupMenu();
+                                          //   },
+                                          //   child: Padding(
+                                          //     padding: EdgeInsets.only(top: 20.h),
+                                          //     child: WileToneImageWidget(
+                                          //       image: AppIconAssets.dotimage[index].toString(),
+                                          //       imageType: ImageType.png,
+                                          //       scale: 1,
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                        ]),
+                                  );
+                                },
+                              );
+                          }
+
+                      )
+                  ),
+
                 ],
               ),
             )

@@ -13,7 +13,8 @@ class BaseService {
   ///  ==================  Home APIs ====================== ///
 
   final String  homePage = "api/customer/home-page";
-  static String  categoryImage = "https://zuraapi.comuniqate.com/assets/uploads/category/image-1706163313543.png";
-  static String  bannerImage = "https://zuraapi.comuniqate.com/assets/uploads/banner/image-1706163449654.png";
+  static String  categoryImage = "https://zuraapi.comuniqate.com/assets/";
+  static String  bannerImage = "https://zuraapi.comuniqate.com/assets/";
+  final String  searchRestaurant = "api/customer/home-page/search-restaurant";
 
 }

@@ -18,7 +18,7 @@ import 'package:wilatone_restaurant/utils/preference_utils.dart';
 import 'package:wilatone_restaurant/view/auth/create_profile_screen.dart';
 import 'package:wilatone_restaurant/view/auth/enable_location_screen.dart';
 import 'package:wilatone_restaurant/view/auth/search_area.dart';
-import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
+import 'package:wilatone_restaurant/view/dashboard/dashboard_screen.dart';
 import '../../utils/utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/login_screen.dart';
@@ -318,9 +318,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                         String? getaccessToken = PreferenceManagerUtils.getAccessToken();
 
-                        if (getaccessToken != '' && getaccessToken.isNotEmpty){
+                        if(getaccessToken != '' && getaccessToken.isNotEmpty){
                           log("Get Token :- $getaccessToken");
-
                         }
 
                         else {
@@ -339,16 +338,18 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           if (response.code == 200) {
                             log("Name :- ${response.data!.name}");
 
-                            if(response.data!.name != null && response.data!.areaName != null){
+                            if(response.data!.name != null && response.data!.areaName != null && response.data!.email != null){
                               PreferenceManagerUtils.saveLoginData(true);
                               log("saveLoginData :- ${PreferenceManagerUtils.saveLoginData(true)}");
-                              Get.to(const BottombarScreen());
+                              Get.to(const DashBoardScreen());
                               otpEditController.clear();
                             }
-
-                            else if(response.data!.name == null){
-
-                              Get.to(const CreateProfileScreen());
+                            else if(response.data!.name == null || response.data!.email == null){
+                               Get.to(const CreateProfileScreen());
+                               otpEditController.clear();
+                            }
+                            else if(response.data!.areaName == null){
+                              Get.to(const SearchArea());
                               otpEditController.clear();
                             }
                             else{

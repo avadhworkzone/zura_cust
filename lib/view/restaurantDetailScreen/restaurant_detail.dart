@@ -10,6 +10,7 @@ import 'package:wilatone_restaurant/utils/app_icon_assets.dart';
 import 'package:wilatone_restaurant/utils/assets/assets_utils.dart';
 import 'package:wilatone_restaurant/utils/color_utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
+import 'package:wilatone_restaurant/view/dashboard/dashboard_screen.dart';
 import 'package:wilatone_restaurant/view/restaurantDetailScreen/restaurant_gallery_screen.dart';
 import '../../common/common_widget/wiletone_image_widget.dart';
 import '../../utils/enum_utils.dart';
@@ -35,8 +36,9 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
   ].obs;
 
   Rx<TextEditingController> amountcontroller = TextEditingController().obs;
+
   int? selectedOption;
-   int? selectedindex;
+  int? selectedindex;
 
   @override
   Widget build(BuildContext context){
@@ -56,12 +58,14 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                   children: [
                     ///First Half
                     InkWell(
-                      onTap: () {
+
+                      onTap : (){
                         Get.to(() => const RestaurantGalleryScreen());
                       },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 3.h,
-                        width: Get.width.w,
+
+                      child : Container(
+                        height : MediaQuery.of(context).size.height / 3.h,
+                        width : Get.width.w,
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                               image: AssetImage(AppIconAssets.frame4),
@@ -89,7 +93,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                                     /// Back Button
                                     InkWell(
                                       onTap: () {
-                                        Get.back();
+                                        Get.to(() => const DashBoardScreen());
                                       },
                                       child: CircleAvatar(
                                         radius: 18.r,
@@ -303,7 +307,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                                                   BorderRadius.circular(10.r),
                                               color: ColorUtils.red),
                                           child: WileToneTextWidget(
-                                            title: '10\%',
+                                            title: '10%',
                                             fontFamily: AssetsUtils.poppins,
                                             fontSize: 10.sp,
                                             color: ColorUtils.white,
@@ -355,7 +359,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                                         ),
                                         WileToneTextWidget(
                                           title:
-                                              "(${VariablesUtils.extra} 1\% ${VariablesUtils.off2})",
+                                              "(${VariablesUtils.extra} 1% ${VariablesUtils.off2})",
                                           fontFamily: AssetsUtils.poppins,
                                           fontSize: 13.sp,
                                           color: ColorUtils.lightblack,
@@ -642,8 +646,8 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
               ),
 
               Positioned(
-                top : MediaQuery.of(context).size.height / 3.299.h,
-                left : MediaQuery.of(context).size.width/ 3.1.w,
+                top : MediaQuery.of(context).size.height / 3.5.h,
+                left : MediaQuery.of(context).size.width / 2.5.w,
                 child : SizedBox(
                   height : Get.width <= 280  ?  50.h : 75.h,
                   width : Get.width <= 280  ?   50.w : 75.w,
@@ -671,7 +675,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
       context: context,
       builder: (BuildContext context) {
         return SafeArea(
-          child: Container(
+          child: SizedBox(
             width: Get.width.w,
             child: Wrap(
               children: [
@@ -714,7 +718,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                           ),
                           const Spacer(),
                           WileToneTextWidget(
-                            title: '\₹1,000',
+                            title: '₹1,000',
                             fontSize: 16.sp,
                             fontFamily: AssetsUtils.metrophobic,
                             fontWeight: FontWeight.w600,
@@ -730,7 +734,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                       Row(
                         children: [
                           WileToneTextWidget(
-                            title: "${VariablesUtils.discount}(10\%)",
+                            title: "${VariablesUtils.discount}(10%)",
                             fontSize: 16.sp,
                             fontFamily: AssetsUtils.poppins,
                             fontWeight: FontWeight.w600,
@@ -738,7 +742,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                           ),
                           const Spacer(),
                           WileToneTextWidget(
-                            title: '-\₹100',
+                            title: '-₹100',
                             fontSize: 16.sp,
                             fontFamily: AssetsUtils.metrophobic,
                             fontWeight: FontWeight.w600,
@@ -771,7 +775,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                           ),
                           const Spacer(),
                           WileToneTextWidget(
-                            title: '\₹900',
+                            title: '₹900',
                             fontSize: 15.sp,
                             fontFamily: AssetsUtils.poppins,
                             fontWeight: FontWeight.w600,
@@ -793,7 +797,7 @@ class _RestaurantDetailScreenState extends State<RestaurantDetailScreen> {
                         onPressed: () {
                           Get.to(() => const PaymentSuccessScreen());
                         },
-                        buttonName: "${VariablesUtils.pay}\₹900",
+                        buttonName: "${VariablesUtils.pay}₹900",
                         fontSize: 16,
                       ),
 

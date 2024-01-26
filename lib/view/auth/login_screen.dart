@@ -26,7 +26,7 @@ import '../../utils/utils.dart';
 import 'package:wilatone_restaurant/utils/variables_utils.dart';
 import 'package:wilatone_restaurant/view/auth/create_profile_screen.dart';
 import 'package:wilatone_restaurant/view/auth/otp_verify_screen.dart';
-import 'package:wilatone_restaurant/view/dashboard/bottombar_screen.dart';
+import 'package:wilatone_restaurant/view/dashboard/dashboard_screen.dart';
 import 'package:wilatone_restaurant/view/general/wilestone_web_view.dart';
 import 'package:wilatone_restaurant/viewModel/auth_view_model.dart';
 
@@ -390,7 +390,7 @@ class _LoginScreenState extends State<LoginScreen>{
             Get.to(() => const CreateProfileScreen());
           }
           else {
-            Get.to(() => const BottombarScreen());
+            Get.to(() => const DashBoardScreen());
           }
         }
 

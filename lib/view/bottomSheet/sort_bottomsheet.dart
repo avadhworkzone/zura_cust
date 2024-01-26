@@ -20,132 +20,135 @@ class Sortbottomsheet{
       ),
       context: context,
       builder: (BuildContext context) {
-        return SafeArea(
-          child: Wrap(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    WileToneTextWidget(
-                      title: VariablesUtils.sorttext,
-                      fontSize: 18.sp,
-                      fontFamily: AssetsUtils.poppins,
-                      fontWeight: FontWeight.w600,
-                      color: ColorUtils.black,
-                    ),
-                    SizedBox(
-                      height: 14.h,
-                    ),
-                    Row(
-                      children: [
-                        WileToneTextWidget(
-                          title: VariablesUtils.relevance,
-                          fontSize: 14.sp,
-                          fontFamily: AssetsUtils.poppins,
-                          fontWeight: FontWeight.w500,
-                          // color: ColorUtils.black,
-                        ),
-                        const Spacer(),
-                        Radio(
-                            activeColor: ColorUtils.green,
-                            value: 2,
-                            groupValue: selectedOption,
-                            onChanged: (value) {
-                              selectedOption = value;
-                              // setState(() {
-                              // });
-                            }),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Row(
-                      children: [
-                        WileToneTextWidget(
-                          title: VariablesUtils.lowToHigh,
-                          fontSize: 14.sp,
-                          fontFamily: AssetsUtils.poppins,
-                          fontWeight: FontWeight.w500,
-                          // color: ColorUtils.black,
-                        ),
-                        const Spacer(),
-                        Radio(
-                            activeColor: ColorUtils.green,
-                            value: 2,
-                            groupValue: selectedOption,
-                            onChanged: (value) {
-                              // setState(() {
-                                selectedOption = value;
-                              // });
-                            }),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Row(
-                      children: [
-                        WileToneTextWidget(
-                          title: VariablesUtils.highToLow,
-                          fontSize: 14.sp,
-                          fontFamily: AssetsUtils.poppins,
-                          fontWeight: FontWeight.w500,
-                          // color: ColorUtils.black,
-                        ),
-                        const Spacer(),
-                        Radio(
-                            activeColor: ColorUtils.green,
-                            value: 2,
-                            groupValue: selectedOption,
-                            onChanged: (value) {
-                              selectedOption = value;
-                              // setState(() {
-                              // });
-                            }),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
+        return StatefulBuilder(builder: (context, setState){
 
-                    /// buttons
-                    Row(
-                      children: [
-                        WileToneCustomButton(
-                          buttonHeight: MediaQuery.of(context).size.height / 14,
-                          buttonWidth: MediaQuery.of(context).size.width / 2.3,
-                          buttonColor: ColorUtils.white,
-                          onPressed: () {},
-                          buttonName: VariablesUtils.clearAll,
-                          fontColor: ColorUtils.green,
-                        ),
-                        WileToneCustomButton(
-                          buttonHeight:MediaQuery.of(context).size.height / 14,
-                          buttonWidth: MediaQuery.of(context).size.width / 2.2,
-                          buttonColor: ColorUtils.green,
-                          onPressed: () {},
-                          buttonName: VariablesUtils.ApplyBtn,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                  ],
+          return SafeArea(
+            child: Wrap(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.h),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      WileToneTextWidget(
+                        title: VariablesUtils.sorttext,
+                        fontSize: 18.sp,
+                        fontFamily: AssetsUtils.poppins,
+                        fontWeight: FontWeight.w600,
+                        color: ColorUtils.black,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      /// Relevance
+                      Row(
+                        children: [
+                          WileToneTextWidget(
+                            title: VariablesUtils.relevance,
+                            fontSize: 14.sp,
+                            fontFamily: AssetsUtils.poppins,
+                            fontWeight: FontWeight.w500,
+                            // color: ColorUtils.black,
+                          ),
+                          const Spacer(),
+                          Radio(
+                              activeColor: ColorUtils.green,
+                              value: 1,
+                              groupValue: selectedOption,
+                              onChanged: (value) {
+                                setState(() {
+                                selectedOption = value;
+                                });
+                              }),
+                        ],
+                      ),
+
+                      /// Low to High
+                      Row(
+                        children: [
+                          WileToneTextWidget(
+                            title: VariablesUtils.lowToHigh,
+                            fontSize: 14.sp,
+                            fontFamily: AssetsUtils.poppins,
+                            fontWeight: FontWeight.w500,
+                            // color: ColorUtils.black,
+                          ),
+                          const Spacer(),
+                          Radio(
+                              activeColor: ColorUtils.green,
+                              value: 2,
+                              groupValue: selectedOption,
+                              onChanged: (value) {
+                                setState(() {
+                                selectedOption = value;
+                                });
+                              }),
+                        ],
+                      ),
+
+                      /// High to Low
+                      Row(
+                        children: [
+                          WileToneTextWidget(
+                            title: VariablesUtils.highToLow,
+                            fontSize: 14.sp,
+                            fontFamily: AssetsUtils.poppins,
+                            fontWeight: FontWeight.w500,
+                            // color: ColorUtils.black,
+                          ),
+                          const Spacer(),
+                          Radio(
+                              activeColor: ColorUtils.green,
+                              value: 3,
+                              groupValue: selectedOption,
+                              onChanged: (value) {
+                                setState(() {
+                                selectedOption = value;
+                                });
+                              }),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+
+                      /// buttons
+
+                      Row(
+                        children: [
+                          WileToneCustomButton(
+                            buttonHeight: MediaQuery.of(context).size.height / 14,
+                            buttonWidth: MediaQuery.of(context).size.width / 2.3,
+                            buttonColor: ColorUtils.white,
+                            onPressed: () {},
+                            buttonName: VariablesUtils.clearAll,
+                            fontColor: ColorUtils.green,
+                          ),
+                          WileToneCustomButton(
+                            buttonHeight:MediaQuery.of(context).size.height / 14,
+                            buttonWidth: MediaQuery.of(context).size.width / 2.2,
+                            buttonColor: ColorUtils.green,
+                            onPressed: () {},
+                            buttonName: VariablesUtils.ApplyBtn,
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(
+                        height: 15.h,
+                      ),
+
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
+              ],
+            ),
+          );
+        },);
       },
     );
   }
-
-
 }
